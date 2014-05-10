@@ -1,8 +1,8 @@
-<b>My coursework at JavaRush</b>
+<h4>My coursework at JavaRush</h4>
 
-JavaRush is a game-like course on learning Java SE.
+<h5>JavaRush is a game-like course on learning Java SE.</h5>
 
-For this moment maximum level is the 26th one and I've reached that limit.
+<h5>For this moment maximum level is the 26th one and I've reached that limit.</h5>
 
-*You can learn more about this course at http://javarush.ru/ (Russian)*
+<h10>You can learn more about this course at http://javarush.ru/ (Russian)</h10>
 
