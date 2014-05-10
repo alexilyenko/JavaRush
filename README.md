@@ -4,5 +4,5 @@
 
 <h7>For this moment maximum level is the 26th one and I've reached that limit.</h7>
 
-<h10>*You can learn more about this course at http://javarush.ru/ (Russian)*</h10>
+<h10>*You can learn more about this course at http://javarush.ru/ (Russian).*</h10>
 
