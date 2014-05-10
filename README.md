@@ -1,5 +1,4 @@
 My coursework at JavaRush
-========
 
 JavaRush is a self-learning gaming course on Java SE.
 Max level is 26th for this moment. And I reached that limit.
