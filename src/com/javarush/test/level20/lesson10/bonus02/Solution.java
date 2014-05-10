@@ -1,4 +1,4 @@
-package com.javarush.test.level20.lesson10.bonus04;
+package com.javarush.test.level20.lesson10.bonus02;
 
 import java.io.Serializable;
 import java.util.AbstractList;
