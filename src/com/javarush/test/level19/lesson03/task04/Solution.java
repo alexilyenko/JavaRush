@@ -1,7 +1,5 @@
 package com.javarush.test.level19.lesson03.task04;
 
-import org.junit.Test;
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
@@ -19,7 +17,6 @@ import java.util.Scanner;
 
 public class Solution {
 
-    @Test
     public static void main(String[] args) throws IOException {
         Scanner s = new Scanner(new File("d:\\1.txt"));
         PersonScanner adapter = new PersonScannerAdapter(s);

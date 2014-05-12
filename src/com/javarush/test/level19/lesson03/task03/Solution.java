@@ -10,7 +10,7 @@ CA Canada
 Дополнить телефонный номер нулями до 10 цифр при необходимости
 */
 
-import org.junit.Test;
+
 
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +23,6 @@ public class Solution {
         countries.put("CA", "Canada");
     }
 
-    @Test
     public static void main (String[] args) {
         IncomeDataAdapter incomeDataAdapter = new IncomeDataAdapter(new IncomeData()
         {
