@@ -20,20 +20,15 @@ class InfoCommand implements Command
         boolean money = false;
         ConsoleHelper.writeMessage(res.getString("before"));
         for (CurrencyManipulator cur : CurrencyManipulatorFactory.getAllCurrencyManipulators()){
-
             if (cur.hasMoney()){
-
                 if (cur.getTotalAmount() > 0)
                 {
                     ConsoleHelper.writeMessage(cur.getCurrencyCode() + " - " + cur.getTotalAmount());
                     money = true;
                 }
-
-
             }
-
         }
-        if (!money) ConsoleHelper.writeMessage(res.getString("no.money"));
-
+        if (!money)
+            ConsoleHelper.writeMessage(res.getString("no.money"));
     }
 }

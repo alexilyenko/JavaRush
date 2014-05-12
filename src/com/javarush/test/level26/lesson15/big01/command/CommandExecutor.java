@@ -7,9 +7,6 @@ import com.javarush.test.level26.lesson15.big01.exception.InterruptOperationExce
 import java.util.HashMap;
 import java.util.Map;
 
-/**
- * Created by Alex on 29.04.2014.
- */
 public class CommandExecutor
 {
     private static Map<Operation, Command> map = new HashMap<>();
@@ -24,10 +21,9 @@ public class CommandExecutor
 
     public static final void execute(Operation operation) throws InterruptOperationException
     {
-
             map.get(operation).execute();
-
     }
+
     public CommandExecutor()
     {
     }

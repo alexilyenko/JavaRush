@@ -11,10 +11,6 @@ public final class CurrencyManipulatorFactory
     static HashMap<String, CurrencyManipulator> map = new HashMap<>();
     static boolean isExist = false;
 
-
-
-
-
     public static CurrencyManipulator getManipulatorByCurrencyCode(String currencyCode)
     {
         isExist = false;

@@ -11,22 +11,18 @@ import java.util.ResourceBundle;
  */
 public class CashMachine
 {
-
     public static final String RESOURCE_PATH = "com.javarush.test.level26.lesson15.big01.resources.";
-
 
     public static void main(String[] args)
     {
         Locale.setDefault(Locale.ENGLISH);
         ResourceBundle res = ResourceBundle.getBundle(RESOURCE_PATH + "common_en", Locale.ENGLISH);
-
         try
         {
             CommandExecutor.execute(Operation.LOGIN);
             Operation operation;
             do
             {
-
                 ConsoleHelper.writeMessage(res.getString("choose.operation") + " \n" +
                         res.getString("operation.INFO") + ": 1;\n" +
                         res.getString("operation.DEPOSIT") + ": 2;\n" +
@@ -38,14 +34,10 @@ public class CashMachine
             }
             while (operation != Operation.EXIT);
         } catch (InterruptOperationException e) {
-//            try
-//            {
-//                ConsoleHelper.writeMessage(res.getString("the.end"));
-//               // CommandExecutor.execute(Operation.EXIT);
-//            }
-//            catch (InterruptOperationException ignored)
-//            {
-//            }
+            try {
+                CommandExecutor.execute(Operation.EXIT);
+            } catch (InterruptOperationException ignored) {
+            }
             ConsoleHelper.printExitMessage();
         }
     }

@@ -8,16 +8,13 @@ import com.javarush.test.level26.lesson15.big01.exception.InterruptOperationExce
 
 import java.util.ResourceBundle;
 
-/**
- * Created by Alex on 29.04.2014.
- */
+
 class DepositCommand implements Command
 {
     private ResourceBundle res = ResourceBundle.getBundle(CashMachine.RESOURCE_PATH + "deposit_en");
     @Override
     public void execute() throws InterruptOperationException
     {
-
         ConsoleHelper.writeMessage(res.getString("before"));
         String currencyCode = ConsoleHelper.askCurrencyCode();
         CurrencyManipulator currencyManipulator = CurrencyManipulatorFactory.getManipulatorByCurrencyCode(currencyCode);
@@ -31,9 +28,6 @@ class DepositCommand implements Command
         } catch (NumberFormatException e)
         {
             ConsoleHelper.writeMessage(res.getString("invalid.data"));
-
         }
-
-
     }
 }

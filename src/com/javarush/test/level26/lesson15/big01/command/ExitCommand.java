@@ -19,8 +19,5 @@ class ExitCommand implements Command
 
             if (ConsoleHelper.readString().equals(res.getString("yes")))
                 ConsoleHelper.writeMessage(res.getString("thank.message"));
-
-
-
     }
 }

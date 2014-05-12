@@ -51,12 +51,10 @@ public class ConsoleHelper
         {
             test = readString();
             if (test.length() == 3)
-            {
                 break;
-            } else
-            {
+            else
                 writeMessage(res.getString("invalid.data"));
-            }
+
         }
         test = test.toUpperCase();
         return test;
@@ -65,8 +63,8 @@ public class ConsoleHelper
     public static String[] getValidTwoDigits(String currencyCode) throws InterruptOperationException
     {
         String[] array;
-
         writeMessage(String.format(res.getString("choose.denomination.and.count.format"), currencyCode));
+
         while (true)
         {
             String s = readString();
@@ -75,7 +73,6 @@ public class ConsoleHelper
             int l;
             try
             {
-
                 k = Integer.parseInt(array[0]);
                 l = Integer.parseInt(array[1]);
             }
@@ -100,13 +97,9 @@ public class ConsoleHelper
         {
             String line = readString();
             if (checkWithRegExp(line))
-            {
-
                 return Operation.getAllowableOperationByOrdinal(Integer.parseInt(line));
-            } else
-            {
+            else
                 writeMessage(res.getString("invalid.data"));
-            }
         }
 
     }
