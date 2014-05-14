@@ -13,6 +13,7 @@ public class Solution {
         Counter counter4 = new Counter();
 
         counter1.start();
+        counter1.join();
         counter2.start();
         counter3.start();
         counter4.start();
@@ -26,40 +27,37 @@ public class Solution {
         }
     }
 
-    public volatile static Integer count = 0;
-    public volatile static int[] values = new int[105];
+    public static Integer count = 0;
+    public static int[] values = new int[105];
 
     static {
-        for (int i = 0; i < 105; i++)
+        for (int i = 0; i < 105; i++) {
             values[i] = 0;
+        }
     }
 
-    public synchronized static void incrementCount() {
+    public static void incrementCount() {
         count++;
     }
 
-    public synchronized static int getCount() {
+    public static int getCount() {
         return count;
     }
 
     public static class Counter extends Thread {
         @Override
-        public synchronized void run() {
-              do
-                {
+        public void run() {
+                synchronized (this) {
+                    while(getCount() < 100){
                         incrementCount();
                         values[getCount()]++;
-
-                    try
-                    {
-                        Thread.sleep(1);
-                    }
-                    catch (InterruptedException ignored)
-                    {
                     }
                 }
-                while (getCount() < 100);
-            }
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException ignored) {
+                }
         }
     }
+}
 
