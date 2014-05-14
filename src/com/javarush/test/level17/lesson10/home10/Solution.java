@@ -47,16 +47,16 @@ public class Solution {
     public static class Counter extends Thread {
         @Override
         public void run() {
-                synchronized (this) {
-                    while(getCount() < 100){
-                        incrementCount();
-                        values[getCount()]++;
-                    }
+            synchronized (this) {
+                while(getCount() < 100){
+                    incrementCount();
+                    values[getCount()]++;
                 }
-                try {
-                    Thread.sleep(1);
-                } catch (InterruptedException ignored) {
-                }
+            }
+            try {
+                Thread.sleep(1);
+            } catch (InterruptedException ignored) {
+            }
         }
     }
 }
