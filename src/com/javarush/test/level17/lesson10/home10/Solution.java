@@ -13,7 +13,6 @@ public class Solution {
         Counter counter4 = new Counter();
 
         counter1.start();
-        counter1.join();
         counter2.start();
         counter3.start();
         counter4.start();
