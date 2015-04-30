@@ -27,20 +27,17 @@ public class Solution {
         testString.printSomething();
         System.setOut(defaultPrintStream);
 
-        String result = byteArrayOutputStream.toString();
-        String[] resultArray = result.split(" ");
+        String[] result = byteArrayOutputStream.toString().split(" ");
         int firstNum = Integer.parseInt(resultArray[0]);
         int secondNum = Integer.parseInt(resultArray[2]);
         int arithmeticResult;
 
-        if (resultArray[1].equals("+"))
-            arithmeticResult = firstNum + secondNum;
-        else if (resultArray[1].equals("-"))
-            arithmeticResult = firstNum - secondNum;
-        else
-            arithmeticResult = firstNum * secondNum;
+        switch (result[1]) {
+            case "+": arithmeticResult = firstNum + secondNum; break;
+            case "-": arithmeticResult = firstNum - secondNum; break;
+            case "*": arithmeticResult = firstNum * secondNum; break;
 
-        System.out.println(firstNum+" "+resultArray[1]+" "+secondNum+" = "+arithmeticResult);
+        System.out.println(firstNum+" "+result[1]+" "+secondNum+" = "+arithmeticResult);
     }
 
     public static class TestString {
