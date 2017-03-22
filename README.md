@@ -1,4 +1,4 @@
-<h4>My coursework at JavaRush</h4>
+<h4>About JavaRush</h4>
 
 <h7>JavaRush is a game-like course on training Java Core skills.</h7>
 
