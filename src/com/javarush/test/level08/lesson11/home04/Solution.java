@@ -12,29 +12,30 @@ import java.util.List;
 3. Найти минимальное число среди элементов списка - метод getMinimum.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception {
-        List<Integer> integerList = getIntegerList();
-        System.out.println(getMinimum(integerList));
-    }
+class Solution {
 
-    public static int getMinimum(List<Integer> array) {
-        int minimum = array.get(0);
-        for (int i=1; i<array.size(); i++)
-        {
-            if (array.get(i) < minimum)
-                minimum = array.get(i);
-        }
-        return minimum;
-    }
+  public static void main(String[] args) throws Exception {
+    List<Integer> integerList = getIntegerList();
+    System.out.println(getMinimum(integerList));
+  }
 
-    public static List<Integer> getIntegerList() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int number = Integer.parseInt(reader.readLine());
-        List<Integer> list = new ArrayList<Integer>();
-        for (int i=0; i<number; i++)
-            list.add(Integer.parseInt(reader.readLine()));
-        return list;
+  private static int getMinimum(List<Integer> array) {
+    int minimum = array.get(0);
+    for (int i = 1; i < array.size(); i++) {
+      if (array.get(i) < minimum) {
+        minimum = array.get(i);
+      }
     }
+    return minimum;
+  }
+
+  private static List<Integer> getIntegerList() throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int number = Integer.parseInt(reader.readLine());
+    List<Integer> list = new ArrayList<>();
+    for (int i = 0; i < number; i++) {
+      list.add(Integer.parseInt(reader.readLine()));
+    }
+    return list;
+  }
 }

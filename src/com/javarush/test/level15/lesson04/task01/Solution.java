@@ -11,24 +11,27 @@ package com.javarush.test.level15.lesson04.task01;
 2 Удалите реализации всех лишних методов
 */
 
-public class Solution {
-    public static void main(String[] args) {
-        print((short) 1);
-        print((Number) 1);
-        print(1);
-        print((Integer) 1);
-        print((int) 1);
-    }
+class Solution {
 
-    public static void print(Integer i) {        System.out.println("Это Integer");    }
+  public static void main(String[] args) {
+    print((short) 1);
+    print((Number) 1);
+    print(1);
+    print((Integer) 1);
+    print(1);
+  }
 
-    public static void print(Object i) {
-        System.out.println("Это Object");
-    }
+  private static void print(Integer i) {
+    System.out.println("Это Integer");
+  }
 
-    public static void print(double i) {
-        System.out.println("Это double");
-    }
+  private static void print(Object i) {
+    System.out.println("Это Object");
+  }
+
+  private static void print(double i) {
+    System.out.println("Это double");
+  }
 
 
 }

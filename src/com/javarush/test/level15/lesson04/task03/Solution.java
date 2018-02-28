@@ -5,13 +5,14 @@ package com.javarush.test.level15.lesson04.task03;
 2. Удалите все лишние реализации метода print.
 */
 
-public class Solution {
-    public static void main(String[] args) {
-        print(1);
-    }
+class Solution {
 
-    public static void print(long l) {
-        System.out.println("Я буду Java прогером!");
-    }
+  public static void main(String[] args) {
+    print(1);
+  }
+
+  private static void print(long l) {
+    System.out.println("Я буду Java прогером!");
+  }
 
 }

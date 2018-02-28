@@ -8,30 +8,35 @@ PS: Взаимосвязь между объектами классов NakedCat
 http://cs7002.vk.me/c7007/v7007577/1411a/_dAiEola310.jpg
 */
 
-public class Solution {
-    public static void main(String[] args) {
-        SiamCat simka = new SiamCat("Simka");
-        NakedCat nakedSimka = simka.shave();
+class Solution {
+
+  public static void main(String[] args) {
+    SiamCat simka = new SiamCat("Simka");
+    NakedCat nakedSimka = simka.shave();
+  }
+
+  static class NakedCat {
+
+  }
+
+  static class NormalCat extends NakedCat {
+
+    NormalCat() {
     }
 
-    public static class NakedCat {
+    NormalCat(String name) {
+      System.out.println("My name is " + name);
     }
 
-    public static class NormalCat extends NakedCat {
-        public NormalCat() {}
-
-        public NormalCat(String name) {
-            System.out.println("My name is " + name);
-        }
-
-        public NakedCat shave() {
-            return this;
-        }
+    NakedCat shave() {
+      return this;
     }
+  }
 
-    public static class SiamCat extends NormalCat {
-        public SiamCat(String name) {
-            super(name);
-        }
+  static class SiamCat extends NormalCat {
+
+    SiamCat(String name) {
+      super(name);
     }
+  }
 }

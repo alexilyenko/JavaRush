@@ -1,18 +1,16 @@
 package com.javarush.test.level13.lesson11.bonus03;
 
-public class Robot extends AbstractRobot
-{
-    private String name;
+class Robot extends AbstractRobot {
 
-    public Robot(String name)
-    {
-        this.name = name;
-    }
+  private final String name;
 
-    public String getName()
-    {
-        return name;
-    }
+  Robot(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
 
 
 }

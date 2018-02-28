@@ -1,34 +1,36 @@
 package com.javarush.test.level09.lesson11.bonus01;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /* Нужно исправить программу, чтобы компилировалась и работала
 Задача: Программа вводит два имени файла. И копирует первый файл на место заданное вторым именем.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+class Solution {
 
-        String sourceFileName = reader.readLine();
-        String destinationFileName = reader.readLine();
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        FileInputStream fileInputStream = new FileInputStream(sourceFileName);
-        FileOutputStream fileOutputStream = new FileOutputStream(destinationFileName);
+    String sourceFileName = reader.readLine();
+    String destinationFileName = reader.readLine();
 
-        int count = 0;
-        while (fileInputStream.available()>0)
-        {
-            int data = fileInputStream.read();
-            fileOutputStream.write(data);
-            count++;
-        }
+    FileInputStream fileInputStream = new FileInputStream(sourceFileName);
+    FileOutputStream fileOutputStream = new FileOutputStream(destinationFileName);
 
-        System.out.println("Скопировано байт " + count);
-
-        fileInputStream.close();
-        fileOutputStream.close();
+    int count = 0;
+    while (fileInputStream.available() > 0) {
+      int data = fileInputStream.read();
+      fileOutputStream.write(data);
+      count++;
     }
+
+    System.out.println("Скопировано байт " + count);
+
+    fileInputStream.close();
+    fileOutputStream.close();
+  }
 }

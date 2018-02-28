@@ -15,34 +15,41 @@ it's a text for testing
 it's a text for testing
 */
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintStream;
+import java.io.PrintWriter;
 
-public class Solution {
-    public static TestString testString = new TestString();
+class Solution {
 
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String fileName = bufferedReader.readLine();
-        bufferedReader.close();
+  private static final TestString testString = new TestString();
 
-        PrintStream defaultPrintStream = System.out;
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        testString.printSomething();
-        System.setOut(defaultPrintStream);
+  public static void main(String[] args) throws IOException {
+    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    String fileName = bufferedReader.readLine();
+    bufferedReader.close();
 
-        String result = byteArrayOutputStream.toString();
-        PrintWriter printWriter = new PrintWriter(new FileWriter(fileName));
-        printWriter.println(result);
-        printWriter.close();
-        System.out.println(result);
+    PrintStream defaultPrintStream = System.out;
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(byteArrayOutputStream));
+    testString.printSomething();
+    System.setOut(defaultPrintStream);
+
+    String result = byteArrayOutputStream.toString();
+    PrintWriter printWriter = new PrintWriter(new FileWriter(fileName));
+    printWriter.println(result);
+    printWriter.close();
+    System.out.println(result);
+  }
+
+  static class TestString {
+
+    void printSomething() {
+      System.out.println("it's a text for testing");
     }
-
-    public static class TestString {
-        public void printSomething() {
-            System.out.println("it's a text for testing");
-        }
-    }
+  }
 }
 

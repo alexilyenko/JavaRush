@@ -22,42 +22,38 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Solution
-{
-    public static volatile BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+class Solution {
 
-    public static void main(String[] args) throws InterruptedException
-    {
-        Read3Strings t1 = new Read3Strings();
-        Read3Strings t2 = new Read3Strings();
-        t1.start();
-        t1.join();
-        t2.start();
-        t2.join();
-        System.out.println(t1.printList());
-        System.out.println(t2.printList());
+  private static final BufferedReader reader = new BufferedReader(
+      new InputStreamReader(System.in));
+
+  public static void main(String[] args) throws InterruptedException {
+    Read3Strings t1 = new Read3Strings();
+    Read3Strings t2 = new Read3Strings();
+    t1.start();
+    t1.join();
+    t2.start();
+    t2.join();
+    System.out.println(t1.printList());
+    System.out.println(t2.printList());
+  }
+
+  static class Read3Strings extends Thread {
+
+    String one, two, three;
+
+    public void run() {
+      try {
+        one = reader.readLine();
+        two = reader.readLine();
+        three = reader.readLine();
+      } catch (IOException ignored) {
+      }
     }
 
-    public static class Read3Strings extends Thread
-    {
-        String one, two, three;
-        public void run()
-        {
-            try
-            {
-                one = reader.readLine();
-                two = reader.readLine();
-                three = reader.readLine();
-            }
-            catch (IOException e)
-            {
-            }
-        }
-
-        public String printList()
-        {
-            return one +" "+ two +" "+ three;
-        }
+    String printList() {
+      return one + " " + two + " " + three;
     }
+  }
 }
 

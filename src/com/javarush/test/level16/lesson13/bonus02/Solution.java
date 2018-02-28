@@ -18,77 +18,91 @@ import java.util.List;
 */
 
 public class Solution {
-    public static List<Thread> threads = new ArrayList<Thread>(5);
 
-    static {
-        threads.add(new Thread1());
-        threads.add(new Thread2());
-        threads.add(new Thread3());
-        threads.add(new Thread4());
-        threads.add(new Thread5());
+  @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+  private static final List<Thread> threads = new ArrayList<>(5);
+
+  static {
+    threads.add(new Thread1());
+    threads.add(new Thread2());
+    threads.add(new Thread3());
+    threads.add(new Thread4());
+    threads.add(new Thread5());
+  }
+
+  static class Thread1 extends Thread {
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    public void run() {
+      //noinspection InfiniteLoopStatement
+      while (true) {
+      }
+    }
+  }
+
+  static class Thread2 extends Thread {
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    public void run() {
+      try {
+        //noinspection InfiniteLoopStatement
+        while (!isInterrupted()) {
+
+        }
+        throw new InterruptedException();
+      } catch (InterruptedException e) {
+        System.out.println("InterruptedException");
+      }
+    }
+  }
+
+  static class Thread3 extends Thread {
+
+    public void run() {
+      //noinspection InfiniteLoopStatement
+      while (true) {
+        try {
+          System.out.println("Ура");
+          Thread.sleep(500);
+        } catch (InterruptedException ignore) {/*NOP*/}
+      }
+    }
+  }
+
+  public static class Thread4 extends Thread implements Message {
+
+    public void showWarning() {
+      this.interrupt();
+      try {
+        this.join();
+      } catch (InterruptedException ignore) {/*NOP*/}
     }
 
-    public static class Thread1 extends Thread {
-        public void run () {
-            while (true) {}
-        }
+    @SuppressWarnings("StatementWithEmptyBody")
+    public void run() {
+      Thread current = currentThread();
+      while (!current.isInterrupted()) {
+      }
     }
-    public static class Thread2 extends Thread {
-        public void run () {
-            try{
-                while (!isInterrupted())
-                {
+  }
 
-                }
-                throw new InterruptedException();
-            }catch (InterruptedException e)
-            {
-                System.out.println("InterruptedException");
-            }
-        }
-    }
-    public static class Thread3 extends Thread {
-        public void run () {
-            while (true) {
-                try {
-                    System.out.println("Ура");
-                    Thread.sleep(500);
-                } catch (InterruptedException ignore) {/*NOP*/}
-            }
-        }
-    }
-    public static class Thread4 extends Thread implements Message {
-        public void showWarning() {
+  static class Thread5 extends Thread {
+
+    final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private int sum;
+    private String a;
+
+    public void run() {
+      while (!isInterrupted()) {
+        try {
+          if ((a = reader.readLine()).equals("N")) {
+            System.out.println(sum);
             this.interrupt();
-            try
-            {
-                this.join();
-            }
-            catch(InterruptedException ignore)
-            {/*NOP*/}
-        }
-        public void run () {
-            Thread current = currentThread();
-            while (!current.isInterrupted()) {}
-        }
+            continue;
+          }
+          sum = sum + Integer.parseInt(a);
+        } catch (IOException ignore) {/*NOP*/}
+      }
     }
-    public static class Thread5 extends Thread {
-        private int sum;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        private String a;
-        public void run () {
-            while (!isInterrupted()) {
-                try
-                {
-                    if ((a = reader.readLine()).equals("N"))
-                    {
-                        System.out.println(sum);
-                        this.interrupt();
-                        continue;
-                    }
-                    sum = sum + Integer.parseInt(a);
-                } catch (IOException ignore) {/*NOP*/}
-            }
-        }
-    }
+  }
 }

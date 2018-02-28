@@ -6,19 +6,20 @@ package com.javarush.test.level17.lesson10.bonus03;
 Подсказка: это одна строчка
 */
 
-public class Restaurant {
-    public static void main(String[] args) throws Exception {
-        Waiter waiterTarget = new Waiter();
-        Thread waiter = new Thread(waiterTarget);
+class Restaurant {
 
-        Cook cookTarget = new Cook();
-        Thread cook = new Thread(cookTarget);
+  public static void main(String[] args) throws Exception {
+    Waiter waiterTarget = new Waiter();
+    Thread waiter = new Thread(waiterTarget);
 
-        waiter.start();
-        cook.start();
+    Cook cookTarget = new Cook();
+    Thread cook = new Thread(cookTarget);
 
-        Thread.sleep(2000);
-        waiterTarget.continueWorking = false;
-        cookTarget.continueWorking = false;
-    }
+    waiter.start();
+    cook.start();
+
+    Thread.sleep(2000);
+    waiterTarget.continueWorking = false;
+    cookTarget.continueWorking = false;
+  }
 }

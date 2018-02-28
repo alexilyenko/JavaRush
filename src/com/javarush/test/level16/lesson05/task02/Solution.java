@@ -12,67 +12,70 @@ import java.util.List;
 2.2. Подождать, пока она завершит гонку. Подумай, какой метод нужно использовать для этого.
 */
 
-public class Solution {
-    public static int countHorses = 10;
+class Solution {
 
-    public static void main(String[] args) throws InterruptedException {
-        List<Horse> horses = prepareHorsesAndStart();
-        while (calculateHorsesFinished(horses) != countHorses) {
+  private static final int countHorses = 10;
+
+  @SuppressWarnings("StatementWithEmptyBody")
+  public static void main(String[] args) throws InterruptedException {
+    List<Horse> horses = prepareHorsesAndStart();
+    while (calculateHorsesFinished(horses) != countHorses) {
+    }
+  }
+
+  private static int calculateHorsesFinished(List<Horse> horses) throws InterruptedException {
+    int countFinished = 0;
+    for (Horse horse : horses) {
+      if (horse.isFinished()) {
+        countFinished++;
+      } else {
+        System.out.println("Waiting for " + horse.getName());
+        horse.join();
+        if (horse.isFinished()) {
+          countFinished++;
         }
+
+      }
+    }
+    return countFinished;
+  }
+
+  private static List<Horse> prepareHorsesAndStart() {
+    List<Horse> horses = new ArrayList<>(countHorses);
+    String number;
+    for (int i = 1; i < countHorses + 1; i++) {
+      number = i < 10 ? ("0" + i) : "" + i;
+      horses.add(new Horse("Horse_" + number));
     }
 
-    public static int calculateHorsesFinished(List<Horse> horses) throws InterruptedException {
-        int countFinished = 0;
-        for (Horse horse : horses) {
-            if (horse.isFinished())
-                countFinished++;
-            else
-            {
-                System.out.println("Waiting for " + horse.getName());
-                horse.join();
-                if (horse.isFinished()) {countFinished++;}
+    for (int i = 0; i < countHorses; i++) {
+      horses.get(i).start();
+    }
+    return horses;
+  }
 
-            }
-        }
-        return countFinished;
+  static class Horse extends Thread {
+
+    private boolean isFinished;
+
+    Horse(String name) {
+      super(name);
     }
 
-    public static class Horse extends Thread {
-
-        public Horse(String name) {
-            super(name);
-        }
-
-        private boolean isFinished;
-
-        public boolean isFinished() {
-            return isFinished;
-        }
-
-        public void run() {
-            String s = "";
-            for (int i = 0; i < 1001; i++) {   //delay
-                s += "" + i;
-                if (i == 1000) {
-                    s = " is finished!";
-                    System.out.println(getName() + s);
-                    isFinished = true;
-                }
-            }
-        }
+    boolean isFinished() {
+      return isFinished;
     }
 
-    public static List<Horse> prepareHorsesAndStart() {
-        List<Horse> horses = new ArrayList<Horse>(countHorses);
-        String number;
-        for (int i = 1; i < countHorses + 1; i++) {
-            number = i < 10 ? ("0" + i) : "" + i;
-            horses.add(new Horse("Horse_" + number));
+    public void run() {
+      StringBuilder s = new StringBuilder();
+      for (int i = 0; i < 1001; i++) {   //delay
+        s.append("").append(i);
+        if (i == 1000) {
+          s = new StringBuilder(" is finished!");
+          System.out.println(getName() + s);
+          isFinished = true;
         }
-
-        for (int i = 0; i < countHorses; i++) {
-            horses.get(i).start();
-        }
-        return horses;
+      }
     }
+  }
 }

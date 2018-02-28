@@ -5,40 +5,30 @@ package com.javarush.test.level11.lesson06.task03;
 Унаследовать корову, свинью, овцу, быка и козла от животного.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
 
-    public class Animal
-    {
+  class Animal {
 
-    }
+  }
 
-    public class Cow extends Animal
-    {
+  private class Cow extends Animal {
 
-    }
+  }
 
-    public class Pig extends Animal
-    {
+  private class Pig extends Animal {
 
-    }
+  }
 
-    public class Sheep extends Animal
-    {
+  private class Sheep extends Animal {
 
-    }
+  }
 
-    public class Bull extends Animal
-    {
+  private class Bull extends Animal {
 
-    }
+  }
 
-    public class Goat extends Animal
-    {
+  private class Goat extends Animal {
 
-    }
+  }
 
 }

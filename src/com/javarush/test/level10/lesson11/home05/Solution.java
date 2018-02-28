@@ -15,47 +15,45 @@ import java.util.ArrayList;
 я 9
 */
 
-public class Solution
-{
-    public static void main(String[] args)  throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+class Solution {
 
-        //алфавит
-        ArrayList<Character> alphabet = new ArrayList<Character>();
-        for(int i=0;i<32;i++)
-        {
-            alphabet.add( (char) ('а'+i));
-        }
-        alphabet.add(6,'ё');
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        //ввод строк
-        ArrayList<String> list = new ArrayList<String>();
-        for(int i=0;i<10;i++)
-        {
-            String s = reader.readLine();
-            list.add( s.toLowerCase());
-        }
-
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
-        for (int i=0; i<33; i++)
-            numbers.add(0);
-
-        for (int i=0; i<list.size(); i++ ) {
-            char[] line = list.get(i).toCharArray();
-            for (int j=0; j<line.length; j++) {
-                for (int k=0; k<alphabet.size(); k++) {
-                    if (alphabet.get(k) == line[j]) {
-                       int f = numbers.get(k)+1;
-                       numbers.set(k, f);
-                    }
-                }
-            }
-        }
-
-        for (int i=0; i<numbers.size(); i++) {
-            System.out.println(alphabet.get(i)+" "+numbers.get(i));
-        }
+    //алфавит
+    ArrayList<Character> alphabet = new ArrayList<>();
+    for (int i = 0; i < 32; i++) {
+      alphabet.add((char) ('а' + i));
     }
+    alphabet.add(6, 'ё');
+
+    //ввод строк
+    ArrayList<String> list = new ArrayList<>();
+    for (int i = 0; i < 10; i++) {
+      String s = reader.readLine();
+      list.add(s.toLowerCase());
+    }
+
+    ArrayList<Integer> numbers = new ArrayList<>();
+    for (int i = 0; i < 33; i++) {
+      numbers.add(0);
+    }
+
+    for (String aList : list) {
+      char[] line = aList.toCharArray();
+      for (char aLine : line) {
+        for (int k = 0; k < alphabet.size(); k++) {
+          if (alphabet.get(k) == aLine) {
+            int f = numbers.get(k) + 1;
+            numbers.set(k, f);
+          }
+        }
+      }
+    }
+
+    for (int i = 0; i < numbers.size(); i++) {
+      System.out.println(alphabet.get(i) + " " + numbers.get(i));
+    }
+  }
 
 }

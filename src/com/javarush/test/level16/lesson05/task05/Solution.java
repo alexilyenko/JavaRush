@@ -9,56 +9,58 @@ package com.javarush.test.level16.lesson05.task05;
 2.4. Все события для одной кошки могут быть перемешаны с событями для другой кошки.
 */
 
-public class Solution {
-    public static void main(String[] args) throws InterruptedException {
-        Cat cat1 = new Cat("Мурка");
-        Cat cat2 = new Cat("Пушинка");
+class Solution {
+
+  public static void main(String[] args) {
+    Cat cat1 = new Cat("Мурка");
+    Cat cat2 = new Cat("Пушинка");
+  }
+
+  private static void investigateWorld() {
+    try {
+      Thread.sleep(200);
+    } catch (InterruptedException ignored) {
+    }
+  }
+
+  static class Cat extends Thread {
+
+    final Kitten kitten1;
+    final Kitten kitten2;
+
+    Cat(String name) {
+      super(name);
+      kitten1 = new Kitten("Котенок 1, мама - " + getName());
+      kitten2 = new Kitten("Котенок 2, мама - " + getName());
+      start();
     }
 
-    public static class Cat extends Thread {
-        protected Kitten kitten1;
-        protected Kitten kitten2;
-
-        public Cat(String name) throws InterruptedException
-        {
-            super(name);
-            kitten1 = new Kitten("Котенок 1, мама - " + getName());
-            kitten2 = new Kitten("Котенок 2, мама - " + getName());
-            start();
-        }
-
-        public void run() {
-            System.out.println(getName() + " родила 2 котенка");
-            try {
-                initAllKitten();
-            } catch (InterruptedException ignored) {
-            }
-            System.out.println(getName() + ": Все котята в корзинке. " + getName() + " собрала их назад");
-        }
-
-        private void initAllKitten() throws InterruptedException {
-            kitten1.start();
-            kitten2.start();
-            kitten1.join();
-            kitten2.join();
-        }
+    public void run() {
+      System.out.println(getName() + " родила 2 котенка");
+      try {
+        initAllKitten();
+      } catch (InterruptedException ignored) {
+      }
+      System.out.println(getName() + ": Все котята в корзинке. " + getName() + " собрала их назад");
     }
 
-    public static class Kitten extends Thread {
-        public Kitten(String name) {
-            super(name);
-        }
+    private void initAllKitten() throws InterruptedException {
+      kitten1.start();
+      kitten2.start();
+      kitten1.join();
+      kitten2.join();
+    }
+  }
 
-        public void run() {
-            System.out.println(getName() + ", вылез из корзинки");
-            investigateWorld();
-        }
+  static class Kitten extends Thread {
+
+    Kitten(String name) {
+      super(name);
     }
 
-    private static void investigateWorld() {
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException ignored) {
-        }
+    public void run() {
+      System.out.println(getName() + ", вылез из корзинки");
+      investigateWorld();
     }
+  }
 }

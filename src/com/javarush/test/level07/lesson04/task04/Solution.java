@@ -9,15 +9,16 @@ import java.util.Scanner;
 4. Вывести результат на экран, каждое значение выводить с новой строки.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-         int[] mass = new int[10];
-         Scanner scan = new Scanner(System.in);
-         for (int i=0; i<mass.length; i++)
-             mass[mass.length-1-i] = scan.nextInt();
-         for (int mas : mass)
-             System.out.println(mas);
+class Solution {
+
+  public static void main(String[] args) {
+    int[] mass = new int[10];
+    Scanner scan = new Scanner(System.in);
+    for (int i = 0; i < mass.length; i++) {
+      mass[mass.length - 1 - i] = scan.nextInt();
     }
+    for (int mas : mass) {
+      System.out.println(mas);
+    }
+  }
 }

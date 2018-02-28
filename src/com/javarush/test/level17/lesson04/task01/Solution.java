@@ -8,29 +8,28 @@ import java.util.List;
 2. Все System.out.println не должны быть заблокированы (синхронизированы), т.е. не должны находиться в блоке synchronized
 */
 
-public class Solution {
-    public static class Note {
+class Solution {
 
-        public final List<String> notes = new ArrayList<String>();
+  static class Note {
 
-        public void addNote(int index, String note) {
-            System.out.println("Сейчас будет добавлена заметка [" + note + "] На позицию " + index);
-            synchronized (notes)
-            {
-                notes.add(index, note);
-            }
+    final List<String> notes = new ArrayList<>();
 
-            System.out.println("Уже добавлена заметка [" + note + "]");
-        }
+    public void addNote(int index, String note) {
+      System.out.println("Сейчас будет добавлена заметка [" + note + "] На позицию " + index);
+      synchronized (notes) {
+        notes.add(index, note);
+      }
 
-        public void removeNote(int index) {
-            System.out.println("Сейчас будет удалена заметка с позиции " + index);
-            String note;
-            synchronized (notes)
-            {
-                note = notes.remove(index);
-            }
-            System.out.println("Уже удалена заметка [" + note + "] с позиции " + index);
-        }
+      System.out.println("Уже добавлена заметка [" + note + "]");
     }
+
+    public void removeNote(int index) {
+      System.out.println("Сейчас будет удалена заметка с позиции " + index);
+      String note;
+      synchronized (notes) {
+        note = notes.remove(index);
+      }
+      System.out.println("Уже удалена заметка [" + note + "] с позиции " + index);
+    }
+  }
 }

@@ -1,20 +1,22 @@
 package com.javarush.test.level22.lesson05.home01;
 
-public class Task implements Runnable {
-    private String initialString;
-    private Solution solution;
+class Task implements Runnable {
 
-    public Task(Solution solution, String initialString) {
-        this.solution = solution;
-        this.initialString = initialString;
-    }
+  private final String initialString;
+  private final Solution solution;
 
-    @Override
-    public void run() {
-        String name = Thread.currentThread().getName();
-        String str = this.initialString;
-        do {
-            System.out.println(name + str);
-        } while ((str = solution.getPartOfString(str, name)) != null || !str.isEmpty());
-    }
+  Task(Solution solution, String initialString) {
+    this.solution = solution;
+    this.initialString = initialString;
+  }
+
+  @Override
+  public void run() {
+    String name = Thread.currentThread().getName();
+    String str = this.initialString;
+    //noinspection ConstantConditions
+    do {
+      System.out.println(name + str);
+    } while ((str = solution.getPartOfString(str, name)) != null || !str.isEmpty());
+  }
 }

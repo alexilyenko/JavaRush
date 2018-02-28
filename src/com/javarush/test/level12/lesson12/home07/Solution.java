@@ -5,59 +5,56 @@ package com.javarush.test.level12.lesson12.home07;
 Добавь эти интерфейсы классам Duck(утка), Penguin(пингвин), Toad(жаба)
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
+public class Solution {
 
+  interface Fly {
+
+    void fly();
+  }
+
+  interface Run {
+
+    void run();
+  }
+
+  interface Swim {
+
+    void swim();
+  }
+
+  public class Duck implements Fly, Run, Swim {
+
+    public void run() {
+      System.out.println("I'm running!");
     }
 
-    public interface Fly
-    {
-        public void fly();
+    public void fly() {
+      System.out.println("I'm flying!");
     }
 
-    public interface Run
-    {
-        public void run();
+    public void swim() {
+      System.out.println("I'm swimming!");
     }
 
-    public interface Swim
-    {
-        public void swim();
+  }
+
+  public class Penguin implements Run, Swim {
+
+    public void run() {
+      System.out.println("I'm running!");
     }
 
-    public class Duck implements Fly, Run, Swim
-    {
-        public void run() {
-            System.out.println("I'm running!");
-        }
-        public void fly() {
-            System.out.println("I'm flying!");
-        }
-        public void swim() {
-            System.out.println("I'm swimming!");
-        }
-
+    public void swim() {
+      System.out.println("I'm swimming!");
     }
 
-    public class Penguin implements Run, Swim
-    {
-        public void run() {
-            System.out.println("I'm running!");
-        }
-        public void swim() {
-            System.out.println("I'm swimming!");
-        }
+  }
 
+  public class Toad implements Swim {
+
+    public void swim() {
+      System.out.println("I'm swimming!");
     }
 
-    public class Toad implements Swim
-    {
-
-        public void swim() {
-            System.out.println("I'm swimming!");
-        }
-
-    }
+  }
 }

@@ -2,22 +2,25 @@ package com.javarush.test.level19.lesson10.home03;
 
 import java.util.Date;
 
-public class Person {
-    private String name;
-    private Date birthday;
+class Person {
 
-    public Person(String name, Date birthday) {
-        this.name = name;
-        this.birthday = birthday;
-    }
+  private final String name;
+  private final Date birthday;
 
-    public String getName() {
-        return name;
-    }
+  public Person(String name, Date birthday) {
+    this.name = name;
+    this.birthday = birthday;
+  }
 
-    public Date getBirthday() {
-        return birthday;
-    }
+  private String getName() {
+    return name;
+  }
 
-    public String toString() {return this.getName()+" "+this.getBirthday();}
+  private Date getBirthday() {
+    return birthday;
+  }
+
+  public String toString() {
+    return this.getName() + " " + this.getBirthday();
+  }
 }

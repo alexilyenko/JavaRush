@@ -7,54 +7,41 @@ package com.javarush.test.level11.lesson06.task05;
 Унаследовать клерка и ИТ-специалиста от сотрудника.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
 
-    public class Worker
-    {
+  class Worker {
 
-    }
+  }
 
-    public class Clerk extends Worker
-    {
+  class Clerk extends Worker {
 
-    }
+  }
 
-    public class IT extends Worker
-    {
+  class IT extends Worker {
 
-    }
+  }
 
-    public class Programmer extends IT
-    {
+  private class Programmer extends IT {
 
-    }
+  }
 
-    public class ProjectManager extends IT
-    {
+  private class ProjectManager extends IT {
 
-    }
+  }
 
-    public class CTO extends IT
-    {
+  private class CTO extends IT {
 
-    }
+  }
 
-    public class OfficeManager extends Clerk
-    {
+  private class OfficeManager extends Clerk {
 
-    }
+  }
 
-    public class HR extends Clerk
-    {
+  private class HR extends Clerk {
 
-    }
+  }
 
-    public class Cleaner extends Clerk
-    {
+  private class Cleaner extends Clerk {
 
-    }
+  }
 }

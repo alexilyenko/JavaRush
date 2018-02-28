@@ -12,28 +12,29 @@ import java.util.List;
 6. Реализуй это минимальным количеством кода
 */
 
-public class Solution {
-    public static class Garden {
+class Solution {
 
-        public final List<String> fruits = new ArrayList<String>();
-        public final List<String> vegetables = new ArrayList<String>();
+  static class Garden {
+
+    final List<String> fruits = new ArrayList<>();
+    final List<String> vegetables = new ArrayList<>();
 
 
-        public synchronized void addFruit(int index, String fruit) {
-            fruits.add(index, fruit);
-        }
-
-        public synchronized void removeFruit(int index) {
-            fruits.remove(index);
-        }
-
-        public synchronized void addVegetable(int index, String vegetable) {
-            vegetables.add(index, vegetable);
-        }
-
-        public synchronized void removeVegetable(int index) {
-            vegetables.remove(index);
-        }
-
+    public synchronized void addFruit(int index, String fruit) {
+      fruits.add(index, fruit);
     }
+
+    public synchronized void removeFruit(int index) {
+      fruits.remove(index);
+    }
+
+    public synchronized void addVegetable(int index, String vegetable) {
+      vegetables.add(index, vegetable);
+    }
+
+    public synchronized void removeVegetable(int index) {
+      vegetables.remove(index);
+    }
+
+  }
 }

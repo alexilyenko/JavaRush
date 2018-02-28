@@ -12,9 +12,6 @@ package com.javarush.test.level14.lesson08.bonus03;
 
 6. В итоге должна быть возможность создать объект (экземпляр класса) ТОЛЬКО используя метод getInstance.
 */
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
+
 }

@@ -18,34 +18,31 @@ import java.util.List;
 9. Добавь в конструктор класса Person заполнение листа allMoney объектами всех возможных классов.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Person ivan = new Person("Иван");
-        for (Money money : ivan.getAllMoney())
-        {
-            System.out.println(ivan.name + " имеет заначку в размере " + money.getAmount() + " " + money.getCurrencyName());
-        }
+class Solution {
+
+  public static void main(String[] args) {
+    Person ivan = new Person("Иван");
+    for (Money money : ivan.getAllMoney()) {
+      System.out.println(ivan.name + " имеет заначку в размере " + money.getAmount() + " " + money
+          .getCurrencyName());
+    }
+  }
+
+  static class Person {
+
+    final String name;
+    private final List<Money> allMoney;
+
+    @SuppressWarnings("SameParameterValue")
+    Person(@SuppressWarnings("SameParameterValue") String name) {
+      this.name = name;
+      this.allMoney = new ArrayList<>();
+      this.allMoney.add(new Hrivna(25));
+      this.allMoney.add(new USD(100));
     }
 
-    static class Person
-    {
-        public String name;
-
-        Person(String name)
-        {
-            this.name = name;
-            this.allMoney = new ArrayList<Money>();
-            this.allMoney.add(new Hrivna(25));
-            this.allMoney.add(new USD(100));
-        }
-
-        private List<Money> allMoney;
-
-        public List<Money> getAllMoney()
-        {
-            return allMoney;
-        }
+    List<Money> getAllMoney() {
+      return allMoney;
     }
+  }
 }

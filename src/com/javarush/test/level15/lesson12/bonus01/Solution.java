@@ -15,23 +15,27 @@ import java.io.InputStreamReader;
 4. В статическом блоке инициализировать Flyable result вызвав метод reset.
 */
 
-public class Solution {
-    static {
-        reset();
-    }
+class Solution {
 
-    public static Flyable result;
+  @SuppressWarnings("FieldCanBeLocal")
+  private static Flyable result;
 
-    public static void reset() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String input;
-        try {
-            input = reader.readLine();
-            if (input.equals("helicopter"))
-                result = new Helicopter();
-            else if (input.equals("plane"))
-                result = new Plane(Integer.parseInt(reader.readLine()));
-            reader.close();
-        } catch (IOException ignored) {}
+  static {
+    reset();
+  }
+
+  private static void reset() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String input;
+    try {
+      input = reader.readLine();
+      if (input.equals("helicopter")) {
+        result = new Helicopter();
+      } else if (input.equals("plane")) {
+        result = new Plane(Integer.parseInt(reader.readLine()));
+      }
+      reader.close();
+    } catch (IOException ignored) {
     }
+  }
 }

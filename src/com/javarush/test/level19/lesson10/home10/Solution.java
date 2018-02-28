@@ -8,67 +8,72 @@ import java.io.InputStream;
 Программа содержит всего 1 ошибку. Найди и исправь ее
 */
 
-public class Solution {
+class Solution {
+
+  static {
+    System.out.println("it's Solution class");
+  }
+
+  public static void main(String... args) {
+    try (
+        FileOutputStream outputStream = new FileOutputStream("c:/output.txt");
+        InputStream is = Solution.class.getClassLoader()
+            .getResourceAsStream("/user/resources/avatar.gif")
+    ) {
+      byte[] b = new byte[is.available()];
+      outputStream.write(is.read(b));
+
+      int value = 123_456_789;
+      System.out.println(value);
+
+      Example result = null;
+      String s = "a";
+      switch (s) {
+        case "a": {
+          result = new Solution().new A();
+          break;
+        }
+        case "b": {
+          result = new Solution().new B();
+          break;
+        }
+        case "c": {
+          result = new Solution().new C();
+          break;
+        }
+      }
+
+      if (result instanceof C) {
+        C p = (C) result;
+        System.out.println(p.getClass().getSimpleName());
+      }
+
+    } catch (IOException ignored) {
+    }
+  }
+
+  private interface Example {
+
+  }
+
+  class A implements Example {
+
     {
-        System.out.println("it's Solution class");
+      System.out.println("it's A class");
     }
+  }
 
-    public static void main(String... args) throws IOException {
-        try (
-                FileOutputStream outputStream = new FileOutputStream("c:/output.txt");
-                InputStream is = Solution.class.getClassLoader().getResourceAsStream("/user/resources/avatar.gif");
-        ) {
-            ;
-            byte[] b = new byte[is.available()];
-            outputStream.write(is.read(b));
+  class B implements Example {
 
-            int value = 123_456_789;
-            System.out.println(value);
-
-            Example result = null;
-            String s = "a";
-            switch (s) {
-                case "a": {
-                    result = new Solution().new A();
-                    break;
-                }
-                case "b": {
-                    result = new Solution().new B();
-                    break;
-                }
-                case "c": {
-                    result = new Solution().new C();
-                    break;
-                }
-            }
-
-            if (result instanceof C) {
-                C p = (C) result;
-                System.out.println(p.getClass().getSimpleName());
-            }
-
-        } catch (IOException e) {
-        }
+    {
+      System.out.println("it's B class");
     }
+  }
 
-    interface Example {
-    }
+  class C extends A {
 
-    class A implements Example {
-        {
-            System.out.println("it's A class");
-        }
+    {
+      System.out.println("it's C class");
     }
-
-    class B implements Example {
-        {
-            System.out.println("it's B class");
-        }
-    }
-
-    class C extends A {
-        {
-            System.out.println("it's C class");
-        }
-    }
+  }
 }

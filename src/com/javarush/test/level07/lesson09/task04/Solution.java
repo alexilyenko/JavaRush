@@ -20,37 +20,35 @@ import java.util.ArrayList;
 лоза
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader bis = new BufferedReader(new InputStreamReader(System.in));
-        ArrayList <String> list = new ArrayList<String>();
-        for(int i = 0; i < 5; i++)
-        {
-            String str = bis.readLine();
-            list.add(str);
-        }
-        list = fix(list);
+class Solution {
 
-        for (String s: list)
-            System.out.println(s);
+  public static void main(String[] args) throws Exception {
+    BufferedReader bis = new BufferedReader(new InputStreamReader(System.in));
+    ArrayList<String> list = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+      String str = bis.readLine();
+      list.add(str);
     }
+    list = fix(list);
 
-    public static ArrayList<String> fix (ArrayList<String> list) {
-        for(int i = 0; i < list.size();)
-        {
-            if(list.get(i).contains("р") && list.get(i).contains("л"))
-                i++;
-            else if(list.get(i).contains("л")){
-                list.add(i, list.get(i));
-                i+=2;
-            }
-            else if(list.get(i).contains("р"))
-                list.remove(i);
-            else
-                i++;
-        }
-        return list;
+    for (String s : list) {
+      System.out.println(s);
     }
+  }
+
+  private static ArrayList<String> fix(ArrayList<String> list) {
+    for (int i = 0; i < list.size(); ) {
+      if (list.get(i).contains("р") && list.get(i).contains("л")) {
+        i++;
+      } else if (list.get(i).contains("л")) {
+        list.add(i, list.get(i));
+        i += 2;
+      } else if (list.get(i).contains("р")) {
+        list.remove(i);
+      } else {
+        i++;
+      }
+    }
+    return list;
+  }
 }

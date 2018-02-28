@@ -4,16 +4,14 @@ package com.javarush.test.level12.lesson09.task01;
 Напиши свой public интерфейс Fly(летать). Добавь в него два метода.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
+class Solution {
 
-    }
-    public interface Fly {
-         boolean canFly();
-         int wingsNumber();
+  public interface Fly {
 
-    }
+    boolean canFly();
+
+    int wingsNumber();
+
+  }
 
 }

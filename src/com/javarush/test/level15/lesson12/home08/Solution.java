@@ -7,35 +7,38 @@ F9 - выполнение кода до следующего breakpoint-а
 F8 - переход к следующей строке кода
 */
 
-public class Solution {
-    public static void main(String[] args) {
-        new B(6);
+class Solution {
+
+  public static void main(String[] args) {
+    new B(6);
+  }
+
+  static class A {
+
+    private final int f1;
+
+    A(int f1) {
+      this.f1 = f1;
+      initialize();
     }
 
-    public static class A {
-        private int f1 = 7;
+    private void initialize() {
+      System.out.println(f1);
+    }
+  }
 
-        public A(int f1) {
-            this.f1 = f1;
-            initialize();
-        }
+  static class B extends A {
 
-       private void initialize() {
-            System.out.println(f1);
-        }
+    int f1;
+
+    B(int f1) {
+      super(f1);
+      this.f1 += f1;
+      initialize();
     }
 
-    public static class B extends A {
-        protected int f1 = 3;
-
-        public B(int f1) {
-            super(f1);
-            this.f1 += f1;
-            initialize();
-        }
-
-        protected void initialize() {
-            System.out.println(f1);
-        }
+    void initialize() {
+      System.out.println(f1);
     }
+  }
 }

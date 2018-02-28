@@ -1,6 +1,6 @@
 package com.javarush.test.level13.lesson11.home09;
 
-import java.awt.*;
+import java.awt.Color;
 
 /* Один метод в классе
 1. Унаследовать Fox от интерфейса Animal.
@@ -8,24 +8,20 @@ import java.awt.*;
 3. Методы удалять нельзя!
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-    }
+class Solution {
 
-    public interface Animal
-    {
-        Color getColor();
+  private interface Animal {
 
-        Integer getAge();
-    }
+    Color getColor();
 
-    public static abstract class Fox implements Animal
-    {
-        public String getName()
-        {
-            return "Fox";
-        }
+    Integer getAge();
+  }
+
+  private static abstract class Fox implements Animal {
+
+    @SuppressWarnings("SameReturnValue")
+    public String getName() {
+      return "Fox";
     }
+  }
 }

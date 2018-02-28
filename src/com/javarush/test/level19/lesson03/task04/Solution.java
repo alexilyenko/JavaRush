@@ -17,34 +17,36 @@ import java.util.Scanner;
 
 public class Solution {
 
-    public static void main(String[] args) throws IOException {
-        Scanner s = new Scanner(new File("d:\\1.txt"));
-        PersonScanner adapter = new PersonScannerAdapter(s);
-        System.out.println(adapter.read());
-        adapter.close();
+  public static void main(String[] args) throws IOException {
+    Scanner s = new Scanner(new File("d:\\1.txt"));
+    PersonScanner adapter = new PersonScannerAdapter(s);
+    System.out.println(adapter.read());
+    adapter.close();
+  }
+
+  public static class PersonScannerAdapter implements PersonScanner {
+
+    private final Scanner scanner;
+
+    PersonScannerAdapter(Scanner scanner) {
+      this.scanner = scanner;
     }
 
-    public static class PersonScannerAdapter implements PersonScanner {
-        private Scanner scanner;
-
-        public PersonScannerAdapter (Scanner scanner) {
-            this.scanner = scanner;
-        }
-
-        @Override
-        public Person read() throws IOException {
-            if (scanner.hasNext()) {
-                String[] inputArray = scanner.nextLine().split(" ");
-                Date birthDate = (new GregorianCalendar(Integer.parseInt(inputArray[5]),Integer.parseInt(inputArray[4]) - 1, Integer.parseInt(inputArray[3]))).getTime();
-                return new Person(inputArray[1],inputArray[2],inputArray[0],birthDate);
-            }
-            return null;
-        }
-
-        @Override
-        public void close() throws IOException {
-            scanner.close();
-        }
+    @Override
+    public Person read() {
+      if (scanner.hasNext()) {
+        String[] inputArray = scanner.nextLine().split(" ");
+        Date birthDate = (new GregorianCalendar(Integer.parseInt(inputArray[5]),
+            Integer.parseInt(inputArray[4]) - 1, Integer.parseInt(inputArray[3]))).getTime();
+        return new Person(inputArray[1], inputArray[2], inputArray[0], birthDate);
+      }
+      return null;
     }
+
+    @Override
+    public void close() {
+      scanner.close();
+    }
+  }
 }
 

@@ -16,34 +16,36 @@ inside main 9
 
 import java.util.concurrent.TimeUnit;
 
-public class Solution {
-    public static MyThread t = new MyThread();
-    static String message = "inside main ";
+class Solution {
 
-    public static void main(String a[]) throws Exception {
-        t.start();
-        t.join();
-        for (int i = 0; i < 10; i++) {
-            System.out.println(message + i);
-            sleep();
-        }
+  private static final MyThread t = new MyThread();
+  private static final String message = "inside main ";
+
+  public static void main(String a[]) throws Exception {
+    t.start();
+    t.join();
+    for (int i = 0; i < 10; i++) {
+      System.out.println(message + i);
+      sleep();
     }
+  }
 
-    static class MyThread extends Thread {
-        String message = "inside MyThread ";
-
-        public void run() {
-            for (int i = 0; i < 10; i++) {
-                System.out.println(message + i);
-                Solution.sleep();
-            }
-        }
+  private static void sleep() {
+    try {
+      TimeUnit.MILLISECONDS.sleep(10);
+    } catch (InterruptedException ignored) {
     }
+  }
 
-    public static void sleep() {
-        try {
-            TimeUnit.MILLISECONDS.sleep(10);
-        } catch (InterruptedException ignored) {
-        }
+  static class MyThread extends Thread {
+
+    final String message = "inside MyThread ";
+
+    public void run() {
+      for (int i = 0; i < 10; i++) {
+        System.out.println(message + i);
+        Solution.sleep();
+      }
     }
+  }
 }

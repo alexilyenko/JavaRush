@@ -18,44 +18,43 @@ import java.util.ArrayList;
 М м м л р м .
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String input = reader.readLine();
-        char[] mass = input.toCharArray();
-        ArrayList<Character> glasnie = new ArrayList<Character>();
-        ArrayList<Character> soglasnie = new ArrayList<Character>();
-        for (char mas : mass)
-        {
-            if (isVowel(mas))
-                glasnie.add(mas);
-            else if (mas == ' ')
-                {}
-            else
-                soglasnie.add(mas);
-        }
-        for (char a : glasnie)
-            System.out.print(a+" ");
-        System.out.println("");
-        for (char a : soglasnie)
-            System.out.print(a+" ");
+class Solution {
+
+  private static final char[] vowels = new char[]{'а', 'я', 'у', 'ю', 'и', 'ы', 'э', 'е', 'о', 'ё'};
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String input = reader.readLine();
+    char[] mass = input.toCharArray();
+    ArrayList<Character> glasnie = new ArrayList<>();
+    ArrayList<Character> soglasnie = new ArrayList<>();
+    for (char mas : mass) {
+      if (isVowel(mas)) {
+        glasnie.add(mas);
+      } else if (mas != ' ') {
+        soglasnie.add(mas);
+      }
     }
-
-
-    public static char[] vowels = new char[]{'а', 'я', 'у', 'ю', 'и', 'ы', 'э', 'е', 'о', 'ё'};
-
-    //метод проверяет, гласная ли буква
-    public static boolean isVowel(char c)
-    {
-        c = Character.toLowerCase(c);  //приводим символ в нижний регистр - от заглавных к строчным буквам
-
-        for (char d : vowels)   //ищем среди массива гласных
-        {
-            if (c == d)
-                return true;
-        }
-        return false;
+    for (char a : glasnie) {
+      System.out.print(a + " ");
     }
+    System.out.println("");
+    for (char a : soglasnie) {
+      System.out.print(a + " ");
+    }
+  }
+
+  //метод проверяет, гласная ли буква
+  private static boolean isVowel(char c) {
+    c = Character
+        .toLowerCase(c);  //приводим символ в нижний регистр - от заглавных к строчным буквам
+
+    for (char d : vowels)   //ищем среди массива гласных
+    {
+      if (c == d) {
+        return true;
+      }
+    }
+    return false;
+  }
 }

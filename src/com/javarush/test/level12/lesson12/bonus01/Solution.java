@@ -4,34 +4,31 @@ package com.javarush.test.level12.lesson12.bonus01;
 Расставить правильно ключевые слова abstract, чтобы программа компилировалась (там где надо и не надо).
 */
 
-public class Solution
-{
+public class Solution {
 
-    public static void main(String[] args)
-    {
-        Horse horse = new Pegas();
-        horse.run();
-    }
+  public static void main(String[] args) {
+    Horse horse = new Pegas();
+    horse.run();
+  }
 
-    public static interface Fly
-    {
-        public abstract void fly();
-    }
+  private interface Fly {
 
-    public static abstract class Horse
-    {
-        public void run()
-        {}
-    }
+  }
 
-    public static class Pegas extends Horse implements Fly
-    {
-        public void fly(){}
-    }
+  static abstract class Horse {
 
-    public static abstract class SwimPegas extends Pegas
-    {
-        public abstract void swim();
+    @SuppressWarnings("EmptyMethod")
+    void run() {
     }
+  }
+
+  static class Pegas extends Horse implements Fly {
+
+  }
+
+  public static abstract class SwimPegas extends Pegas {
+
+    public abstract void swim();
+  }
 
 }

@@ -8,18 +8,19 @@ import java.util.ArrayList;
 3. Используя цикл for вывести результат на экран, каждый элемент списка с новой строки.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-         ArrayList<String> list = new ArrayList<String>();
-         list.add("мама");
-         list.add("мыла");
-         list.add("раму");
-         String s = "именно";
-         list.add(1, s);
-         list.add(3, s);
-         list.add(5, s);
-         for (String aList : list) System.out.println(aList);
+class Solution {
+
+  public static void main(String[] args) {
+    ArrayList<String> list = new ArrayList<>();
+    list.add("мама");
+    list.add("мыла");
+    list.add("раму");
+    String s = "именно";
+    list.add(1, s);
+    list.add(3, s);
+    list.add(5, s);
+    for (String aList : list) {
+      System.out.println(aList);
     }
+  }
 }

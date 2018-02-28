@@ -8,19 +8,25 @@ import java.io.Serializable;
 Класс A не должен реализовывать интерфейсы Serializable и Externalizable.
 Сигнатура класса В не содержит ошибку :)
 */
-public class Solution implements Serializable {
-    public static class A {
-        public A() {}
-        protected String name = "A";
-        public A(String name) {
-            this.name += name;
-        }
+class Solution implements Serializable {
+
+  static class A {
+
+    String name = "A";
+
+    A() {
     }
 
-    public class B extends A implements Serializable {
-        public B(String name) {
-            super(name);
-            this.name += name;
-        }
+    A(String name) {
+      this.name += name;
     }
+  }
+
+  private class B extends A implements Serializable {
+
+    public B(String name) {
+      super(name);
+      this.name += name;
+    }
+  }
 }

@@ -15,25 +15,33 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Solution {
-    public static Planet thePlanet;
+class Solution {
 
-    static {
-        readKeyFromConsoleAndInitPlanet();
+  @SuppressWarnings("FieldCanBeLocal")
+  private static Planet thePlanet;
+
+  static {
+    readKeyFromConsoleAndInitPlanet();
+  }
+
+  //add static block here - добавьте статический блок тут
+
+  private static void readKeyFromConsoleAndInitPlanet() {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      String input = reader.readLine();
+      switch (input) {
+        case Planet.SUN:
+          thePlanet = Sun.getInstance();
+          break;
+        case Planet.MOON:
+          thePlanet = Moon.getInstance();
+          break;
+        case Planet.EARTH:
+          thePlanet = Earth.getInstance();
+          break;
+      }
+    } catch (IOException ignored) {
     }
-
-    //add static block here - добавьте статический блок тут
-
-    public static void readKeyFromConsoleAndInitPlanet() {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            String input = reader.readLine();
-            if (input.equals(Planet.SUN))
-                thePlanet = Sun.getInstance();
-            else if (input.equals(Planet.MOON))
-                thePlanet = Moon.getInstance();
-            else if (input.equals(Planet.EARTH))
-                thePlanet = Earth.getInstance();
-        } catch (IOException ignored) {}
-    }
+  }
 }

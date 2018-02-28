@@ -1,6 +1,7 @@
 package com.javarush.test.level25.lesson02.task02;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /* Машину на СТО не повезем!
 Инициализируйте поле wheels используя данные из loadWheelNamesFromDB.
@@ -10,25 +11,27 @@ import java.util.*;
 */
 public class Solution {
 
-    public static enum Wheel {
-        FRONT_LEFT,
-        FRONT_RIGHT,
-        BACK_LEFT,
-        BACK_RIGHT
+  public enum Wheel {
+    FRONT_LEFT,
+    FRONT_RIGHT,
+    BACK_LEFT,
+    BACK_RIGHT
+  }
+
+  static class Car {
+
+    final List<Wheel> wheels;
+
+    public Car() {
+      wheels = new ArrayList<>();
+      for (String currentWheel : loadWheelNamesFromDB()) {
+        wheels.add(Wheel.valueOf(currentWheel));
+      }
     }
 
-    public static class Car {
-        protected List<Wheel> wheels;
-
-        public Car() {
-            wheels = new ArrayList<>();
-            for (String currentWheel : loadWheelNamesFromDB())
-                wheels.add(Wheel.valueOf(currentWheel));
-        }
-
-        protected String[] loadWheelNamesFromDB() {
-            //this method returns mock data
-            return new String[]{"FRONT_LEFT", "FRONT_RIGHT", "BACK_LEFT", "BACK_RIGHT"};
-        }
+    String[] loadWheelNamesFromDB() {
+      //this method returns mock data
+      return new String[]{"FRONT_LEFT", "FRONT_RIGHT", "BACK_LEFT", "BACK_RIGHT"};
     }
+  }
 }

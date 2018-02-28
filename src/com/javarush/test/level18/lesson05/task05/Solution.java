@@ -12,33 +12,35 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Solution {
-    public static void main(String[] args) throws DownloadException {
+class Solution {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String fileName;
-        FileInputStream fileInputStream;
+  public static void main(String[] args) throws DownloadException {
 
-        while (true) {
-            try
-            {
-                fileName = reader.readLine();
-                fileInputStream = new FileInputStream(fileName);
-                byte[] buffer = new byte[fileInputStream.available()];
-                if (buffer.length<1000) {
-                    fileInputStream.close();
-                    reader.close();
-                    throw new DownloadException();
-                }
-                fileInputStream.close();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String fileName;
+    FileInputStream fileInputStream;
 
-            } catch (IOException ignore) {/*NOP*/}
-
+    //noinspection InfiniteLoopStatement
+    while (true) {
+      try {
+        fileName = reader.readLine();
+        fileInputStream = new FileInputStream(fileName);
+        @SuppressWarnings("MismatchedReadAndWriteOfArray") byte[] buffer = new byte[fileInputStream
+            .available()];
+        if (buffer.length < 1000) {
+          fileInputStream.close();
+          reader.close();
+          throw new DownloadException();
         }
+        fileInputStream.close();
+
+      } catch (IOException ignore) {/*NOP*/}
 
     }
 
-    public static class DownloadException extends Exception{
+  }
 
-    }
+  private static class DownloadException extends Exception {
+
+  }
 }

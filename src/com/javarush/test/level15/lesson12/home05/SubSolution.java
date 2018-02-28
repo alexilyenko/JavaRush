@@ -5,53 +5,50 @@ import java.math.BigDecimal;
 /**
  * Created by ailenko on 14.04.2014.
  */
-public class SubSolution extends Solution
-{
-    public SubSolution()
-    {
-    }
+class SubSolution extends Solution {
 
-    public SubSolution(int s)
-    {
-        super(s);
-    }
+  public SubSolution() {
+  }
 
-    public SubSolution(short s)
-    {
-        super(s);
-    }
+  @SuppressWarnings("unused")
+  public SubSolution(int s) {
+    super(s);
+  }
 
-    protected SubSolution(Integer s)
-    {
-        super(s);
-    }
+  public SubSolution(short s) {
+    super(s);
+  }
 
-    protected SubSolution(Double s)
-    {
-        super(s);
-    }
+  protected SubSolution(Integer s) {
+    super(s);
+  }
 
-    protected SubSolution(double s)
-    {
-        super(s);
-    }
+  protected SubSolution(Double s) {
+    super(s);
+  }
 
-    private SubSolution (byte s) {}
-    private SubSolution (long s) {}
-    private SubSolution (float s) {}
+  protected SubSolution(double s) {
+    super(s);
+  }
 
-    SubSolution(BigDecimal s)
-    {
-        super(s);
-    }
+  private SubSolution(byte s) {
+  }
 
-    SubSolution(Float s)
-    {
-        super(s);
-    }
+  private SubSolution(long s) {
+  }
 
-    SubSolution(Object s)
-    {
-        super(s);
-    }
+  private SubSolution(float s) {
+  }
+
+  SubSolution(BigDecimal s) {
+    super(s);
+  }
+
+  SubSolution(Float s) {
+    super(s);
+  }
+
+  SubSolution(Object s) {
+    super(s);
+  }
 }

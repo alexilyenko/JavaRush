@@ -14,15 +14,13 @@ Thread.sleep(100); //задержка на одну десятую секунд�
 
 import java.util.concurrent.TimeUnit;
 
-public class Solution
-{
-    public static void main(String[] args) throws InterruptedException
-    {
-        for (int i=30;i>=0;i--)
-        {
-            System.out.println(i);
-            TimeUnit.MILLISECONDS.sleep(100);
-        }
-        System.out.println("Бум!");
+class Solution {
+
+  public static void main(String[] args) throws InterruptedException {
+    for (int i = 30; i >= 0; i--) {
+      System.out.println(i);
+      TimeUnit.MILLISECONDS.sleep(100);
     }
+    System.out.println("Бум!");
+  }
 }

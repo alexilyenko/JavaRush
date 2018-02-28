@@ -8,21 +8,21 @@ String multiply(String s) – возвращает строку повторен
 Амиго -> АмигоАмигоАмигоАмигоАмиго
 */
 
-public class StringHelper
-{
-    public static String multiply(String s)
-    {
-        String result = "";
-        for (int x=0; x<5; x++ )
-            result=result+s;
-        return result;
-    }
+class StringHelper {
 
-    public static String multiply(String s, int count)
-    {
-       String result = "";
-       for (int x=0; x<count; x++ )
-           result=result+s;
-       return result;
+  public static String multiply(String s) {
+    StringBuilder result = new StringBuilder();
+    for (int x = 0; x < 5; x++) {
+      result.append(s);
     }
+    return result.toString();
+  }
+
+  public static String multiply(String s, int count) {
+    StringBuilder result = new StringBuilder();
+    for (int x = 0; x < count; x++) {
+      result.append(s);
+    }
+    return result.toString();
+  }
 }

@@ -6,45 +6,49 @@ package com.javarush.test.level16.lesson05.task03;
 3. Подумай, какой метод можно вызвать у объекта ivanov, чтобы Иванов разговаривал, пока не завершится всё свободное время.
 */
 
-public class Solution {
-    public static int totalCountSpeeches = 200;
-    public static int soundsInOneSpeech = 1000000;
+class Solution {
 
-    public static void main(String[] args) throws InterruptedException {
-        Politic ivanov = new Politic("Иванов");
-        ivanov.join();
-        Politic petrov = new Politic("Петров");
-        Politic sidorov = new Politic("Сидоров");
+  private static final int totalCountSpeeches = 200;
+  private static final int soundsInOneSpeech = 1000000;
 
-        while (ivanov.getCountSpeaches() + petrov.getCountSpeaches() + sidorov.getCountSpeaches() < totalCountSpeeches) {
-          }
+  public static void main(String[] args) throws InterruptedException {
+    Politic ivanov = new Politic("Иванов");
+    ivanov.join();
+    Politic petrov = new Politic("Петров");
+    Politic sidorov = new Politic("Сидоров");
 
-        System.out.println(ivanov);
-        System.out.println(petrov);
-        System.out.println(sidorov);
+    //noinspection StatementWithEmptyBody
+    while (ivanov.getCountSpeaches() + petrov.getCountSpeaches() + sidorov.getCountSpeaches()
+        < totalCountSpeeches) {
     }
 
-    public static class Politic extends Thread {
-        private int countSounds;
+    System.out.println(ivanov);
+    System.out.println(petrov);
+    System.out.println(sidorov);
+  }
 
-        public Politic(String name) {
-            super(name);
-            start();
-        }
+  static class Politic extends Thread {
 
-        public void run() {
-            while (countSounds < totalCountSpeeches * soundsInOneSpeech) {
-                countSounds++;
-            }
-        }
+    private int countSounds;
 
-        public int getCountSpeaches() {
-            return countSounds / soundsInOneSpeech;
-        }
-
-        @Override
-        public String toString() {
-            return String.format("%s сказал речь %d раз", getName(), getCountSpeaches());
-        }
+    Politic(String name) {
+      super(name);
+      start();
     }
+
+    public void run() {
+      while (countSounds < totalCountSpeeches * soundsInOneSpeech) {
+        countSounds++;
+      }
+    }
+
+    int getCountSpeaches() {
+      return countSounds / soundsInOneSpeech;
+    }
+
+    @Override
+    public String toString() {
+      return String.format("%s сказал речь %d раз", getName(), getCountSpeaches());
+    }
+  }
 }

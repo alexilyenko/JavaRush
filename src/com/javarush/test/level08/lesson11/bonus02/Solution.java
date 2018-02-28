@@ -23,25 +23,27 @@ import java.util.Map;
 Абрамовичи
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+class Solution {
 
-        //list of addresses
-        Map<String, String> addresses = new HashMap<String, String>();
-        while (true)
-        {
-            String city = reader.readLine();
-            if (city.isEmpty()) break;
-            String family = reader.readLine();
-            if (family.isEmpty()) break;
-            addresses.put(city, family);
-        }
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        //read home number
-        String cityN = reader.readLine();
-        System.out.println(addresses.get(cityN));
+    //list of addresses
+    Map<String, String> addresses = new HashMap<>();
+    while (true) {
+      String city = reader.readLine();
+      if (city.isEmpty()) {
+        break;
+      }
+      String family = reader.readLine();
+      if (family.isEmpty()) {
+        break;
+      }
+      addresses.put(city, family);
     }
+
+    //read home number
+    String cityN = reader.readLine();
+    System.out.println(addresses.get(cityN));
+  }
 }

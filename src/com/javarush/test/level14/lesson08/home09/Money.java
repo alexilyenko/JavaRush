@@ -1,18 +1,17 @@
 package com.javarush.test.level14.lesson08.home09;
 
-public abstract class Money
-{
-    private double amount;
+abstract class Money {
 
-    public Money(double amount)
-    {
-        this.amount = amount;
-    }
+  private final double amount;
 
-    public double getAmount() {
-        return amount;
-    }
+  Money(double amount) {
+    this.amount = amount;
+  }
 
-    public abstract String getCurrencyName();
+  public double getAmount() {
+    return amount;
+  }
+
+  public abstract String getCurrencyName();
 }
 

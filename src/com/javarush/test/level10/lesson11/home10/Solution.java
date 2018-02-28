@@ -1,4 +1,4 @@
- package com.javarush.test.level10.lesson11.home10;
+package com.javarush.test.level10.lesson11.home10;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -10,33 +10,30 @@ int safeGetElement(ArrayList<Integer> list, int index, int defaultValue)
 Метод должен возвращать элемент списка (list) по его индексу (index). Если в процессе получения элемента возникло исключение, его нужно перехватить, и метод должен вернуть defaultValue.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+class Solution {
 
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 20; i++)
-        {
-            int x = Integer.parseInt(reader.readLine());
-            list.add(x);
-        }
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println(safeGetElement(list, 5, 1));
-        System.out.println(safeGetElement(list, 20, 7));
-        System.out.println(safeGetElement(list, -5, 9));
+    ArrayList<Integer> list = new ArrayList<>();
+    for (int i = 0; i < 20; i++) {
+      int x = Integer.parseInt(reader.readLine());
+      list.add(x);
     }
 
-    public static int safeGetElement(ArrayList<Integer> list, int index, int defaultValue)
-    {
-      int element;
-      try {
-          element = list.get(index);
-      } catch (Exception ex) {
-          element = defaultValue;
-      }
-        return element;
+    System.out.println(safeGetElement(list, 5, 1));
+    System.out.println(safeGetElement(list, 20, 7));
+    System.out.println(safeGetElement(list, -5, 9));
+  }
+
+  private static int safeGetElement(ArrayList<Integer> list, int index, int defaultValue) {
+    int element;
+    try {
+      element = list.get(index);
+    } catch (Exception ex) {
+      element = defaultValue;
     }
+    return element;
+  }
 
 }

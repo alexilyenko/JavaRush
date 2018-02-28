@@ -1,13 +1,14 @@
 package com.javarush.test.level17.lesson10.bonus03;
 
-public class Dishes {
-    private byte tableNumber;
+class Dishes {
 
-    public Dishes(byte tableNumber) {
-        this.tableNumber = tableNumber;
-    }
+  private final byte tableNumber;
 
-    public byte getTableNumber() {
-        return tableNumber;
-    }
+  Dishes(byte tableNumber) {
+    this.tableNumber = tableNumber;
+  }
+
+  public byte getTableNumber() {
+    return tableNumber;
+  }
 }

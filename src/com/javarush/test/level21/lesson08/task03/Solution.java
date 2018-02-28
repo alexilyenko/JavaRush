@@ -5,64 +5,66 @@ package com.javarush.test.level21.lesson08.task03;
 Разрешите клонировать класс C
 */
 public class Solution {
-    public static class A implements Cloneable {
-        private int i;
-        private int j;
 
-        public A(int i, int j) {
-            this.i = i;
-            this.j = j;
-        }
+  static class A implements Cloneable {
 
-        public int getI() {
-            return i;
-        }
+    private final int i;
+    private final int j;
 
-        public int getJ() {
-            return j;
-        }
-
-        @Override
-        public Object clone() throws CloneNotSupportedException
-        {
-            return super.clone();
-        }
-
-     }
-
-    public static class B extends A {
-        private String name;
-
-        public B(int i, int j, String name) {
-            super(i, j);
-            this.name = name;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        @Override
-        public Object clone() throws CloneNotSupportedException
-        {
-            throw new CloneNotSupportedException();
-        }
-
+    A(int i, int j) {
+      this.i = i;
+      this.j = j;
     }
 
-    public static class C extends B  {
-        public C(int i, int j, String name) {
-            super(i, j, name);
-        }
-
-        private C duplicate(C c)
-        {
-            return new C(c.getI(), c.getJ(), c.getName());
-        }
-        @Override
-        public C clone() throws CloneNotSupportedException
-        {
-            return duplicate(this);
-        }
+    int getI() {
+      return i;
     }
+
+    int getJ() {
+      return j;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+      return super.clone();
+    }
+
+  }
+
+  public static class B extends A {
+
+    private final String name;
+
+    B(int i, int j, String name) {
+      super(i, j);
+      this.name = name;
+    }
+
+    String getName() {
+      return name;
+    }
+
+    @Override
+    public Object clone() throws CloneNotSupportedException {
+      throw new CloneNotSupportedException();
+    }
+
+  }
+
+  public static class C extends B {
+
+    C(int i, int j, String name) {
+      super(i, j, name);
+    }
+
+    private C duplicate(C c) {
+      return new C(c.getI(), c.getJ(), c.getName());
+    }
+
+    @Override
+    public C clone() throws CloneNotSupportedException {
+      C c = (C) super.clone();
+      return duplicate(this);
+    }
+  }
 }

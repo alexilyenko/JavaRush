@@ -1,22 +1,23 @@
 package com.javarush.test.level17.lesson10.home03;
 
-public class Drug {
-    private String name;
-    private String description;
+class Drug {
 
-    public String getName() {
-        return name;
-    }
+  private String name;
+  private String description;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public String getDescription() {
-        return description;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
 }

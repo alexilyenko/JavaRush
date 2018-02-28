@@ -16,48 +16,45 @@ import java.util.List;
 */
 
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader readOn = new BufferedReader(new InputStreamReader(System.in));
-        ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i = 0; i < 20; i++)
-        {
-            int a = Integer.parseInt(readOn.readLine());
-            list.add(a);
-        }
-        ArrayList<Integer> list1 = new ArrayList<Integer>();
+class Solution {
 
-        for (Integer aList : list)
-        {
-            if ((aList % 3 == 0))
-                list1.add(aList);
-        }
+  public static void main(String[] args) throws Exception {
+    BufferedReader readOn = new BufferedReader(new InputStreamReader(System.in));
+    ArrayList<Integer> list = new ArrayList<>();
+    for (int i = 0; i < 20; i++) {
+      int a = Integer.parseInt(readOn.readLine());
+      list.add(a);
+    }
+    ArrayList<Integer> list1 = new ArrayList<>();
 
-        ArrayList<Integer> list2 = new ArrayList<Integer>();
-        for (Integer aList : list)
-        {
-            if ((aList % 2 == 0))
-                list2.add(aList);
-        }
-        ArrayList<Integer> list3 = new ArrayList<Integer>();
-
-        for (Integer aList : list)
-        {
-            if ((aList % 3 != 0) & (aList % 2 != 0))
-                list3.add(aList);
-        }
-
-        printList(list1);
-        printList(list2);
-        printList(list3);
+    for (Integer aList : list) {
+      if ((aList % 3 == 0)) {
+        list1.add(aList);
+      }
     }
 
-    public static void printList(List<Integer> list) {
-        for (Integer aList : list)
-        {
-            System.out.println(aList);
-        }
+    ArrayList<Integer> list2 = new ArrayList<>();
+    for (Integer aList : list) {
+      if ((aList % 2 == 0)) {
+        list2.add(aList);
+      }
     }
+    ArrayList<Integer> list3 = new ArrayList<>();
+
+    for (Integer aList : list) {
+      if ((aList % 3 != 0) & (aList % 2 != 0)) {
+        list3.add(aList);
+      }
+    }
+
+    printList(list1);
+    printList(list2);
+    printList(list3);
+  }
+
+  private static void printList(List<Integer> list) {
+    for (Integer aList : list) {
+      System.out.println(aList);
+    }
+  }
 }

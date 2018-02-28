@@ -4,33 +4,34 @@ package com.javarush.test.level14.lesson02.task01;
 Исправь строчку 'Object o = new Pet();' в методе main так, чтобы программа вывела "Bingo!"
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Object o = new Tiger();
-        boolean isCat = o instanceof Cat;
-        boolean isTiger = o instanceof Tiger;
-        boolean isPet = o instanceof Pet;
+class Solution {
 
-        printResults(isCat, isTiger, isPet);
-    }
+  @SuppressWarnings("ConstantConditions")
+  public static void main(String[] args) {
+    Object o = new Tiger();
+    boolean isCat = o instanceof Cat;
+    boolean isTiger = o instanceof Tiger;
+    boolean isPet = o instanceof Pet;
 
-    private static void printResults(boolean cat, boolean tiger, boolean pet)
-    {
-        if (cat && tiger && pet) System.out.println("Bingo!");
-    }
+    printResults(isCat, isTiger, isPet);
+  }
 
-    static class Pet
-    {
+  private static void printResults(boolean cat, boolean tiger, boolean pet) {
+    if (cat && tiger && pet) {
+      System.out.println("Bingo!");
     }
+  }
 
-    static class Cat extends Pet
-    {
-    }
+  static class Pet {
 
-    static class Tiger extends Cat
-    {
-    }
+  }
+
+  static class Cat extends Pet {
+
+  }
+
+  private static class Tiger extends Cat {
+
+  }
 
 }

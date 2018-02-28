@@ -5,23 +5,20 @@ package com.javarush.test.level12.lesson12.home10;
 Подсказка: используй перегрузку методов.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Integer i = 5;
-        int x = transformValue(i);
+class Solution {
 
-        System.out.println(x);
-    }
+  public static void main(String[] args) {
+    Integer i = 5;
+    int x = transformValue(i);
 
-    public static int transformValue(int i)
-    {
-        return i*i;
-    }
+    System.out.println(x);
+  }
 
-    public static int transformValue(Integer i)
-    {
-        return i+i;
-    }
+  public static int transformValue(int i) {
+    return i * i;
+  }
+
+  private static int transformValue(Integer i) {
+    return i + i;
+  }
 }

@@ -4,21 +4,16 @@ package com.javarush.test.level12.lesson06.task03;
 Исправь код, чтобы программа компилировалась.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
+public class Solution {
 
+  public static abstract class Pet {
+
+    @SuppressWarnings("SameReturnValue")
+    public String getName() {
+      return "Я - котенок";
     }
 
-    public static abstract class Pet
-    {
-        public String getName()
-        {
-            return "Я - котенок";
-        }
-
-        public abstract Pet getChild();
-    }
+    public abstract Pet getChild();
+  }
 
 }

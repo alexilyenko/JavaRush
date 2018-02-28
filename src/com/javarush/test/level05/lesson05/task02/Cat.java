@@ -9,20 +9,18 @@ package com.javarush.test.level05.lesson05.task02;
 если cat1.fight(cat2) = true , то cat2.fight(cat1) = false
 */
 
-public class Cat
-{
-    public String name;
-    public int age;
-    public int weight;
-    public int strength;
+class Cat {
 
-    public Cat()
-    {
-    }
+  public String name;
+  public int age;
+  public int strength;
+  private int weight;
 
-    public boolean fight (Cat anotherCat)
-    {
-        return anotherCat.weight <= this.weight;
-    }
+  public Cat() {
+  }
+
+  public boolean fight(Cat anotherCat) {
+    return anotherCat.weight <= this.weight;
+  }
 }
 

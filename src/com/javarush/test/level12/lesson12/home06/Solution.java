@@ -10,43 +10,52 @@ package com.javarush.test.level12.lesson12.home06;
 
 public class Solution {
 
-    public interface Fly {
-        void fly();
+  interface Fly {
+
+    void fly();
+  }
+
+  interface Climb {
+
+    void climb();
+  }
+
+  interface Run {
+
+    void run();
+  }
+
+
+  public class Cat implements Run, Climb {
+
+    public void climb() {
+      System.out.println("I'm climbing!");
     }
 
-    public interface Climb {
-        void climb();
+    public void run() {
+      System.out.println("I'm running!");
+    }
+  }
+
+  public class Dog implements Run {
+
+    public void run() {
+      System.out.println("I'm running!");
+    }
+  }
+
+  private class Tiger extends Cat {
+
+  }
+
+  public class Duck implements Run, Fly {
+
+    public void run() {
+      System.out.println("I'm running!");
     }
 
-    public interface Run {
-        void run();
+    public void fly() {
+      System.out.println("I'm flying!");
     }
-
-
-    public class Cat implements Run, Climb {
-        public void climb() {
-            System.out.println("I'm climbing!");
-        }
-        public void run() {
-            System.out.println("I'm running!");
-        }
-    }
-
-    public class Dog implements Run  {
-        public void run() {
-            System.out.println("I'm running!");
-        }
-    }
-
-    public class Tiger extends Cat {
-    }
-
-    public class Duck implements Run, Fly {
-        public void run() {
-            System.out.println("I'm running!");
-        }
-        public void fly() {
-            System.out.println("I'm flying!");
-        }
-    }
+  }
 }

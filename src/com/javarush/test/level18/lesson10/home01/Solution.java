@@ -10,24 +10,27 @@ package com.javarush.test.level18.lesson10.home01;
 
 import java.io.FileInputStream;
 
-public class Solution {
-    public static void main(String[] args) throws Exception {
-        String fileName = args[0];
-        int charCount = 0;
+class Solution {
 
-        FileInputStream fileInputStream = new FileInputStream(fileName);
+  public static void main(String[] args) throws Exception {
+    String fileName = args[0];
+    int charCount = 0;
 
-        byte[] buffer = new byte[fileInputStream.available()];
+    FileInputStream fileInputStream = new FileInputStream(fileName);
 
-        if (fileInputStream.available()>0)
-            fileInputStream.read(buffer);
+    byte[] buffer = new byte[fileInputStream.available()];
 
-        for (byte aBuffer : buffer)
-        {
-            if ((aBuffer > 64 && aBuffer < 91) || (aBuffer > 96 && aBuffer < 123))
-                charCount++;
-        }
-
-        System.out.print(charCount);
+    if (fileInputStream.available() > 0) {
+      //noinspection ResultOfMethodCallIgnored
+      fileInputStream.read(buffer);
     }
+
+    for (byte aBuffer : buffer) {
+      if ((aBuffer > 64 && aBuffer < 91) || (aBuffer > 96 && aBuffer < 123)) {
+        charCount++;
+      }
+    }
+
+    System.out.print(charCount);
+  }
 }

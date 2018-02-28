@@ -4,39 +4,29 @@ package com.javarush.test.level11.lesson11.home10;
 Расставь правильно «цепочку наследования» в классах: House (дом), Cat (кот), Dog(собака), Car (машина), Animal(животное), Assets (имущество).
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
 
-    public class House extends Assets
-    {
+  private class House extends Assets {
 
-    }
+  }
 
-    public class Cat extends Animal
-    {
+  private class Cat extends Animal {
 
-    }
+  }
 
-    public class Car extends Assets
-    {
+  private class Car extends Assets {
 
-    }
+  }
 
-    public class Dog extends Animal
-    {
+  private class Dog extends Animal {
 
-    }
+  }
 
-    public class Animal
-    {
+  class Animal {
 
-    }
+  }
 
-    public class Assets
-    {
+  class Assets {
 
-    }
+  }
 }

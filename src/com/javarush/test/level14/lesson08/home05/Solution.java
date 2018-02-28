@@ -15,24 +15,20 @@ package com.javarush.test.level14.lesson08.home05;
 12. Все созданные классы и интерфейс должны быть в отдельных файлах.
 */
 
-public class Solution
-{
+class Solution {
 
-    public static void main(String[] args)
-    {
-        Computer computer = new Computer();
-        if (isWork(computer.getKeyboard()) &&
-                isWork(computer.getMonitor()) &&
-                isWork(computer.getMouse()))
-        {
-            System.out.println("Work!");
-        }
+  public static void main(String[] args) {
+    Computer computer = new Computer();
+    if (isWork(computer.getKeyboard()) &&
+        isWork(computer.getMonitor()) &&
+        isWork(computer.getMouse())) {
+      System.out.println("Work!");
     }
+  }
 
-    public static boolean isWork(CompItem item)
-    {
-        System.out.println(item.getName());
-        return item.getName() != null && item.getName().length() > 4;
-    }
+  private static boolean isWork(CompItem item) {
+    System.out.println(item.getName());
+    return item.getName() != null && item.getName().length() > 4;
+  }
 
 }

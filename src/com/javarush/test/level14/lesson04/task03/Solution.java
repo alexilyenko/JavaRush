@@ -8,42 +8,39 @@ package com.javarush.test.level14.lesson04.task03;
 5. В методе selectableMethods вызови методы onSelect, eat, если это возможно.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Food food = new Food();
-        Selectable selectable = new Food();
-        Food newFood = (Food) selectable;
+public class Solution {
 
-        foodMethods(food);
-        selectableMethods(selectable);
+  public static void main(String[] args) {
+    Food food = new Food();
+    Selectable selectable = new Food();
+    Food newFood = (Food) selectable;
+
+    foodMethods(food);
+    selectableMethods(selectable);
+  }
+
+  private static void foodMethods(Food food) {
+    food.eat();
+    food.onSelect();
+  }
+
+  private static void selectableMethods(Selectable selectable) {
+    selectable.onSelect();
+  }
+
+  interface Selectable {
+
+    void onSelect();
+  }
+
+  static class Food implements Selectable {
+
+    void eat() {
+      System.out.println("food is eaten");
     }
 
-    public static void foodMethods(Food food)
-    {
-        food.eat();
-        food.onSelect();
+    public void onSelect() {
+      System.out.println("food is selected");
     }
-
-    public static void selectableMethods(Selectable selectable)
-    {
-        selectable.onSelect();
-    }
-
-    interface Selectable
-    {
-        void onSelect();
-    }
-
-    static class Food implements Selectable
-    {
-        public void eat()
-        {
-            System.out.println("food is eaten");
-        }
-        public void onSelect() {
-            System.out.println("food is selected");
-        }
-    }
+  }
 }

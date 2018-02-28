@@ -4,26 +4,17 @@ package com.javarush.test.level13.lesson11.home08;
 Реализовать интерфейс Updatable в классе Screen.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-    }
+class Solution {
 
-    interface Selectable
-    {
-        void onSelect();
-    }
+  private interface Selectable {
 
-    interface Updatable extends Selectable
-    {
-        void refresh();
-    }
+  }
 
-    class Screen implements Updatable
-    {
-        public void onSelect() {}
-        public void refresh() {}
+  private interface Updatable extends Selectable {
 
-    }
+  }
+
+  private class Screen implements Updatable {
+
+  }
 }

@@ -17,49 +17,53 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        String fileName = args[1];
-        FileInputStream fileInputStream = new FileInputStream(fileName);
-        byte[] buffer = new byte[fileInputStream.available()];
-        fileInputStream.read(buffer);
-        fileInputStream.close();
+@SuppressWarnings("Duplicates")
+class Solution {
 
-        byte[] result = new byte[0];
+  public static void main(String[] args) throws IOException {
+    String fileName = args[1];
+    FileInputStream fileInputStream = new FileInputStream(fileName);
+    byte[] buffer = new byte[fileInputStream.available()];
+    //noinspection ResultOfMethodCallIgnored
+    fileInputStream.read(buffer);
+    fileInputStream.close();
 
-        if(args[0].equals("-e"))
-            result = encode(buffer);
-        else if (args[0].equals("-d"))
-            result = decode(buffer);
+    byte[] result = new byte[0];
 
-        String fileOutputName = args[2];
-        FileOutputStream fileOutputStream = new FileOutputStream(fileOutputName);
-        fileOutputStream.write(result);
-        fileOutputStream.close();
+    if (args[0].equals("-e")) {
+      result = encode(buffer);
+    } else if (args[0].equals("-d")) {
+      result = decode(buffer);
     }
 
-    public static byte[] encode(byte[] content) {
-        String pKey = "myKey";
-        byte[] key = pKey.getBytes();
-        byte[] res = new byte[content.length];
+    String fileOutputName = args[2];
+    FileOutputStream fileOutputStream = new FileOutputStream(fileOutputName);
+    fileOutputStream.write(result);
+    fileOutputStream.close();
+  }
 
-        for (int i = 0; i < content.length; i++) {
-            res[i] = (byte) (content[i] ^ key[i % key.length]);
-        }
+  private static byte[] encode(byte[] content) {
+    String pKey = "myKey";
+    byte[] key = pKey.getBytes();
+    byte[] res = new byte[content.length];
 
-        return res;
+    for (int i = 0; i < content.length; i++) {
+      res[i] = (byte) (content[i] ^ key[i % key.length]);
     }
 
-    public static byte[] decode(byte[] content) {
-        String pKey = "myKey";
-        byte[] key = pKey.getBytes();
-        byte[] res = new byte[content.length];
+    return res;
+  }
 
-        for (int i = 0; i < content.length; i++) {
-            res[i] = (byte) (content[i] ^ key[i % key.length]);
-        }
+  private static byte[] decode(byte[] content) {
+    String pKey = "myKey";
+    byte[] key = pKey.getBytes();
+    byte[] res = new byte[content.length];
 
-        return res;
+    for (int i = 0; i < content.length; i++) {
+      res[i] = (byte) (content[i] ^ key[i % key.length]);
     }
+
+    return res;
+  }
 
 }

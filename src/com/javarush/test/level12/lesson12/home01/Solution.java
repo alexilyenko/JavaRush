@@ -5,29 +5,26 @@ package com.javarush.test.level12.lesson12.home01;
 «Я - кот».
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Pet pet = new Cat();
+class Solution {
 
-        System.out.println(pet.getName());
+  public static void main(String[] args) {
+    Pet pet = new Cat();
+
+    System.out.println(pet.getName());
+  }
+
+  static class Pet {
+
+    String getName() {
+      return "Я - пушистик";
+    }
+  }
+
+  static class Cat extends Pet {
+
+    public String getName() {
+      return "Я - кот";
     }
 
-    public static class Pet
-    {
-        public String getName()
-        {
-            return "Я - пушистик";
-        }
-    }
-
-    public static class Cat extends Pet
-    {
-        public String getName()
-        {
-            return "Я - кот";
-        }
-
-    }
+  }
 }

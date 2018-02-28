@@ -1,21 +1,32 @@
 package com.javarush.test.level16.lesson13.bonus01;
 
-import com.javarush.test.level16.lesson13.bonus01.common.*;
+import com.javarush.test.level16.lesson13.bonus01.common.BmpReader;
+import com.javarush.test.level16.lesson13.bonus01.common.ImageReader;
+import com.javarush.test.level16.lesson13.bonus01.common.ImageTypes;
+import com.javarush.test.level16.lesson13.bonus01.common.JpgReader;
+import com.javarush.test.level16.lesson13.bonus01.common.PngReader;
 
 
-public class ImageReaderFactory
-{
-    private static ImageReader imageReader;
-    public static ImageReader getReader(ImageTypes imageReaderType) {
-        if (imageReaderType == ImageTypes.BMP)
-            imageReader = new BmpReader();
-        else if (imageReaderType == ImageTypes.PNG)
-            imageReader = new PngReader();
-        else if (imageReaderType == ImageTypes.JPG)
-            imageReader = new JpgReader();
-        else
-            throw new IllegalArgumentException("Неизвестный тип картинки");
+class ImageReaderFactory {
 
-        return imageReader;
+  @SuppressWarnings("FieldCanBeLocal")
+  private static ImageReader imageReader;
+
+  public static ImageReader getReader(ImageTypes imageReaderType) {
+    switch (imageReaderType) {
+      case BMP:
+        imageReader = new BmpReader();
+        break;
+      case PNG:
+        imageReader = new PngReader();
+        break;
+      case JPG:
+        imageReader = new JpgReader();
+        break;
+      default:
+        throw new IllegalArgumentException("Неизвестный тип картинки");
     }
+
+    return imageReader;
+  }
 }

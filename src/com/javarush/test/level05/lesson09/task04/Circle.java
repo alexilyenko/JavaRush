@@ -7,29 +7,33 @@ package com.javarush.test.level05.lesson09.task04;
 - centerX, centerY, radius  width, color
 */
 
-    public class Circle
-    {
-        private int centerX, centerY, radius, width;
-        private String color;
+class Circle {
 
-        public Circle (int centerX, int centerY, int radius, int width, String color) {
-            this.centerX=centerX;
-            this.centerY=centerY;
-            this.radius=radius;
-            this.width=width;
-            this.color=color;
-        }
+  private final int centerX;
+  private final int centerY;
+  private final int radius;
+  private int width;
+  @SuppressWarnings("FieldCanBeLocal")
+  private String color;
 
-        public Circle (int centerX, int centerY, int radius, int width) {
-            this.centerX=centerX;
-            this.centerY=centerY;
-            this.radius=radius;
-            this.width=width;
-        }
+  public Circle(int centerX, int centerY, int radius, int width, String color) {
+    this.centerX = centerX;
+    this.centerY = centerY;
+    this.radius = radius;
+    this.width = width;
+    this.color = color;
+  }
 
-        public Circle (int centerX, int centerY, int radius) {
-            this.centerX=centerX;
-            this.centerY=centerY;
-            this.radius=radius;
-        }
-    }
+  public Circle(int centerX, int centerY, int radius, int width) {
+    this.centerX = centerX;
+    this.centerY = centerY;
+    this.radius = radius;
+    this.width = width;
+  }
+
+  public Circle(int centerX, int centerY, int radius) {
+    this.centerX = centerX;
+    this.centerY = centerY;
+    this.radius = radius;
+  }
+}

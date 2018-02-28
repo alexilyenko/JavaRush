@@ -7,12 +7,11 @@ char zero = '0';
 short nineCode = zero + number;
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        short number = 9;
-        char zero = '0';
-        short nineCode = (short)(zero + number);
-    }
+class Solution {
+
+  public static void main(String[] args) {
+    short number = 9;
+    char zero = '0';
+    short nineCode = (short) (zero + number);
+  }
 }

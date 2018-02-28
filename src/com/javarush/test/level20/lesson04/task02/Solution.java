@@ -7,8 +7,10 @@ import java.util.List;
 /* Как сериализовать JavaRush?
 Сделайте так, чтобы сериализация класса JavaRush была возможной
 */
-public class Solution {
-    public static class JavaRush implements Serializable {
-        public List<User> users = new ArrayList<>();
-    }
+class Solution {
+
+  private static class JavaRush implements Serializable {
+
+    public List<User> users = new ArrayList<>();
+  }
 }

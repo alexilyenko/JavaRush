@@ -8,29 +8,30 @@ package com.javarush.test.level25.lesson05.task01;
 4. Если нить прекратила работу, то выведите в консоль ее приоритет.
 Используйте switch.
 */
-public class Solution {
-    public static void processThreads(Thread... threads) {
-        for (Thread currentThread : threads) {
-            switch (currentThread.getState()) {
-                case NEW:
-                    currentThread.start();
-                    break;
-                case RUNNABLE:
-                    currentThread.isInterrupted();
-                    break;
-                case BLOCKED:
-                    currentThread.interrupt();
-                    break;
-                case WAITING:
-                    currentThread.interrupt();
-                    break;
-                case TIMED_WAITING:
-                    currentThread.interrupt();
-                    break;
-                case TERMINATED:
-                    System.out.println(currentThread.getPriority());
-                    break;
-            }
-        }
+class Solution {
+
+  public static void processThreads(Thread... threads) {
+    for (Thread currentThread : threads) {
+      switch (currentThread.getState()) {
+        case NEW:
+          currentThread.start();
+          break;
+        case RUNNABLE:
+          currentThread.isInterrupted();
+          break;
+        case BLOCKED:
+          currentThread.interrupt();
+          break;
+        case WAITING:
+          currentThread.interrupt();
+          break;
+        case TIMED_WAITING:
+          currentThread.interrupt();
+          break;
+        case TERMINATED:
+          System.out.println(currentThread.getPriority());
+          break;
+      }
     }
+  }
 }

@@ -5,21 +5,27 @@ package com.javarush.test.level22.lesson05.task02;
 На некорректные данные бросить исключение TooShortStringException.
 Класс TooShortStringException не менять.
 */
-public class Solution {
-    public static String getPartOfString(String string) throws TooShortStringException{
-        if (string == null)
-            throw new TooShortStringException();
-        if (string.equals(""))
-            throw new TooShortStringException();
-        int firstTabulation = string.indexOf("\t");
-        if (firstTabulation == -1)
-            throw new TooShortStringException();
-        int secondTabulation = string.indexOf("\t", firstTabulation+1);
-        if (secondTabulation == -1)
-            throw new TooShortStringException();
-        return string.substring(firstTabulation+1, secondTabulation);
-    }
+class Solution {
 
-    public static class TooShortStringException extends Exception {
+  public static String getPartOfString(String string) throws TooShortStringException {
+    if (string == null) {
+      throw new TooShortStringException();
     }
+    if (string.equals("")) {
+      throw new TooShortStringException();
+    }
+    int firstTabulation = string.indexOf("\t");
+    if (firstTabulation == -1) {
+      throw new TooShortStringException();
+    }
+    int secondTabulation = string.indexOf("\t", firstTabulation + 1);
+    if (secondTabulation == -1) {
+      throw new TooShortStringException();
+    }
+    return string.substring(firstTabulation + 1, secondTabulation);
+  }
+
+  private static class TooShortStringException extends Exception {
+
+  }
 }

@@ -2,24 +2,24 @@ package com.javarush.test.level20.lesson04.task01;
 
 import java.io.Serializable;
 
-public class Asset implements Serializable
-{
-    public Asset(String name) {
-        this.name = name;
-    }
+class Asset implements Serializable {
 
-    private String name;
-    private double price;
+  private final String name;
+  private double price;
 
-    public String getName() {
-        return name;
-    }
+  public Asset(String name) {
+    this.name = name;
+  }
 
-    public double getPrice() {
-        return price;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setPrice(double price) {
-        this.price = price;
-    }
+  public double getPrice() {
+    return price;
+  }
+
+  public void setPrice(double price) {
+    this.price = price;
+  }
 }

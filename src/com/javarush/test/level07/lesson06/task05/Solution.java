@@ -10,19 +10,21 @@ package com.javarush.test.level07.lesson06.task05;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        ArrayList<String> list = new ArrayList<String>();
-        Scanner scan = new Scanner(System.in);
-        for (int i=0; i<5; i++)
-            list.add(scan.nextLine());
-        for (int i=0; i<13; i++) {
-            String s = list.get(list.size()-1);
-            list.remove(list.size()-1);
-            list.add(0, s);
-        }
-        for (String aList : list) System.out.println(aList);
-     }
+class Solution {
+
+  public static void main(String[] args) {
+    ArrayList<String> list = new ArrayList<>();
+    Scanner scan = new Scanner(System.in);
+    for (int i = 0; i < 5; i++) {
+      list.add(scan.nextLine());
+    }
+    for (int i = 0; i < 13; i++) {
+      String s = list.get(list.size() - 1);
+      list.remove(list.size() - 1);
+      list.add(0, s);
+    }
+    for (String aList : list) {
+      System.out.println(aList);
+    }
+  }
 }

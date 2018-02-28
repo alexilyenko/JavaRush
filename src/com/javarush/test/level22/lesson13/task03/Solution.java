@@ -23,10 +23,11 @@ package com.javarush.test.level22.lesson13.task03;
 050123456 - false
 (0)501234567 - false
 */
-public class Solution {
+class Solution {
 
-    public static boolean checkTelNumber(String telNumber) {
-        return  (telNumber.matches("^\\+(\\d[\\-\\(\\)]?){11}\\d$") || telNumber.matches("^[\\(\\d]-?(\\d[\\-\\)]?){8}\\d$"))
-                && telNumber.matches("^(\\+)?(\\d)*(\\(\\d{3}\\))?(\\d+-?\\d+-?)?\\d+$");
-    }
+  public static boolean checkTelNumber(String telNumber) {
+    return (telNumber.matches("^\\+(\\d[\\-()]?){11}\\d$") || telNumber
+        .matches("^[(\\d]-?(\\d[\\-)]?){8}\\d$"))
+        && telNumber.matches("^(\\+)?(\\d)*(\\(\\d{3}\\))?(\\d+-?\\d+-?)?\\d+$");
+  }
 }

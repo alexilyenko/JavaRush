@@ -1,46 +1,42 @@
 package com.javarush.test.level23.lesson13.big01;
 
-public class SnakeSection
-{
-    private int x;
-    private int y;
+class SnakeSection {
+
+  private final int x;
+  private final int y;
 
 
-    public SnakeSection(int x, int y)
-    {
-        this.x = x;
-        this.y = y;
+  public SnakeSection(int x, int y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
     }
 
-    @Override
-    public boolean equals(Object o)
-    {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+    SnakeSection that = (SnakeSection) o;
 
-        SnakeSection that = (SnakeSection) o;
+    return x == that.x && y == that.y;
+  }
 
-        if (x != that.x) return false;
-        if (y != that.y) return false;
+  @Override
+  public int hashCode() {
+    int result = x;
+    result = 31 * result + y;
+    return result;
+  }
 
-        return true;
-    }
+  public int getX() {
+    return x;
+  }
 
-    @Override
-    public int hashCode()
-    {
-        int result = x;
-        result = 31 * result + y;
-        return result;
-    }
-
-    public int getX()
-    {
-        return x;
-    }
-
-    public int getY()
-    {
-        return y;
-    }
+  public int getY() {
+    return y;
+  }
 }

@@ -4,34 +4,25 @@ package com.javarush.test.level11.lesson11.bonus01;
 Исправь наследование в классах: (классы Cat, Dog, Pat, House, Airplane).
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
 
-    public class Pet
-    {
+  class Pet {
 
-    }
+  }
 
-    public class Cat extends Pet
-    {
+  private class Cat extends Pet {
 
-    }
+  }
 
-    public class Dog extends Pet
-    {
+  private class Dog extends Pet {
 
-    }
+  }
 
-    public class House
-    {
+  private class House {
 
-    }
+  }
 
-    public class Airplane
-    {
+  private class Airplane {
 
-    }
+  }
 }

@@ -6,16 +6,16 @@ package com.javarush.test.level04.lesson06.task04;
 
 import java.util.Scanner;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Scanner scan = new Scanner(System.in);
-        String name1 = scan.nextLine();
-        String name2 = scan.nextLine();
-        if (name1.equals(name2))
-            System.out.println("Имена идентичны");
-        else if (name1.length()==name2.length())
-            System.out.println("Длины имен равны");
+class Solution {
+
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String name1 = scan.nextLine();
+    String name2 = scan.nextLine();
+    if (name1.equals(name2)) {
+      System.out.println("Имена идентичны");
+    } else if (name1.length() == name2.length()) {
+      System.out.println("Длины имен равны");
     }
+  }
 }

@@ -3,7 +3,7 @@ package com.javarush.test.level18.lesson03.task05;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
-import java.util.*;
+import java.util.TreeSet;
 
 /* Сортировка байт
 Ввести с консоли имя файла
@@ -19,26 +19,28 @@ import java.util.*;
 44 83
 */
 
-public class Solution {
-    public static TreeSet<Integer> countList = new TreeSet<Integer>();
+class Solution {
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String fileName = reader.readLine();
-        FileInputStream inputStream = new FileInputStream(fileName);
+  private static final TreeSet<Integer> countList = new TreeSet<>();
 
-        while(inputStream.available() > 0){
-            int data = inputStream.read();
-            countList.add(data);
-        }
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String fileName = reader.readLine();
+    FileInputStream inputStream = new FileInputStream(fileName);
 
-        for (int i : countList)
-            System.out.print(i+" ");
-
-        reader.close();
-        inputStream.close();
-
-
+    while (inputStream.available() > 0) {
+      int data = inputStream.read();
+      countList.add(data);
     }
+
+    for (int i : countList) {
+      System.out.print(i + " ");
     }
+
+    reader.close();
+    inputStream.close();
+
+
+  }
+}
 

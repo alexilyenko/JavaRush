@@ -11,25 +11,26 @@ import java.math.BigDecimal;
 4. В блоке 4 должен вызываться метод info(String s).
 */
 
-public class Solution {
-    public static void main(String[] args) {
-        //Блок 2.
-        //Вызов для Object (задание 2)
-        new Tree().info((Object)new Integer("4"));
-        new Tree().info((Object)new Short("4"));
-        new Tree().info((Object)new BigDecimal("4"));
+class Solution {
 
-        //Блок 3.
-        //Вызов для Number (Задание 3)
-        new Tree().info(new Integer("4"));
-        new Tree().info(new Short("4"));
-        new Tree().info(new BigDecimal("4"));
+  public static void main(String[] args) {
+    //Блок 2.
+    //Вызов для Object (задание 2)
+    new Tree().info((Object) new Integer("4"));
+    new Tree().info((Object) new Short("4"));
+    new Tree().info((Object) new BigDecimal("4"));
 
-        //Блок 4.
-        //Вызов для String (Задание 4)
-        new Tree().info("4");
-        new Tree().info(new Integer("4").toString());
-        new Tree().info(new Short("4").toString());
-        new Tree().info(new BigDecimal("4").toString());
-    }
+    //Блок 3.
+    //Вызов для Number (Задание 3)
+    new Tree().info(new Integer("4"));
+    new Tree().info(new Short("4"));
+    new Tree().info(new BigDecimal("4"));
+
+    //Блок 4.
+    //Вызов для String (Задание 4)
+    new Tree().info("4");
+    new Tree().info(new Integer("4").toString());
+    new Tree().info(new Short("4").toString());
+    new Tree().info(new BigDecimal("4").toString());
+  }
 }

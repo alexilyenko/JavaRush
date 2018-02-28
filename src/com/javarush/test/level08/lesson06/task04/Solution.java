@@ -10,35 +10,36 @@ import java.util.List;
 Метод getTimeMsOfGet  должен вернуть время его исполнения в миллисекундах.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        System.out.println(getTimeMsOfGet(fill(new ArrayList())));
-        System.out.println(getTimeMsOfGet(fill(new LinkedList())));
-    }
+class Solution {
 
-    private static List fill(List list)
-    {
-        for(int i = 0; i < 11; i++)
-            list.add(new Object());
-        return list;
-    }
+  public static void main(String[] args) {
+    System.out.println(getTimeMsOfGet(fill(new ArrayList<>())));
+    System.out.println(getTimeMsOfGet(fill(new LinkedList<>())));
+  }
 
-    public static long  getTimeMsOfGet(List list)
-    {
-        Date startDate = new Date();
-        get10000(list);
-        Date endDate = new Date();
-        return endDate.getTime()- startDate.getTime();
-
+  private static List<Object> fill(List<Object> list) {
+    for (int i = 0; i < 11; i++) {
+      list.add(new Object());
     }
+    return list;
+  }
 
-    public static void get10000(List list)
-    {
-        if (list.isEmpty()) return;
-        int x = list.size() / 2;
-        for (int i = 0; i < 10000; i++)
-            list.get(x);
+  private static long getTimeMsOfGet(List<Object> list) {
+    Date startDate = new Date();
+    get10000(list);
+    Date endDate = new Date();
+    return endDate.getTime() - startDate.getTime();
+
+  }
+
+  private static void get10000(List<Object> list) {
+    if (list.isEmpty()) {
+      return;
     }
+    int x = list.size() / 2;
+    for (int i = 0; i < 10000; i++) {
+      //noinspection ResultOfMethodCallIgnored
+      list.get(x);
+    }
+  }
 }

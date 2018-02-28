@@ -1,6 +1,10 @@
 package com.javarush.test.level20.lesson10.home04;
 
-import java.io.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,41 +13,42 @@ import java.util.Map;
 Исправить 1 ошибку.
 Метод main в тестировании не участвует.
 */
-public class Solution implements Serializable {
+class Solution implements Serializable {
 
-    public static void main(String args[]) throws Exception {
-        FileOutputStream fileOutput = new FileOutputStream("d:/1.txt");
-        ObjectOutputStream outputStream = new ObjectOutputStream(fileOutput);
+  private final Map<String, String> m = new HashMap<>();
 
-        Solution solution = new Solution();
-        outputStream.writeObject(solution);
+  @SuppressWarnings("OverwrittenKey")
+  private Solution() {
+    m.put("Mickey", "Mouse");
+    m.put("Mickey", "Mantle");
+  }
 
-        fileOutput.close();
-        outputStream.close();
+  public static void main(String args[]) throws Exception {
+    FileOutputStream fileOutput = new FileOutputStream("d:/1.txt");
+    ObjectOutputStream outputStream = new ObjectOutputStream(fileOutput);
 
-        FileInputStream fiStream = new FileInputStream("d:/1.txt");
-        ObjectInputStream objectStream = new ObjectInputStream(fiStream);
+    Solution solution = new Solution();
+    outputStream.writeObject(solution);
 
-        Solution loadedObject = (Solution) objectStream.readObject();
+    fileOutput.close();
+    outputStream.close();
 
-        fiStream.close();
-        objectStream.close();
+    FileInputStream fiStream = new FileInputStream("d:/1.txt");
+    ObjectInputStream objectStream = new ObjectInputStream(fiStream);
 
-        System.out.println(loadedObject.getMap().toString());
-    }
+    Solution loadedObject = (Solution) objectStream.readObject();
 
-    private Map<String, String> m = new HashMap<>();
+    fiStream.close();
+    objectStream.close();
 
-    public Map<String, String> getMap() {
-        return m;
-    }
+    System.out.println(loadedObject.getMap().toString());
+  }
 
-    public Solution() {
-        m.put("Mickey", "Mouse");
-        m.put("Mickey", "Mantle");
-    }
+  private Map<String, String> getMap() {
+    return m;
+  }
 
-    public int size() {
-        return m.size();
-    }
+  public int size() {
+    return m.size();
+  }
 }

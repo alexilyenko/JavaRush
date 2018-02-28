@@ -5,24 +5,27 @@ import java.util.concurrent.ConcurrentHashMap;
 /**
  * Created by ailenko on 08.05.2014.
  */
-public class Producer implements Runnable
-{
-    protected ConcurrentHashMap<String, String> map;
+class Producer implements Runnable {
 
-    public Producer(ConcurrentHashMap<String, String> map) {
-        this.map = map;
-    }
+  @SuppressWarnings("FieldCanBeLocal")
+  private final ConcurrentHashMap<String, String> map;
 
-    public void run() {
-        try {
-            int i = 1;
-            while (true) {
-                System.out.println("Some text for "+i++);
-                Thread.sleep(500);
-            }
-        } catch (InterruptedException e) {
-            System.out.println(String.format("[%s] thread was terminated", Thread.currentThread().getName()));
-        }
+  Producer(ConcurrentHashMap<String, String> map) {
+    this.map = map;
+  }
+
+  public void run() {
+    try {
+      int i = 1;
+      //noinspection InfiniteLoopStatement
+      while (true) {
+        System.out.println("Some text for " + i++);
+        Thread.sleep(500);
+      }
+    } catch (InterruptedException e) {
+      System.out
+          .println(String.format("[%s] thread was terminated", Thread.currentThread().getName()));
     }
+  }
 
 }

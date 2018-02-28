@@ -13,50 +13,53 @@ import java.util.concurrent.TimeUnit;
 */
 
 public class Solution {
-    public static void main(String[] args) {
-        Thread violin = new Thread(new Violin("Player"));
-        violin.start();
+
+  private static final int delay = 1000;
+
+  public static void main(String[] args) {
+    Thread violin = new Thread(new Violin("Player"));
+    violin.start();
+  }
+
+  private static void sleepNSeconds(int n) {
+    try {
+      TimeUnit.MILLISECONDS.sleep(n * delay);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
+  interface MusicalInstrument extends Runnable {
+
+    Date startPlaying();
+
+    Date stopPlaying();
+  }
+
+  public static class Violin implements MusicalInstrument {
+
+    private final String owner;
+
+    Violin(String owner) {
+      this.owner = owner;
     }
 
-    public static class Violin implements MusicalInstrument{
-        private String owner;
-
-        public Violin(String owner) {
-            this.owner = owner;
-        }
-
-        public Date startPlaying() {
-            System.out.println(this.owner + " starts playing");
-            return new Date();
-        }
-
-        public Date stopPlaying() {
-            System.out.println(this.owner + " stops playing");
-            return new Date();
-        }
-
-        public void run() {
-            long startDate = startPlaying().getTime();
-            sleepNSeconds(1);
-            long stopDate = stopPlaying().getTime();
-            long time = stopDate - startDate;
-            System.out.println("Playing "+time+" ms");
-        }
+    public Date startPlaying() {
+      System.out.println(this.owner + " starts playing");
+      return new Date();
     }
 
-    public static int delay = 1000;
-
-    public static void sleepNSeconds(int n) {
-        try {
-            TimeUnit.MILLISECONDS.sleep(n * delay);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public Date stopPlaying() {
+      System.out.println(this.owner + " stops playing");
+      return new Date();
     }
 
-    public static interface MusicalInstrument extends Runnable {
-        Date startPlaying();
-
-        Date stopPlaying();
+    public void run() {
+      long startDate = startPlaying().getTime();
+      sleepNSeconds(1);
+      long stopDate = stopPlaying().getTime();
+      long time = stopDate - startDate;
+      System.out.println("Playing " + time + " ms");
     }
+  }
 }

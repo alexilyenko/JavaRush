@@ -10,70 +10,72 @@ package com.javarush.test.level16.lesson07.task02;
 2.2. Метод sleep в классе Thread принимает параметр типа long.
 */
 
-import java.sql.Time;
 import java.util.concurrent.TimeUnit;
 
-public class Solution {
-    public static volatile boolean isStopped = false;
+class Solution {
 
-    public static void main(String[] args) throws InterruptedException {
-        Runner ivanov = new Runner("Ivanov", 4);
-        Runner petrov = new Runner("Petrov", 2);
-        //на старт!
-        //внимание!
-        //марш!
-        ivanov.start();
-        petrov.start();
-        TimeUnit.SECONDS.sleep(2);
-        isStopped = true;
-        TimeUnit.SECONDS.sleep(1);
+  private static volatile boolean isStopped = false;
+
+  public static void main(String[] args) throws InterruptedException {
+    Runner ivanov = new Runner("Ivanov", 4);
+    Runner petrov = new Runner("Petrov", 2);
+    //на старт!
+    //внимание!
+    //марш!
+    ivanov.start();
+    petrov.start();
+    TimeUnit.SECONDS.sleep(2);
+    isStopped = true;
+    TimeUnit.SECONDS.sleep(1);
+  }
+
+  static class Stopwatch extends Thread {
+
+    private final Runner owner;
+    private int stepNumber;
+
+    Stopwatch(Runner runner) {
+      this.owner = runner;
     }
 
-    public static class Stopwatch extends Thread {
-        private Runner owner;
-        private int stepNumber;
-
-        public Stopwatch(Runner runner) {
-            this.owner = runner;
+    public void run() {
+      try {
+        while (!isStopped) {
+          doSeveralSteps();
         }
-
-        public void run() {
-            try {
-                while (!isStopped) {
-                    doSeveralSteps();
-                }
-            } catch (InterruptedException ignored) {
-            }
-        }
-
-        private void doSeveralSteps() throws InterruptedException {
-            stepNumber++;
-            TimeUnit.MILLISECONDS.sleep((long) (1000 / owner.getSpeed()));
-            System.out.println(owner.getName() + " делает шаг №" + stepNumber + "!");
-        }
+      } catch (InterruptedException ignored) {
+      }
     }
 
-    public static class Runner {
-        private String name;
-        private double speed;
-        Stopwatch stopwatch;
-
-        public Runner(String name, double speed) {
-            this.name = name;
-            this.speed = speed;
-            this.stopwatch = new Stopwatch(this);
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public double getSpeed() {
-            return speed;
-        }
-
-        public void start() {
-            stopwatch.start();
-        }
+    private void doSeveralSteps() throws InterruptedException {
+      stepNumber++;
+      TimeUnit.MILLISECONDS.sleep((long) (1000 / owner.getSpeed()));
+      System.out.println(owner.getName() + " делает шаг №" + stepNumber + "!");
     }
+  }
+
+  static class Runner {
+
+    final Stopwatch stopwatch;
+    private final String name;
+    private final double speed;
+
+    Runner(String name, double speed) {
+      this.name = name;
+      this.speed = speed;
+      this.stopwatch = new Stopwatch(this);
+    }
+
+    String getName() {
+      return name;
+    }
+
+    double getSpeed() {
+      return speed;
+    }
+
+    void start() {
+      stopwatch.start();
+    }
+  }
 }

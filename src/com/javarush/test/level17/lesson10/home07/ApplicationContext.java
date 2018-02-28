@@ -9,19 +9,20 @@ ApplicationContext будет доступен множеству нитей.
 */
 
 public abstract class ApplicationContext<GenericsBean extends Bean> {
-    private Map<String, GenericsBean> container = new HashMap<String, GenericsBean>();
 
-    protected ApplicationContext() {
-        parseAllClassesAndInterfaces();
-    }
+  private final Map<String, GenericsBean> container = new HashMap<>();
 
-    public synchronized GenericsBean getByName(String name) {
-          return container.get(name);
-    }
+  protected ApplicationContext() {
+    parseAllClassesAndInterfaces();
+  }
 
-    public synchronized GenericsBean removeByName(String name) {
-        return container.remove(name);
-    }
+  public synchronized GenericsBean getByName(String name) {
+    return container.get(name);
+  }
 
-    protected abstract void parseAllClassesAndInterfaces();
+  public synchronized GenericsBean removeByName(String name) {
+    return container.remove(name);
+  }
+
+  abstract void parseAllClassesAndInterfaces();
 }

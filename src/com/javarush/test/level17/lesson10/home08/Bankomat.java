@@ -16,55 +16,53 @@ package com.javarush.test.level17.lesson10.home08;
 
 import java.util.concurrent.TimeUnit;
 
-public class Bankomat {
+class Bankomat {
 
-    static BankAccount account = new BankAccount("Amigo");
+  private static final BankAccount account = new BankAccount("Amigo");
+  private static volatile boolean isStopped;
+  private static final Thread addMoney = new Thread() {
+    @Override
+    public void run() {
+      while (!isStopped) {
+        account.deposit("1000");            //кладем на счет
+        try {
+          TimeUnit.MILLISECONDS.sleep(1000);
+        } catch (InterruptedException e) {
+          break;
+        }
+      }
+    }
+  };
 
-    public static volatile boolean isStopped;
+  public static void main(String[] args) throws InterruptedException {
+    addMoney.start();
+    new SpendThread();
+    new SpendThread();
+    new SpendThread();
+    TimeUnit.MILLISECONDS.sleep(4000);
+    isStopped = true;
+  }
 
-    public static void main(String[] args) throws InterruptedException {
-        addMoney.start();
-        new SpendThread();
-        new SpendThread();
-        new SpendThread();
-        TimeUnit.MILLISECONDS.sleep(4000);
-        isStopped = true;
+  static class SpendThread extends Thread {
+
+    SpendThread() {
+      start();
     }
 
-    private static Thread addMoney = new Thread() {
-        @Override
-        public void run() {
-            while (!isStopped) {
-                account.deposit("1000");            //кладем на счет
-                try {
-                    TimeUnit.MILLISECONDS.sleep(1000);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
+    @Override
+    public void run() {
+      while (!isStopped) {
+        try {
+          account.withdraw("100");             //снимаем со счета
+        } catch (NotEnoughMoneyException e) {
+          System.out.println("Недостаточно денег");
         }
-    };
-
-
-    public static class SpendThread extends Thread {
-        public SpendThread() {
-            start();
+        try {
+          TimeUnit.MILLISECONDS.sleep(100);
+        } catch (InterruptedException e) {
+          break;
         }
-
-        @Override
-        public void run() {
-            while (!isStopped) {
-                try {
-                    account.withdraw("100");             //снимаем со счета
-                } catch (NotEnoughMoneyException e) {
-                    System.out.println("Недостаточно денег");
-                }
-                try {
-                    TimeUnit.MILLISECONDS.sleep(100);
-                } catch (InterruptedException e) {
-                    break;
-                }
-            }
-        }
+      }
     }
+  }
 }

@@ -14,30 +14,33 @@ package com.javarush.test.level16.lesson13.home03;
 5. В итоге должно быть выведено в консоль 15 строк.
 */
 
-public class Solution {
-    static int count = 15;
-    static volatile int countCreatedThreads;
+class Solution {
 
-    public static void main(String[] args) {
+  private static final int count = 15;
+  private static volatile int countCreatedThreads;
+
+  public static void main(String[] args) {
+    System.out.println(new GenerateThread());
+  }
+
+  static class GenerateThread extends Thread {
+
+    @SuppressWarnings("NonAtomicOperationOnVolatileField")
+    GenerateThread() {
+      super(++countCreatedThreads + "");
+      start();
+    }
+
+    @Override
+    public String toString() {
+      return getName() + " created";
+    }
+
+    @Override
+    public void run() {
+      while (countCreatedThreads < count) {
         System.out.println(new GenerateThread());
+      }
     }
-
-    public static class GenerateThread extends Thread {
-        public GenerateThread()        {
-            super(++countCreatedThreads + "");
-            start();
-        }
-
-        @Override
-        public String toString()        {
-            return getName() + " created";
-        }
-
-        @Override
-        public void run() {
-            while(countCreatedThreads < count) {
-                System.out.println(new GenerateThread());
-            }
-        }
-    }
+  }
 }

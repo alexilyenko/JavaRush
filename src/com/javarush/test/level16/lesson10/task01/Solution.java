@@ -10,30 +10,32 @@ import java.io.InputStreamReader;
 3. Выведи количество секунд в консоль.
 */
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        InputStreamReader in = new InputStreamReader(System.in);
-        BufferedReader reader = new BufferedReader(in);
-        Stopwatch stopwatch = new Stopwatch();
-        stopwatch.start();
-        reader.readLine();
-        stopwatch.interrupt();
-        reader.close();
-        in.close();
-    }
+class Solution {
 
-    public static class Stopwatch extends Thread {
-        private int seconds;
+  public static void main(String[] args) throws IOException {
+    InputStreamReader in = new InputStreamReader(System.in);
+    BufferedReader reader = new BufferedReader(in);
+    Stopwatch stopwatch = new Stopwatch();
+    stopwatch.start();
+    reader.readLine();
+    stopwatch.interrupt();
+    reader.close();
+    in.close();
+  }
 
-        public void run() {
-            try {
-                while (!isInterrupted()) {
-                    Thread.sleep(1000);
-                    seconds++;
-                }
-            } catch (InterruptedException e) {
-                System.out.println(seconds);
-            }
+  static class Stopwatch extends Thread {
+
+    private int seconds;
+
+    public void run() {
+      try {
+        while (!isInterrupted()) {
+          Thread.sleep(1000);
+          seconds++;
         }
+      } catch (InterruptedException e) {
+        System.out.println(seconds);
+      }
     }
+  }
 }

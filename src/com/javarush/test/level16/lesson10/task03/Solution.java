@@ -7,22 +7,21 @@ package com.javarush.test.level16.lesson10.task03;
 
 import java.util.concurrent.TimeUnit;
 
-public class Solution
-{
-    public static void main(String[] args) throws InterruptedException
-    {
-        TestThread thread = new TestThread();
-        thread.start();
-        TimeUnit.SECONDS.sleep(3);
-        thread.interrupt();
-    }
+class Solution {
 
-    public static class TestThread extends Thread
-    {
-        public void run()
-        {
-                while (!isInterrupted())
-                {}
-        }
+  public static void main(String[] args) throws InterruptedException {
+    TestThread thread = new TestThread();
+    thread.start();
+    TimeUnit.SECONDS.sleep(3);
+    thread.interrupt();
+  }
+
+  static class TestThread extends Thread {
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    public void run() {
+      while (!isInterrupted()) {
+      }
     }
+  }
 }

@@ -11,47 +11,42 @@ import java.util.Map;
 Вывести содержимое словаря на экран.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+class Solution {
 
-        ArrayList<String> words = new ArrayList<String>();
-        for (int i = 0; i < 20; i++)
-        {
-            words.add(reader.readLine());
-        }
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        Map<String, Integer> map = countWords(words);
-
-        for (Map.Entry<String, Integer> pair : map.entrySet())
-        {
-            System.out.println(pair.getKey() + " " + pair.getValue());
-        }
+    ArrayList<String> words = new ArrayList<>();
+    for (int i = 0; i < 20; i++) {
+      words.add(reader.readLine());
     }
 
-    public static Map<String, Integer> countWords(ArrayList<String> list)
-    {
-        HashMap<String, Integer> result = new HashMap<String, Integer>();
-        for (String aList : list)
-            result.put(aList, 1);
+    Map<String, Integer> map = countWords(words);
 
-
-        for (int i=0; i<list.size(); i++) {
-            String currentWord = list.get(i);
-            for (int k=i+1; k<list.size(); k++) {
-                if (currentWord.equals(list.get(k))) {
-                    result.put(currentWord, (result.get(currentWord)+1));
-                    list.remove(k);
-                    k--;
-                }
-            }
-
-        }
-
-
-        return result;
+    for (Map.Entry<String, Integer> pair : map.entrySet()) {
+      System.out.println(pair.getKey() + " " + pair.getValue());
     }
+  }
+
+  private static Map<String, Integer> countWords(ArrayList<String> list) {
+    HashMap<String, Integer> result = new HashMap<>();
+    for (String aList : list) {
+      result.put(aList, 1);
+    }
+
+    for (int i = 0; i < list.size(); i++) {
+      String currentWord = list.get(i);
+      for (int k = i + 1; k < list.size(); k++) {
+        if (currentWord.equals(list.get(k))) {
+          result.put(currentWord, (result.get(currentWord) + 1));
+          list.remove(k);
+          k--;
+        }
+      }
+
+    }
+
+    return result;
+  }
 
 }

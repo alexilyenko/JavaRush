@@ -20,68 +20,70 @@ import java.util.List;
 2.4. Когда найден победитель, то игра останавливается, и остальные игроки считаются побежденными. Выведите для них [getName() + ":проиграл"].
 */
 
-public class Solution {
-    public static void main(String[] args) throws InterruptedException {
-        OnlineGame onlineGame = new OnlineGame();
-        onlineGame.start();
+class Solution {
+
+  public static void main(String[] args) {
+    OnlineGame onlineGame = new OnlineGame();
+    onlineGame.start();
+  }
+
+  static class OnlineGame extends Thread {
+
+    static final List<String> steps = new ArrayList<>();
+    static volatile boolean isWinnerFound = false;
+
+    static {
+      steps.add("Начало игры");
+      steps.add("Сбор ресурсов");
+      steps.add("Рост экономики");
+      steps.add("Убийство врагов");
     }
 
-    public static class OnlineGame extends Thread {
-        public static volatile boolean isWinnerFound = false;
+    final Gamer gamer1 = new Gamer("Ivanov", 3);
+    final Gamer gamer2 = new Gamer("Petrov", 1);
+    final Gamer gamer3 = new Gamer("Sidorov", 5);
 
-        public static List<String> steps = new ArrayList<String>();
+    public void run() {
+      gamer1.start();
+      gamer2.start();
+      gamer3.start();
 
-        static {
-            steps.add("Начало игры");
-            steps.add("Сбор ресурсов");
-            steps.add("Рост экономики");
-            steps.add("Убийство врагов");
-        }
+      //noinspection StatementWithEmptyBody
+      while (!isWinnerFound) {
+      }
+      gamer1.interrupt();
+      gamer2.interrupt();
+      gamer3.interrupt();
+    }
+  }
 
-        protected Gamer gamer1 = new Gamer("Ivanov", 3);
-        protected Gamer gamer2 = new Gamer("Petrov", 1);
-        protected Gamer gamer3 = new Gamer("Sidorov", 5);
+  static class Gamer extends Thread {
 
-        public void run() {
-            gamer1.start();
-            gamer2.start();
-            gamer3.start();
+    private final int rating;
 
-            while (!isWinnerFound) {
-            }
-            gamer1.interrupt();
-            gamer2.interrupt();
-            gamer3.interrupt();
-        }
+    Gamer(String name, int rating) {
+      super(name);
+      this.rating = rating;
     }
 
-    public static class Gamer extends Thread {
-        private int rating;
-
-        public Gamer(String name, int rating) {
-            super(name);
-            this.rating = rating;
+    @Override
+    public void run() {
+      int start = 0;
+      try {
+        while (!OnlineGame.isWinnerFound) {
+          Thread.sleep(1000 / rating);
+          if (start == OnlineGame.steps.size()) {
+            System.out.println(this.getName() + ":победитель!");
+            OnlineGame.isWinnerFound = true;
+            break;
+          }
+          System.out.println(this.getName() + ":" + OnlineGame.steps.get(start));
+          start++;
         }
-
-        @Override
-        public void run() {
-            int start = 0;
-             try
-             {
-                 while (!OnlineGame.isWinnerFound)
-                 {
-                     Thread.sleep(1000/rating);
-                     if (start == OnlineGame.steps.size())
-                             {
-                                 System.out.println(this.getName() + ":победитель!");
-                                 OnlineGame.isWinnerFound = true;
-                                 break;
-                            }
-                             System.out.println(this.getName() + ":" + OnlineGame.steps.get(start));
-                             start++;
-                 }
-                 } catch (InterruptedException e) {System.out.println(this.getName()+":проиграл");}
-            //Add your code here - добавь код тут
-        }
+      } catch (InterruptedException e) {
+        System.out.println(this.getName() + ":проиграл");
+      }
+      //Add your code here - добавь код тут
     }
+  }
 }

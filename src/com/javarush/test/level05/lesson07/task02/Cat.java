@@ -10,37 +10,38 @@ package com.javarush.test.level05.lesson07.task02;
 Задача инициализатора – сделать объект валидным. Например, если вес неизвестен, то нужно указать какой-нибудь средний вес. Кот не может ничего не весить. То же касательно возраста. А вот имени может и не быть (null). То же касается адреса: null.
 */
 
-    public class Cat
-    {
-         private String name;
-         private int age=1;
-         private int weight=10;
-         private String address;
-         private String colour;
+class Cat {
 
-         public void initialize(String name) {
-             this.name=name;
-         }
+  private String name;
+  private int age = 1;
+  private int weight = 10;
+  @SuppressWarnings("FieldCanBeLocal")
+  private String address;
+  private String colour;
 
-         public void initialize(String name, int age) {
-                this.name=name;
-                this.age=age;
-         }
+  public void initialize(String name) {
+    this.name = name;
+  }
 
-         public void initialize(String name, int weight, int age) {
-                this.name=name;
-                this.weight=weight;
-                this.age=age;
-         }
+  public void initialize(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
 
-         public void initialize(int weight, String colour) {
-                this.weight=weight;
-                this.colour=colour;
-         }
+  public void initialize(String name, int weight, int age) {
+    this.name = name;
+    this.weight = weight;
+    this.age = age;
+  }
 
-         public void initialize(int weight, String colour, String address) {
-                this.weight=weight;
-                this.colour=colour;
-                this.address=address;
-         }
-    }
+  public void initialize(int weight, String colour) {
+    this.weight = weight;
+    this.colour = colour;
+  }
+
+  public void initialize(int weight, String colour, String address) {
+    this.weight = weight;
+    this.colour = colour;
+    this.address = address;
+  }
+}

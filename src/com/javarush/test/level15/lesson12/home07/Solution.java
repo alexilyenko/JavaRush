@@ -1,6 +1,8 @@
 package com.javarush.test.level15.lesson12.home07;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,26 +12,29 @@ import java.util.List;
 3. Закрой поток ввода методом close().
 */
 
-public class Solution {
-    public static List<String> lines = new ArrayList<String>();
-    static {
-        try {
-            BufferedReader reader = new BufferedReader(new FileReader(Constants.FILE_NAME));
-            while (true)
-            {
-                String output = reader.readLine();
-                if (output != null)
-                    lines.add(output);
-                else
-                    break;
+class Solution {
 
-            }
-            reader.close();
-        } catch (IOException ignored) {}
+  private static final List<String> lines = new ArrayList<>();
 
+  static {
+    try {
+      BufferedReader reader = new BufferedReader(new FileReader(Constants.FILE_NAME));
+      while (true) {
+        String output = reader.readLine();
+        if (output != null) {
+          lines.add(output);
+        } else {
+          break;
+        }
+
+      }
+      reader.close();
+    } catch (IOException ignored) {
     }
 
-    public static void main(String[] args) {
-        System.out.println(lines);
-    }
+  }
+
+  public static void main(String[] args) {
+    System.out.println(lines);
+  }
 }

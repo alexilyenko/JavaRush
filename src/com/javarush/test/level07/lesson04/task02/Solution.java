@@ -8,17 +8,16 @@ import java.util.Scanner;
 3. Вывести содержимое всего массива (10 элементов) на экран в обратном порядке. Каждый элемент - с новой строки.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-         String[] mass = new String[10];
-         Scanner scan = new Scanner(System.in);
-         for (int i=0; i<8; i++) {
-             mass[i] = scan.nextLine();
-         }
-         for (int i=mass.length-1; i>=0; i--) {
-             System.out.println(mass[i]);
-         }
+class Solution {
+
+  public static void main(String[] args) {
+    String[] mass = new String[10];
+    Scanner scan = new Scanner(System.in);
+    for (int i = 0; i < 8; i++) {
+      mass[i] = scan.nextLine();
     }
+    for (int i = mass.length - 1; i >= 0; i--) {
+      System.out.println(mass[i]);
+    }
+  }
 }

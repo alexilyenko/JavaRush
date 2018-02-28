@@ -5,43 +5,31 @@ package com.javarush.test.level12.lesson12.home08;
 Добавлять методы в класс Human запрещается.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Human human = new Human();
-        System.out.println(human);
-    }
+class Solution {
 
-    public static interface Worker
-    {
-        public void workLazy();
-    }
+  public static void main(String[] args) {
+    Human human = new Human();
+    System.out.println(human);
+  }
 
-    public static interface Businessman
-    {
-        public void workHard();
-    }
+  private interface Worker {
 
-    public static interface Secretary
-    {
-        public void workLazy();
-    }
+  }
 
-    public static interface Miner
-    {
-        public void workVeryHard();
-    }
+  private interface Businessman {
 
-    public static class Human implements Businessman, Worker, Secretary
-    {
+  }
 
-        public void workHard()
-        {
-        }
+  private interface Secretary {
 
-        public void workLazy()
-        {
-        }
-    }
+  }
+
+  public interface Miner {
+
+    void workVeryHard();
+  }
+
+  static class Human implements Businessman, Worker, Secretary {
+
+  }
 }

@@ -7,16 +7,17 @@ package com.javarush.test.level15.lesson06.task03;
 - убери все конструкторы, которые создаются и добавляются автоматически.
 */
 
-public class Solution {
-    public static void main(String[] args) {
-    }
+class Solution {
 
-    public interface Runnable {
-    }
+  private interface Runnable {
 
-    public class Machine implements Runnable {
-    }
+  }
 
-    public class Car extends Machine {
-    }
+  class Machine implements Runnable {
+
+  }
+
+  private class Car extends Machine {
+
+  }
 }

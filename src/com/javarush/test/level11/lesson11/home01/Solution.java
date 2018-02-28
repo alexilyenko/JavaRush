@@ -5,21 +5,15 @@ package com.javarush.test.level11.lesson11.home01;
 Унаследовать Еву от Адама.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
 
-    //Адам
-    public class Adam
-    {
+  //Адам
+  class Adam {
 
-    }
+  }
 
-    //Ева
-    public class Eve extends Adam
-    {
+  //Ева
+  private class Eve extends Adam {
 
-    }
+  }
 }

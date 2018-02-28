@@ -18,28 +18,30 @@ import java.util.ArrayList;
 Я Я Я
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        ArrayList<String> list = new ArrayList<String>();
-        while (true)
-        {
-            String s = reader.readLine();
-            if (s.isEmpty()) break;
-            list.add(s);
-        }
+class Solution {
 
-        ArrayList<String> listDoubleTriple = new ArrayList<String>();
-        for (String aList : list)
-        {
-            if (aList.length() % 2 == 0)
-                listDoubleTriple.add(aList + " " + aList);
-            else
-                listDoubleTriple.add(aList + " " + aList + " " + aList);
-        }
-
-        for (String aListDoubleTriple : listDoubleTriple) System.out.println(aListDoubleTriple);
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    ArrayList<String> list = new ArrayList<>();
+    while (true) {
+      String s = reader.readLine();
+      if (s.isEmpty()) {
+        break;
+      }
+      list.add(s);
     }
+
+    ArrayList<String> listDoubleTriple = new ArrayList<>();
+    for (String aList : list) {
+      if (aList.length() % 2 == 0) {
+        listDoubleTriple.add(aList + " " + aList);
+      } else {
+        listDoubleTriple.add(aList + " " + aList + " " + aList);
+      }
+    }
+
+    for (String aListDoubleTriple : listDoubleTriple) {
+      System.out.println(aListDoubleTriple);
+    }
+  }
 }

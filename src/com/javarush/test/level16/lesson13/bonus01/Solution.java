@@ -14,8 +14,9 @@ import com.javarush.test.level16.lesson13.bonus01.common.ImageTypes;
 4.2. если передан неправильный параметр, то выбросить исключение IllegalArgumentException("Неизвестный тип картинки").
 */
 
-public class Solution {
-    public static void main(String[] args) {
-        ImageReader reader = ImageReaderFactory.getReader(ImageTypes.JPG);
-    }
+class Solution {
+
+  public static void main(String[] args) {
+    ImageReader reader = ImageReaderFactory.getReader(ImageTypes.JPG);
+  }
 }

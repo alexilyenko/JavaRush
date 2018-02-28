@@ -1,81 +1,72 @@
 package com.javarush.test.level24.lesson14.big01;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.util.concurrent.ArrayBlockingQueue;
-
+import java.awt.GridBagLayout;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
-public class KeyboardObserver extends Thread
-{
-    private Queue<KeyEvent> keyEvents = new ArrayBlockingQueue<KeyEvent>(100);
+class KeyboardObserver extends Thread {
 
-    private JFrame frame;
+  private final Queue<KeyEvent> keyEvents = new ArrayBlockingQueue<>(100);
 
-    @Override
-    public void run()
-    {
-        frame = new JFrame("KeyPress Tester");
-        frame.setTitle("Transparent JFrame Demo");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+  @SuppressWarnings("FieldCanBeLocal")
+  private JFrame frame;
 
-        frame.setUndecorated(true);
-        frame.setSize(400, 400);
-        frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        frame.setLayout(new GridBagLayout());
+  @SuppressWarnings("Duplicates")
+  @Override
+  public void run() {
+    frame = new JFrame("KeyPress Tester");
+    frame.setTitle("Transparent JFrame Demo");
+    frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        frame.setOpacity(0.0f);
-        frame.setVisible(true);
+    frame.setUndecorated(true);
+    frame.setSize(400, 400);
+    frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
+    frame.setLayout(new GridBagLayout());
 
-        frame.addFocusListener(new FocusListener()
-        {
-            @Override
-            public void focusGained(FocusEvent e)
-            {
-                //do nothing
-            }
+    frame.setOpacity(0.0f);
+    frame.setVisible(true);
 
-            @Override
-            public void focusLost(FocusEvent e)
-            {
-                System.exit(0);
-            }
-        });
+    frame.addFocusListener(new FocusListener() {
+      @Override
+      public void focusGained(FocusEvent e) {
+        //do nothing
+      }
 
+      @Override
+      public void focusLost(FocusEvent e) {
+        System.exit(0);
+      }
+    });
 
-        frame.addKeyListener(new KeyListener()
-        {
+    frame.addKeyListener(new KeyListener() {
 
-            public void keyTyped(KeyEvent e)
-            {
-                //do nothing
-            }
+      public void keyTyped(KeyEvent e) {
+        //do nothing
+      }
 
-            public void keyReleased(KeyEvent e)
-            {
-                //do nothing
-            }
+      public void keyReleased(KeyEvent e) {
+        //do nothing
+      }
 
-            public void keyPressed(KeyEvent e)
-            {
-                keyEvents.add(e);
-            }
-        });
-    }
+      public void keyPressed(KeyEvent e) {
+        keyEvents.add(e);
+      }
+    });
+  }
 
 
-    public boolean hasKeyEvents()
-    {
-        return !keyEvents.isEmpty();
-    }
+  public boolean hasKeyEvents() {
+    return !keyEvents.isEmpty();
+  }
 
-    public KeyEvent getEventFromTop()
-    {
-        return keyEvents.poll();
-    }
+  public KeyEvent getEventFromTop() {
+    return keyEvents.poll();
+  }
 }
 

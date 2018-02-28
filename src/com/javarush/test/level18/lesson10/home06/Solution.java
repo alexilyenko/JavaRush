@@ -17,33 +17,38 @@ f 361
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
+import java.util.Map;
+import java.util.TreeMap;
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
+class Solution {
 
-        FileInputStream fileInputStream = new FileInputStream(args[0]);
+  public static void main(String[] args) throws IOException {
 
-        byte[] buffer = new byte[fileInputStream.available()];
-        fileInputStream.read(buffer);
-        fileInputStream.close();
-        Map<Byte, Integer> map = new TreeMap<Byte, Integer>();
+    FileInputStream fileInputStream = new FileInputStream(args[0]);
 
-        for (byte aBuffer : buffer) map.put(aBuffer, 1);
+    byte[] buffer = new byte[fileInputStream.available()];
+    //noinspection ResultOfMethodCallIgnored
+    fileInputStream.read(buffer);
+    fileInputStream.close();
+    Map<Byte, Integer> map = new TreeMap<>();
 
-        int count = 0;
-        for (byte aBuffer : buffer)
-        {
-            for (byte aBuffer1 : buffer)
-            {
-                if (aBuffer1 == aBuffer)
-                    count++;
-            }
-            map.put(aBuffer, count);
-            count = 0;
-        }
-
-        for (Map.Entry<Byte, Integer> pair : map.entrySet())
-          System.out.println(pair.getKey()+" "+pair.getValue());
+    for (byte aBuffer : buffer) {
+      map.put(aBuffer, 1);
     }
+
+    int count = 0;
+    for (byte aBuffer : buffer) {
+      for (byte aBuffer1 : buffer) {
+        if (aBuffer1 == aBuffer) {
+          count++;
+        }
+      }
+      map.put(aBuffer, count);
+      count = 0;
+    }
+
+    for (Map.Entry<Byte, Integer> pair : map.entrySet()) {
+      System.out.println(pair.getKey() + " " + pair.getValue());
+    }
+  }
 }

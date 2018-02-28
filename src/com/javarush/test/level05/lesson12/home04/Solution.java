@@ -7,12 +7,11 @@ package com.javarush.test.level05.lesson12.home04;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        SimpleDateFormat simpleDate = new SimpleDateFormat("dd MM yyyy");
-        System.out.println(simpleDate.format(new Date()));
-    }
+class Solution {
+
+  public static void main(String[] args) {
+    SimpleDateFormat simpleDate = new SimpleDateFormat("dd MM yyyy");
+    System.out.println(simpleDate.format(new Date()));
+  }
 }
 

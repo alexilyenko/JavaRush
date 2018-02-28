@@ -12,18 +12,17 @@ import java.util.Locale;
 Воспользоваться объектом Date и SimpleDateFormat.
 */
 
-public class Solution {
+class Solution {
 
-    public static void main(String[] args) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        SimpleDateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
-        SimpleDateFormat outputDateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
-        try {
-            Date inputDate = dateFormat.parse(reader.readLine());
-            System.out.println(outputDateFormat.format(inputDate).toUpperCase());
-        }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
+  public static void main(String[] args) {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    SimpleDateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
+    SimpleDateFormat outputDateFormat = new SimpleDateFormat("MMM dd, yyyy", Locale.ENGLISH);
+    try {
+      Date inputDate = dateFormat.parse(reader.readLine());
+      System.out.println(outputDateFormat.format(inputDate).toUpperCase());
+    } catch (Exception e) {
+      e.printStackTrace();
     }
+  }
 }

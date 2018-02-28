@@ -9,37 +9,43 @@ moving
 */
 
 public class Solution {
-    public static void main(String[] args) {
-        Duck duck = new Duck();
-        Util.fly(duck);
-        Util.move(duck);
+
+  public static void main(String[] args) {
+    Duck duck = new Duck();
+    Util.fly(duck);
+    Util.move(duck);
+  }
+
+  interface Flyable {
+
+    void doAction();
+  }
+
+  interface Movable {
+
+    void doActionMove();
+  }
+
+  public static class Duck implements Flyable, Movable {
+
+    @Override
+    public void doAction() {
+      System.out.println("flying");
     }
 
-    public static class Duck implements Flyable, Movable {
-        @Override
-        public void doAction() {
-            System.out.println("flying");
-        }
-        public void doActionMove() {
-            System.out.println("moving");
-        }
+    public void doActionMove() {
+      System.out.println("moving");
+    }
+  }
+
+  static class Util {
+
+    static void fly(Flyable animal) {
+      animal.doAction();
     }
 
-    public static class Util {
-        static void fly(Flyable animal) {
-            animal.doAction();
-        }
-
-        static void move(Movable animal) {
-            animal.doActionMove();
-        }
+    static void move(Movable animal) {
+      animal.doActionMove();
     }
-
-    public static interface Flyable {
-        void doAction();
-    }
-
-    public static interface Movable {
-        void doActionMove();
-    }
+  }
 }

@@ -10,40 +10,45 @@ import java.util.Map;
 */
 public class Solution {
 
-    private List<Task> tasks;
-    private List<String> names;
+  private final DbDataProvider taskDataProvider = new TaskDataProvider();
+  private final DbDataProvider nameDataProvider = new NameDataProvider();
+  @SuppressWarnings("FieldCanBeLocal")
+  private List<Task> tasks;
+  @SuppressWarnings("FieldCanBeLocal")
+  private List<String> names;
 
-   private DbDataProvider taskDataProvider = new TaskDataProvider();
-   private DbDataProvider nameDataProvider = new NameDataProvider();
+  public void refresh() {
+    Map taskCriteria = ViewMock.getFakeTasksCriteria();
+    taskDataProvider.refreshAllData(taskCriteria);
 
-    private class TaskDataProvider implements DbDataProvider {
-        @Override
-        public void refreshAllData(Map criteria)
-        {
-            tasks = DbMock.getFakeTasks(ViewMock.getFakeTasksCriteria());
-        }
+    Map nameCriteria = ViewMock.getFakeNamesCriteria();
+    nameDataProvider.refreshAllData(nameCriteria);
+  }
+
+  private interface DbDataProvider<T> {
+
+    @SuppressWarnings("unused")
+    void refreshAllData(Map criteria);
+  }
+
+  @SuppressWarnings("unused")
+  private class TaskDataProvider implements DbDataProvider {
+
+    @Override
+    public void refreshAllData(Map criteria) {
+      tasks = DbMock.getFakeTasks(ViewMock.getFakeTasksCriteria());
     }
+  }
 
-    private class NameDataProvider implements DbDataProvider {
-        @Override
-        public void refreshAllData(Map criteria)
-        {
-            names = DbMock.getFakeNames(ViewMock.getFakeNamesCriteria());
-        }
+  private class NameDataProvider implements DbDataProvider {
+
+    @Override
+    public void refreshAllData(Map criteria) {
+      names = DbMock.getFakeNames(ViewMock.getFakeNamesCriteria());
     }
+  }
 
-    public void refresh() {
-        Map taskCriteria = ViewMock.getFakeTasksCriteria();
-        taskDataProvider.refreshAllData(taskCriteria);
+  class Task {
 
-        Map nameCriteria = ViewMock.getFakeNamesCriteria();
-        nameDataProvider.refreshAllData(nameCriteria);
-    }
-
-    private interface DbDataProvider<T> {
-        void refreshAllData(Map criteria);
-    }
-
-    class Task {
-    }
+  }
 }

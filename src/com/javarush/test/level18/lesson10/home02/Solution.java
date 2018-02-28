@@ -11,33 +11,34 @@ package com.javarush.test.level18.lesson10.home02;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.math.BigDecimal;
 
-public class Solution {
-    public static void main(String[] args) throws IOException
-    {
-        String fileName = args[0];
-        int charCount;
-        int spaceCount = 0;
+class Solution {
 
-        FileInputStream fileInputStream = new FileInputStream(fileName);
+  public static void main(String[] args) throws IOException {
+    String fileName = args[0];
+    int charCount;
+    int spaceCount = 0;
 
-        byte[] buffer = new byte[fileInputStream.available()];
+    FileInputStream fileInputStream = new FileInputStream(fileName);
 
-        if (fileInputStream.available()>0)
-            fileInputStream.read(buffer);
+    byte[] buffer = new byte[fileInputStream.available()];
 
-        charCount = buffer.length;
-
-        for (byte aBuffer : buffer)
-        {
-            if (aBuffer == 32)
-                spaceCount++;
-        }
-
-        double x = ((double)spaceCount/(double)charCount)*100;
-        System.out.println(String.format("%.2f", x));
-        fileInputStream.close();
-
+    if (fileInputStream.available() > 0) {
+      //noinspection ResultOfMethodCallIgnored
+      fileInputStream.read(buffer);
     }
+
+    charCount = buffer.length;
+
+    for (byte aBuffer : buffer) {
+      if (aBuffer == 32) {
+        spaceCount++;
+      }
+    }
+
+    double x = ((double) spaceCount / (double) charCount) * 100;
+    System.out.println(String.format("%.2f", x));
+    fileInputStream.close();
+
+  }
 }

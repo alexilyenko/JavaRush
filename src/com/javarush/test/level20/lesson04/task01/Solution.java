@@ -8,19 +8,22 @@ import java.util.List;
 /* Как сериализовать?
 Сделайте так, чтобы сериализация класса Human была возможной
 */
-public class Solution {
-    public static class Human implements Serializable {
-        public String name;
-        public List<Asset> assets = new ArrayList<>();
+@SuppressWarnings("WeakerAccess")
+class Solution {
 
-        public Human() {
-        }
+  static class Human implements Serializable {
 
-        public Human(String name, Asset... assets) {
-            this.name = name;
-            if (assets != null) {
-                this.assets.addAll(Arrays.asList(assets));
-            }
-        }
+    final List<Asset> assets = new ArrayList<>();
+    String name;
+
+    public Human() {
     }
+
+    public Human(String name, Asset... assets) {
+      this.name = name;
+      if (assets != null) {
+        this.assets.addAll(Arrays.asList(assets));
+      }
+    }
+  }
 }

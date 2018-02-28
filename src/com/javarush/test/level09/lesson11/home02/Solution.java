@@ -7,19 +7,16 @@ package com.javarush.test.level09.lesson11.home02;
 
 import java.util.concurrent.TimeUnit;
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        for (int i = 10; i >= 0; i--)
-        {
-            System.out.println(i);
-            try {
-                TimeUnit.MILLISECONDS.sleep(100);
-            }
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
+class Solution {
+
+  public static void main(String[] args) {
+    for (int i = 10; i >= 0; i--) {
+      System.out.println(i);
+      try {
+        TimeUnit.MILLISECONDS.sleep(100);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
     }
+  }
 }

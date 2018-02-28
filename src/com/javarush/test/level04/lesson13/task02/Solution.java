@@ -10,18 +10,18 @@ import java.util.Scanner;
 8888
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Scanner scan = new Scanner(System.in);
-        int m = scan.nextInt();
-        int n = scan.nextInt();
-        for (int y=0; y<m; y++){
-            for (int x=0; x<n; x++)
-                System.out.print(8);
-            System.out.println("");
-        }
+class Solution {
 
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int m = scan.nextInt();
+    int n = scan.nextInt();
+    for (int y = 0; y < m; y++) {
+      for (int x = 0; x < n; x++) {
+        System.out.print(8);
+      }
+      System.out.println("");
     }
+
+  }
 }

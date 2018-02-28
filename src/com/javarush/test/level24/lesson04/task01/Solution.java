@@ -6,34 +6,37 @@ import java.math.BigDecimal;
 Внутри класса Solution создайте 2 внутренних public класса Apt3Bedroom, BigHall.
 Унаследуйте их от Apartments и Hall.
 */
-public class Solution {
-    public class Building {
-        public class Hall {
-            private BigDecimal square;
+class Solution {
 
-            public Hall(BigDecimal square) {
-                this.square = square;
-            }
-        }
+  class Building {
 
-        public class Apartments {
-        }
+    class Hall {
+
+      private final BigDecimal square;
+
+      Hall(BigDecimal square) {
+        this.square = square;
+      }
+    }
+
+    class Apartments {
 
     }
 
-    public class Apt3Bedroom extends Building.Apartments
-    {
-        Apt3Bedroom (Building building)
-        {
-            building.super();
-        }
-    }
+  }
 
-    public class BigHall extends Building.Hall {
-        BigHall (Building building, BigDecimal square)
-        {
-            building.super(square);
-        }
+  private class Apt3Bedroom extends Building.Apartments {
+
+    Apt3Bedroom(Building building) {
+      building.super();
     }
+  }
+
+  private class BigHall extends Building.Hall {
+
+    BigHall(Building building, BigDecimal square) {
+      building.super(square);
+    }
+  }
 
 }

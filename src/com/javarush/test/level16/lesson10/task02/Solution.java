@@ -13,41 +13,37 @@ PS: метод sleep выбрасывает InterruptedException.
 
 import java.util.concurrent.TimeUnit;
 
-public class Solution
-{
-    public static volatile int countSeconds = 4;
+class Solution {
 
-    public static void main(String[] args) throws InterruptedException
-    {
-        RacingClock clock = new RacingClock();
-        TimeUnit.MILLISECONDS.sleep(3500);
-        clock.interrupt();
-        }
+  private static volatile int countSeconds = 4;
+
+  public static void main(String[] args) throws InterruptedException {
+    RacingClock clock = new RacingClock();
+    TimeUnit.MILLISECONDS.sleep(3500);
+    clock.interrupt();
+  }
 
 
-    public static class RacingClock extends Thread
-    {
-        public RacingClock()
-        {
-            start();
-        }
+  static class RacingClock extends Thread {
 
-        public void run()
-        {
-            try
-            {
-                while (countSeconds>0)
-                {
-                    System.out.print(countSeconds + " ");
-                    countSeconds--;
-                    TimeUnit.SECONDS.sleep(1);
-                }
-                System.out.println("Марш!");
-
-            } catch (InterruptedException e) {
-                System.out.print("Прервано!");
-            }
-
-        }
+    RacingClock() {
+      start();
     }
+
+    @SuppressWarnings("NonAtomicOperationOnVolatileField")
+    public void run() {
+      try {
+        while (countSeconds > 0) {
+          System.out.print(countSeconds + " ");
+          countSeconds--;
+          TimeUnit.SECONDS.sleep(1);
+        }
+        System.out.println("Марш!");
+
+      } catch (InterruptedException e) {
+        System.out.print("Прервано!");
+      }
+
+    }
+  }
 }

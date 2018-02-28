@@ -21,62 +21,60 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        ArrayList<String> movies = new ArrayList<String>();
+class Solution {
 
-        while (true)
-        {
-            String movieName = br.readLine();
-            if (movieName.equals("cartoon") || movieName.equals("triller") || movieName.equals("soapOpera"))  movies.add(movieName);
-            else break;
-        }
-        for (String movieKey : movies )
-        {
-            Movie movie = MovieFactory.getMovie(movieKey);
-            System.out.println(movie.getClass().getSimpleName());
-        }
+  public static void main(String[] args) throws Exception {
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    ArrayList<String> movies = new ArrayList<>();
+
+    while (true) {
+      String movieName = br.readLine();
+      if (movieName.equals("cartoon") || movieName.equals("triller") || movieName
+          .equals("soapOpera")) {
+        movies.add(movieName);
+      } else {
+        break;
+      }
     }
-
-    static class MovieFactory
-    {
-
-        static Movie getMovie(String key)
-        {
-            Movie movie = null;
-
-            if ("soapOpera".equals(key))
-            {
-                movie = new SoapOpera();
-            }
-            else if ("cartoon".equals(key))
-            {
-                movie = new Cartoon();
-            }
-            else if ("triller".equals(key))
-            {
-                movie = new Triller();
-            }
-            return movie;
-        }
+    for (String movieKey : movies) {
+      Movie movie = MovieFactory.getMovie(movieKey);
+      System.out.println(movie.getClass().getSimpleName());
     }
+  }
 
-    static abstract class Movie
-    {
-    }
+  static class MovieFactory {
 
-    static class SoapOpera extends Movie
-    {
-    }
+    static Movie getMovie(String key) {
+      Movie movie = null;
 
-    static class Triller extends  Movie
-    {
+      switch (key) {
+        case "soapOpera":
+          movie = new SoapOpera();
+          break;
+        case "cartoon":
+          movie = new Cartoon();
+          break;
+        case "triller":
+          movie = new Triller();
+          break;
+      }
+      return movie;
     }
+  }
 
-    static class Cartoon extends  Movie
-    {
-    }
+  static abstract class Movie {
+
+  }
+
+  static class SoapOpera extends Movie {
+
+  }
+
+  static class Triller extends Movie {
+
+  }
+
+  static class Cartoon extends Movie {
+
+  }
 }

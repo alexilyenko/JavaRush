@@ -9,39 +9,38 @@ import java.util.List;
 */
 
 public class Solution {
-    public class TableInterfaceWrapper implements ATableInterface {
-        private ATableInterface aTableInterface;
 
-        public TableInterfaceWrapper(ATableInterface aTableInterface)
-        {
-            this.aTableInterface = aTableInterface;
-        }
+  interface ATableInterface {
 
-        @Override
-        public void setHeaderText(String newHeaderText)
-        {
-            aTableInterface.setHeaderText(newHeaderText);
-        }
+    void setModel(List rows);
 
-        @Override
-        public String getHeaderText()
-        {
-            return aTableInterface.getHeaderText().toUpperCase();
-        }
+    String getHeaderText();
 
-        @Override
-        public void setModel(List rows)
-        {
-            System.out.println(rows.size());
-            aTableInterface.setModel(rows);
-        }
+    void setHeaderText(String newHeaderText);
+  }
+
+  public class TableInterfaceWrapper implements ATableInterface {
+
+    private final ATableInterface aTableInterface;
+
+    public TableInterfaceWrapper(ATableInterface aTableInterface) {
+      this.aTableInterface = aTableInterface;
     }
 
-    public interface ATableInterface {
-        void setModel(List rows);
-
-        String getHeaderText();
-
-        void setHeaderText(String newHeaderText);
+    @Override
+    public String getHeaderText() {
+      return aTableInterface.getHeaderText().toUpperCase();
     }
+
+    @Override
+    public void setHeaderText(String newHeaderText) {
+      aTableInterface.setHeaderText(newHeaderText);
+    }
+
+    @Override
+    public void setModel(List rows) {
+      System.out.println(rows.size());
+      aTableInterface.setModel(rows);
+    }
+  }
 }

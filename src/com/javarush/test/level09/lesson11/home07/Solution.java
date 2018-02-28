@@ -4,24 +4,22 @@ package com.javarush.test.level09.lesson11.home07;
 Расставь модификаторы static так, чтобы пример скомпилировался.
 */
 
-public class Solution
-{
-    public static int A = 5;
-    public static int B = 2 * A;
-    public int C = A * B;
-    public static int D = A * B;
+class Solution {
 
-    public void main(String[] args)
-    {
-        Solution room = new Solution();
-        room.A = 5;
+  private static int A = 5;
+  private static final int B = 2 * A;
+  private static int D = A * B;
+  public int C = A * B;
 
-        Solution.D = 5;
-    }
+  public void main(String[] args) {
+    Solution room = new Solution();
+    A = 5;
 
-    public int getA()
-    {
-        return A;
-    }
+    Solution.D = 5;
+  }
+
+  public int getA() {
+    return A;
+  }
 
 }

@@ -11,27 +11,28 @@ import java.io.Serializable;
 Hint/Подсказка:
 Конструктор не вызывается при сериализации, только инициализируются все поля.
 */
-public class Solution implements Serializable, Runnable {
-    transient private Thread runner;
-    private int speed;
+class Solution implements Serializable, Runnable {
 
-    public Solution(int speed) {
-        this.speed = speed;
-        runner = new Thread(this);
-        runner.start();
-    }
+  @SuppressWarnings("FieldCanBeLocal")
+  private final int speed;
+  transient private Thread runner;
 
-    public void run() {
-    }
+  public Solution(int speed) {
+    this.speed = speed;
+    runner = new Thread(this);
+    runner.start();
+  }
 
-    private void writeObject(ObjectOutputStream out) throws IOException, InterruptedException
-    {
-        out.defaultWriteObject();
-    }
+  public void run() {
+  }
 
-    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
-        in.defaultReadObject();
-        runner = new Thread(this);
-        runner.start();
-    }
+  private void writeObject(ObjectOutputStream out) throws IOException {
+    out.defaultWriteObject();
+  }
+
+  private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+    in.defaultReadObject();
+    runner = new Thread(this);
+    runner.start();
+  }
 }

@@ -7,13 +7,15 @@ import java.util.Date;
 Должен быть вывод аналогичный следующему:
 31:10:13 15:59:59
 */
-public class Solution {
-    public static void main(String[] args) {
-        Date date = new Date();
-        System.out.println(String.format(getFormattedString(), date, date, date, date, date, date));
-    }
+class Solution {
 
-    public static String getFormattedString() {
-        return "%td:%tm:%ty %tT";
-    }
+  public static void main(String[] args) {
+    Date date = new Date();
+    System.out.println(String.format(getFormattedString(), date, date, date, date, date, date));
+  }
+
+  @SuppressWarnings("SameReturnValue")
+  private static String getFormattedString() {
+    return "%td:%tm:%ty %tT";
+  }
 }

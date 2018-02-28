@@ -7,59 +7,39 @@ import java.util.logging.Logger;
 /* Для того, чтобы усовершенствовать ум, надо больше размышлять, чем заучивать.
 Расставьте volatile там, где необходимо
 */
-public class Solution extends Thread {
-    public static final String DEFAULT_JAVARUSH_THREAD_NAME = "JavaRushThread";
+class Solution extends Thread {
 
-    private static final AtomicInteger createdThreadIndex = new AtomicInteger();
-    private static final AtomicInteger aliveThreadIndex = new AtomicInteger();
-    private static final Logger log = Logger.getAnonymousLogger();
+  private static final String DEFAULT_JAVARUSH_THREAD_NAME = "JavaRushThread";
 
-    private static volatile boolean debugLifecycle = false;
+  private static final AtomicInteger createdThreadIndex = new AtomicInteger();
+  private static final AtomicInteger aliveThreadIndex = new AtomicInteger();
+  private static final Logger log = Logger.getAnonymousLogger();
 
-    public Solution(Runnable runnable) {
-        this(runnable, DEFAULT_JAVARUSH_THREAD_NAME);
+  private Solution(Runnable runnable) {
+    this(runnable, DEFAULT_JAVARUSH_THREAD_NAME);
+  }
+
+  private Solution(Runnable runnable, String name) {
+    super(runnable, name + "-" + createdThreadIndex.incrementAndGet());
+
+    setUncaughtExceptionHandler(
+        (t, e) -> log.log(Level.SEVERE, "An error occurred in thread " + t.getName(), e));
+  }
+
+  public static void main(String[] args) {
+    new Solution(() -> System.out.println("test JavaRush Runnable for Solution class")).start();
+
+    new Solution(() -> {
+      throw new RuntimeException("Oops");
+    }).start();
+  }
+
+  public void run() {
+    try {
+      aliveThreadIndex.incrementAndGet();
+      super.run();
+    } finally {
+      aliveThreadIndex.decrementAndGet();
     }
-
-    public Solution(Runnable runnable, String name) {
-        super(runnable, name + "-" + createdThreadIndex.incrementAndGet());
-
-        setUncaughtExceptionHandler(new UncaughtExceptionHandler() {
-            public void uncaughtException(Thread t, Throwable e) {
-                log.log(Level.SEVERE, "An error occurred in thread " + t.getName(), e);
-            }
-        });
-    }
-
-    public static void main(String[] args) {
-        new Solution(new Runnable() {
-            @Override
-            public void run() {
-                System.out.println("test JavaRush Runnable for Solution class");
-            }
-        }).start();
-
-
-        new Solution(new Runnable() {
-            @Override
-            public void run() {
-                throw new RuntimeException("Oops");
-            }
-        }).start();
-    }
-
-    public void run() {
-        boolean debug = debugLifecycle;
-        if (debug) {
-            log.log(Level.FINE, "Created " + getName());
-        }
-        try {
-            aliveThreadIndex.incrementAndGet();
-            super.run();
-        } finally {
-            aliveThreadIndex.decrementAndGet();
-            if (debug) {
-                log.log(Level.FINE, "Exiting " + getName());
-            }
-        }
-    }
+  }
 }

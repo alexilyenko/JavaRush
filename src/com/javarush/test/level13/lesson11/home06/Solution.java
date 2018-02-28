@@ -5,34 +5,31 @@ package com.javarush.test.level13.lesson11.home06;
 2. Класс Hobbie должен наследоваться от интерфейсов Desire, Dream.
 */
 
-public class Solution
-{
+public class Solution {
 
-    public static void main(String[] args) throws Exception
-    {
-        System.out.println(Dream.HOBBIE.toString());
-        System.out.println(new Hobbie().INDEX);
+  public static void main(String[] args) {
+    System.out.println(Dream.HOBBIE.toString());
+    System.out.println(Hobbie.INDEX);
+  }
+
+  private interface Desire {
+
+  }
+
+  interface Dream {
+
+    Hobbie HOBBIE = new Hobbie();
+  }
+
+  static class Hobbie implements Desire, Dream {
+
+    static int INDEX = 1;
+
+    @Override
+    public String toString() {
+      INDEX++;
+      return "" + INDEX;
     }
-
-    interface Desire
-    {
-    }
-
-    interface Dream
-    {
-        static Hobbie HOBBIE = new Hobbie();
-    }
-
-    static class Hobbie implements Desire, Dream
-    {
-        static int INDEX = 1;
-
-        @Override
-        public String toString()
-        {
-            INDEX++;
-            return "" + INDEX;
-        }
-    }
+  }
 
 }

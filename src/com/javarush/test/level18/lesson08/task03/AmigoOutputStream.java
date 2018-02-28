@@ -13,65 +13,58 @@ import java.nio.channels.FileChannel;
 2.3 закрыть поток методом close()
 */
 
-public class AmigoOutputStream extends FileOutputStream {
-    public static String fileName = "C:/tmp/result.txt";
-    private FileOutputStream fileOutputStream;
-    private String phrase = "JavaRush © 2012-2013 All rights reserved.";
-    private byte[] array = phrase.getBytes();
+class AmigoOutputStream extends FileOutputStream {
 
-    public AmigoOutputStream(FileOutputStream fileOutputStream) throws FileNotFoundException
-    {
-        super(fileName);
-        this.fileOutputStream = fileOutputStream;
-    }
+  private static final String fileName = "C:/tmp/result.txt";
+  private final String phrase = "JavaRush © 2012-2013 All rights reserved.";
+  private final byte[] array = phrase.getBytes();
+  private FileOutputStream fileOutputStream;
 
-    @Override
-    public void flush() throws IOException
-    {
-        fileOutputStream.flush();
-    }
+  private AmigoOutputStream(FileOutputStream fileOutputStream) throws FileNotFoundException {
+    super(fileName);
+    this.fileOutputStream = fileOutputStream;
+  }
 
-    @Override
-    public void write(int b) throws IOException
-    {
-        fileOutputStream.write(b);
-    }
+  public static void main(String[] args) throws FileNotFoundException {
+    new AmigoOutputStream(new FileOutputStream(fileName));
+  }
 
-    @Override
-    public void write(byte[] b) throws IOException
-    {
-        fileOutputStream.write(b);
-    }
+  @Override
+  public void flush() throws IOException {
+    fileOutputStream.flush();
+  }
 
-    @Override
-    public void write(byte[] b, int off, int len) throws IOException
-    {
-        fileOutputStream.write(b, off, len);
-    }
+  @Override
+  public void write(int b) throws IOException {
+    fileOutputStream.write(b);
+  }
 
-    @Override
-    public void close() throws IOException
-    {
-        fileOutputStream.flush();
-        fileOutputStream.write(array);
-        fileOutputStream.close();
-    }
+  @Override
+  public void write(byte[] b) throws IOException {
+    fileOutputStream.write(b);
+  }
 
-    @Override
-    public FileChannel getChannel()
-    {
-        return fileOutputStream.getChannel();
-    }
+  @Override
+  public void write(byte[] b, int off, int len) throws IOException {
+    fileOutputStream.write(b, off, len);
+  }
 
-    @Override
-    public void finalize() throws IOException
-    {
-        super.finalize();
-    }
+  @Override
+  public void close() throws IOException {
+    fileOutputStream.flush();
+    fileOutputStream.write(array);
+    fileOutputStream.close();
+  }
 
-    public static void main(String[] args) throws FileNotFoundException {
-        new AmigoOutputStream(new FileOutputStream(fileName));
-    }
+  @Override
+  public FileChannel getChannel() {
+    return fileOutputStream.getChannel();
+  }
+
+  @Override
+  public void finalize() throws IOException {
+    super.finalize();
+  }
 
 }
 

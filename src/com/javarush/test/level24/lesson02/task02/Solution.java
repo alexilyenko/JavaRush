@@ -2,7 +2,6 @@ package com.javarush.test.level24.lesson02.task02;
 
 import java.io.Serializable;
 import java.rmi.Remote;
-import java.rmi.server.RemoteObject;
 import java.util.ArrayDeque;
 import java.util.EventListener;
 
@@ -11,20 +10,24 @@ import java.util.EventListener;
 Лишние методы удалите.
 */
 public class Solution {
-    public static class A implements Serializable {
-    }
 
-    public static class B implements Remote {
-    }
+  private static class A implements Serializable {
 
-    public static class C extends ArrayDeque
-    {
-        public C clone() {
-            return (C) super.clone();
-        }
-    }
+  }
 
-    public static class D implements EventListener {
+  private static class B implements Remote {
+
+  }
+
+  public static class C extends ArrayDeque {
+
+    public C clone() {
+      return (C) super.clone();
     }
+  }
+
+  private static class D implements EventListener {
+
+  }
 
 }

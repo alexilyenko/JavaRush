@@ -18,42 +18,43 @@ import java.util.List;
 Сигнатуру метода main не менять
 */
 
-public class Solution {
-    public static List<String> allLines = new ArrayList<String>();
-    public static List<String> forRemoveLines = new ArrayList<String>();
+class Solution {
 
-    public static void main(String[] args) {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String fileName1 = null;
-        String fileName2 = null;
-        try
-        {
-            fileName1 = reader.readLine();
-            fileName2 = reader.readLine();
-            reader.close();
-            BufferedReader fReader1 = new BufferedReader(new FileReader(fileName1));
-            String input;
-            while ((input = fReader1.readLine()) != null)
-                allLines.add(input);
-            fReader1.close();
-            BufferedReader fReader2 = new BufferedReader(new FileReader(fileName2));
-            while ((input = fReader2.readLine()) != null)
-                forRemoveLines.add(input);
-            fReader2.close();
-            new Solution().joinData();
-        } catch (Exception ignore) {}
+  private static final List<String> allLines = new ArrayList<>();
+  private static final List<String> forRemoveLines = new ArrayList<>();
 
+  public static void main(String[] args) {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String fileName1;
+    String fileName2;
+    try {
+      fileName1 = reader.readLine();
+      fileName2 = reader.readLine();
+      reader.close();
+      BufferedReader fReader1 = new BufferedReader(new FileReader(fileName1));
+      String input;
+      while ((input = fReader1.readLine()) != null) {
+        allLines.add(input);
+      }
+      fReader1.close();
+      BufferedReader fReader2 = new BufferedReader(new FileReader(fileName2));
+      while ((input = fReader2.readLine()) != null) {
+        forRemoveLines.add(input);
+      }
+      fReader2.close();
+      new Solution().joinData();
+    } catch (Exception ignore) {
     }
 
-    public synchronized void joinData () throws CorruptedDataException
-    {
-        if (allLines.containsAll(forRemoveLines))
-            allLines.removeAll(forRemoveLines);
-        else
-        {
-            allLines.clear();
-            throw new CorruptedDataException();
-        }
+  }
 
+  private synchronized void joinData() throws CorruptedDataException {
+    if (allLines.containsAll(forRemoveLines)) {
+      allLines.removeAll(forRemoveLines);
+    } else {
+      allLines.clear();
+      throw new CorruptedDataException();
     }
+
+  }
 }

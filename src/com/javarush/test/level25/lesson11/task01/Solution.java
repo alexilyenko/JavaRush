@@ -7,27 +7,29 @@ import java.util.Random;
 то обеспечьте переуступку кванта времени.
 Добавьте этот код в единственное допустимое место.
 */
-public class Solution {
-    private static final double THRESHOLD_VALUE = 500;
-    private static final Random RANDOM = new Random();
+class Solution {
 
-    public synchronized void moveMoney(Account from, Account to, int amount) throws InterruptedException
-    {
-        from.setBalance(from.getBalance() - amount);
-        if (RANDOM.nextInt(5000) > THRESHOLD_VALUE)
-            Thread.yield();
-        to.setBalance(to.getBalance() + amount);
+  private static final double THRESHOLD_VALUE = 500;
+  private static final Random RANDOM = new Random();
+
+  public synchronized void moveMoney(Account from, Account to, int amount) {
+    from.setBalance(from.getBalance() - amount);
+    if (RANDOM.nextInt(5000) > THRESHOLD_VALUE) {
+      Thread.yield();
+    }
+    to.setBalance(to.getBalance() + amount);
+  }
+
+  private class Account {
+
+    private int balance;
+
+    int getBalance() {
+      return balance;
     }
 
-    private class Account {
-        private int balance;
-
-        public int getBalance() {
-            return balance;
-        }
-
-        public void setBalance(int balance) {
-            this.balance = balance;
-        }
+    void setBalance(int balance) {
+      this.balance = balance;
     }
+  }
 }

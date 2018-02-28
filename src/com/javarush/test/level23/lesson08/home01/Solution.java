@@ -1,7 +1,11 @@
 package com.javarush.test.level23.lesson08.home01;
 
-import com.javarush.test.level23.lesson08.home01.vo.*;
-
+import com.javarush.test.level23.lesson08.home01.vo.Location;
+import com.javarush.test.level23.lesson08.home01.vo.NamedItem;
+import com.javarush.test.level23.lesson08.home01.vo.Server;
+import com.javarush.test.level23.lesson08.home01.vo.Subject;
+import com.javarush.test.level23.lesson08.home01.vo.Subscription;
+import com.javarush.test.level23.lesson08.home01.vo.User;
 import java.util.List;
 
 /* Анонимность иногда так приятна!
@@ -21,77 +25,69 @@ Id=1, name='Location-1', description=Got by executing 'select * from LOCATION'
 */
 
 
-public class Solution {
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        print(solution.getUsers());
-        print(solution.getLocations());
-        print(solution.getServers());
-        print(solution.getSubjects());
-        print(solution.getSubscriptions());
+class Solution {
+
+  public static void main(String[] args) {
+    Solution solution = new Solution();
+    print(solution.getUsers());
+    print(solution.getLocations());
+    print(solution.getServers());
+    print(solution.getSubjects());
+    print(solution.getSubscriptions());
+  }
+
+  private static void print(List list) {
+    String format = "Id=%d, name='%s', description=%s";
+    for (Object obj : list) {
+      NamedItem item = (NamedItem) obj;
+      System.out
+          .println(String.format(format, item.getId(), item.getName(), item.getDescription()));
     }
+  }
 
-    public static void print(List list) {
-        String format = "Id=%d, name='%s', description=%s";
-        for (Object obj : list) {
-            NamedItem item = (NamedItem) obj;
-            System.out.println(String.format(format, item.getId(), item.getName(), item.getDescription()));
-        }
-    }
+  private List<User> getUsers() {
+    return new AbstractDbSelectExecutor<User>() {
 
-    public List<User> getUsers() {
-            return new AbstractDbSelectExecutor<User>()
-            {
+      public String getQuery() {
+        return "select * from USER";
+      }
+    }.execute();
+  }
 
-                public String getQuery()
-                {
-                    return "select * from USER";
-                }
-            }.execute();
-        }
+  private List<Location> getLocations() {
+    return new AbstractDbSelectExecutor<Location>() {
 
-    public List<Location> getLocations() {
-        return new AbstractDbSelectExecutor<Location>()
-        {
+      public String getQuery() {
+        return "select * from LOCATION";
+      }
+    }.execute();
+  }
 
-            public String getQuery()
-            {
-                return "select * from LOCATION";
-            }
-        }.execute();
-    }
+  private List<Server> getServers() {
+    return new AbstractDbSelectExecutor<Server>() {
 
-    public List<Server> getServers() {
-        return new AbstractDbSelectExecutor<Server>()
-        {
+      public String getQuery() {
+        return "select * from SERVER";
+      }
+    }.execute();
+  }
 
-            public String getQuery()
-            {
-                return "select * from SERVER";
-            }
-        }.execute();
-    }
+  private List<Subject> getSubjects() {
+    return new AbstractDbSelectExecutor<Subject>() {
 
-    public List<Subject> getSubjects() {
-        return new AbstractDbSelectExecutor<Subject>()
-        {
+      public String getQuery() {
+        return "select * from SUBJECT";
+      }
+    }.execute();
+  }
 
-            public String getQuery()
-            {
-                return "select * from SUBJECT";
-            }
-        }.execute();
-    }
+  private List<Subscription> getSubscriptions() {
+    return new AbstractDbSelectExecutor<Subscription>() {
 
-    public List<Subscription> getSubscriptions() {
-        return new AbstractDbSelectExecutor<Subscription>()
-        {
-
-            public String getQuery()
-            {
-                return "select * from SUBSCRIPTION";
-            }
-        }.execute();
-    }
+      public String getQuery() {
+        return "select * from SUBSCRIPTION";
+      }
+    }.execute();
+  }
 }
 

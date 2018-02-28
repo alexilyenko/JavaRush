@@ -11,19 +11,20 @@ package com.javarush.test.level07.lesson06.task02;
 
 import java.util.ArrayList;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        ArrayList<String> list = new ArrayList<String>();
-        for (int i=0; i<5; i++) {
-            int n=i+1;
-            list.add("10"+n);
-        }
-        list.remove(0);
-        list.remove(1);
-        list.remove(2);
-        for (String aList : list) System.out.println(aList);
-        System.out.println(list.size());
+class Solution {
+
+  public static void main(String[] args) {
+    ArrayList<String> list = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+      int n = i + 1;
+      list.add("10" + n);
     }
+    list.remove(0);
+    list.remove(1);
+    list.remove(2);
+    for (String aList : list) {
+      System.out.println(aList);
+    }
+    System.out.println(list.size());
+  }
 }

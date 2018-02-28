@@ -8,13 +8,13 @@ import java.util.Scanner;
 Света любит меня.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Scanner scan = new Scanner(System.in);
-        String name = scan.nextLine();
-        for(int x=0; x<10; x++)
-            System.out.println(name+" любит меня.");
+class Solution {
+
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String name = scan.nextLine();
+    for (int x = 0; x < 10; x++) {
+      System.out.println(name + " любит меня.");
     }
+  }
 }

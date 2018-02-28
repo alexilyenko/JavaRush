@@ -16,42 +16,42 @@ static void printAllFields
 First name
 */
 
-public class Solution {
-    public static void init() {
-        System.out.println("static void init()");
-    }
+class Solution {
 
-    static {
-        init();
-    }
-    static
-    {
-        System.out.println("Static block");
-    }
+  static {
+    init();
+  }
 
-    {
-        System.out.println("non-static block");
-        printAllFields(this);
-    }
+  static {
+    System.out.println("Static block");
+  }
 
-    public int i = 6;
+  private final int i = 6;
+  private final String name = "First name";
 
-    public String name = "First name";
+  {
+    System.out.println("non-static block");
+    printAllFields(this);
+  }
 
-    public Solution() {
-        System.out.println("Solution constructor");
-        printAllFields(this);
-    }
+  private Solution() {
+    System.out.println("Solution constructor");
+    printAllFields(this);
+  }
 
-    public static void main(String[] args) {
-        System.out.println("public static void main");
-        Solution s = new Solution();
-    }
+  private static void init() {
+    System.out.println("static void init()");
+  }
 
-    public static void printAllFields(Solution obj) {
-        System.out.println("static void printAllFields");
-        System.out.println(obj.i);
-        System.out.println(obj.name);
+  public static void main(String[] args) {
+    System.out.println("public static void main");
+    Solution s = new Solution();
+  }
 
-    }
+  private static void printAllFields(Solution obj) {
+    System.out.println("static void printAllFields");
+    System.out.println(obj.i);
+    System.out.println(obj.name);
+
+  }
 }

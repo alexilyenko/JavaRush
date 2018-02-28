@@ -4,26 +4,27 @@ package com.javarush.test.level23.lesson08.task01;
 Метод printName должен выводить свое собственное имя, т.е. "sout"
 Сделайте минимум изменений.
 */
-public class Solution {
-    private String name;
+class Solution {
 
-    Solution(String name) {
-        this.name = name;
-    }
+  private final String name;
 
-    protected String getName() {
-        return name;
-    }
+  private Solution(String name) {
+    this.name = name;
+  }
 
-    private void sout() {
-        new Solution("sout") {
-            void printName() {
-                System.out.println(getName());
-            }
-        }.printName();
-    }
+  public static void main(String[] args) {
+    new Solution("main").sout();
+  }
 
-    public static void main(String[] args) {
-        new Solution("main").sout();
-    }
+  private String getName() {
+    return name;
+  }
+
+  private void sout() {
+    new Solution("sout") {
+      void printName() {
+        System.out.println(getName());
+      }
+    }.printName();
+  }
 }

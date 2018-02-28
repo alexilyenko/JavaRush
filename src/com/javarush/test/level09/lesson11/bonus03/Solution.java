@@ -26,66 +26,61 @@ import java.util.ArrayList;
 Яблоко
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        ArrayList<String> list = new ArrayList<String>();
-        while (true)
-        {
-            String s = reader.readLine();
-            if (s.isEmpty()) break;
-            list.add(s);
+class Solution {
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    ArrayList<String> list = new ArrayList<>();
+    while (true) {
+      String s = reader.readLine();
+      if (s.isEmpty()) {
+        break;
+      }
+      list.add(s);
+    }
+
+    String[] array = list.toArray(new String[list.size()]);
+    sort(array);
+
+    for (String x : array) {
+      System.out.println(x);
+    }
+  }
+
+  private static void sort(String[] array) {
+    for (int i = 0; i < array.length; i++) {
+      for (int j = i + 1; j < array.length; j++) {
+        if (isNumber(array[i]) && isNumber(array[j])) {
+          if (Integer.parseInt(array[i]) < Integer.parseInt(array[j])) {
+            String t = array[i];
+            array[i] = array[j];
+            array[j] = t;
+          }
+        } else if (!isNumber(array[i]) && !isNumber(array[j])) {
+          if (isGreaterThen(array[i].toLowerCase(), array[j].toLowerCase())) {
+            String t = array[i];
+            array[i] = array[j];
+          }
         }
+      }
+    }
+  }
 
-        String[] array = list.toArray(new String[list.size()]);
-        sort(array);
+  //Метод для сравнения строк: 'а' больше чем 'b'
+  private static boolean isGreaterThen(String a, String b) {
+    return a.compareTo(b) > 0;
+  }
 
-        for (String x : array)
-            System.out.println(x);
+  private static boolean isNumber(String s) {
+    if (s.length() == 0) {
+      return false;
     }
 
-    public static void sort(String[] array)
-    {
-        for ( int i=0; i<array.length; i++)
-        {
-            for (int j=i+1; j<array.length; j++)
-            {
-                if (isNumber(array[i]) && isNumber(array[j]))
-                {
-                    if(Integer.parseInt(array[i])<Integer.parseInt(array[j]))
-                    {
-                        String t = array[i] ;
-                        array[i] = array[j];
-                        array[j] = t;
-                    }
-                } else if (!isNumber(array[i]) && !isNumber(array[j]))
-                {
-                    if (isGreaterThen(array[i].toLowerCase(), array[j].toLowerCase() ))
-                    {
-                        String t = array[i];
-                        array[i] = array[j];
-                    }
-                }
-            }
-        }
+    for (char c : s.toCharArray()) {
+      if (!Character.isDigit(c) && c != '-') {
+        return false;
+      }
     }
-
-    //Метод для сравнения строк: 'а' больше чем 'b'
-    public static boolean isGreaterThen(String a, String b)
-    {
-        return a.compareTo(b) > 0;
-    }
-
-    public static boolean isNumber(String s)
-    {
-        if (s.length() == 0) return false;
-
-        for (char c : s.toCharArray())
-        {
-            if (!Character.isDigit(c) && c != '-') return false;
-        }
-        return true;
-    }
+    return true;
+  }
 }

@@ -9,32 +9,38 @@ package com.javarush.test.level05.lesson09.task05;
 -	создаём копию другого прямоугольника (он и передаётся в параметрах)
 */
 
-    public class Rectangle
-    {
-        private int left, top, width, height;
-        public Rectangle(int left, int top, int width, int height){
-            this.left=left;
-            this.top=top;
-            this.width=width;
-            this.height=height;
-        }
+class Rectangle {
 
-        public Rectangle(int left, int top){
-            this.left=left;
-            this.top=top;
-        }
+  private final int left;
+  private final int top;
+  private int width;
+  private int height;
 
-        public Rectangle(int left, int top, int width){
-            this.left=left;
-            this.top=top;
-            this.width=width;
-            this.height=width;
-        }
+  public Rectangle(int left, int top, int width, int height) {
+    this.left = left;
+    this.top = top;
+    this.width = width;
+    this.height = height;
+  }
 
-        public Rectangle(Rectangle anotherRectangle){
-            this.left=anotherRectangle.left;
-            this.top=anotherRectangle.top;
-            this.width=anotherRectangle.width;
-            this.height=anotherRectangle.width;
-        }
-    }
+  public Rectangle(int left, int top) {
+    this.left = left;
+    this.top = top;
+  }
+
+  public Rectangle(int left, int top, int width) {
+    this.left = left;
+    this.top = top;
+    this.width = width;
+    //noinspection SuspiciousNameCombination
+    this.height = width;
+  }
+
+  public Rectangle(Rectangle anotherRectangle) {
+    this.left = anotherRectangle.left;
+    this.top = anotherRectangle.top;
+    this.width = anotherRectangle.width;
+    //noinspection SuspiciousNameCombination
+    this.height = anotherRectangle.width;
+  }
+}

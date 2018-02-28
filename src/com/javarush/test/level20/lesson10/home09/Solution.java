@@ -10,7 +10,8 @@ import java.util.List;
 Сериализовать Solution.
 Все данные должны сохранить порядок следования.
 */
-public class Solution implements Serializable {
-    int node;
-    List<Solution> edges = new LinkedList<>();
+class Solution implements Serializable {
+
+  int node;
+  List<Solution> edges = new LinkedList<>();
 }

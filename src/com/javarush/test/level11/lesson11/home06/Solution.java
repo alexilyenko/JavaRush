@@ -4,24 +4,17 @@ package com.javarush.test.level11.lesson11.home06;
 Расставь правильно «цепочку наследования» в классах: Pet (домашнее животное), Cat (кот), Dog(собака).
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
 
-    public class Pet
-    {
+  class Pet {
 
-    }
+  }
 
-    public class Cat extends Pet
-    {
+  private class Cat extends Pet {
 
-    }
+  }
 
-    public class Dog extends    Pet
-    {
+  private class Dog extends Pet {
 
-    }
+  }
 }

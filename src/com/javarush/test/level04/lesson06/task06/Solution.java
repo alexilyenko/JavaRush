@@ -6,14 +6,14 @@ package com.javarush.test.level04.lesson06.task06;
 
 import java.util.Scanner;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Scanner scan = new Scanner(System.in);
-        String name = scan.nextLine();
-        int age = scan.nextInt();
-        if (age>20)
-            System.out.println("И 18-ти достаточно");
+class Solution {
+
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String name = scan.nextLine();
+    int age = scan.nextInt();
+    if (age > 20) {
+      System.out.println("И 18-ти достаточно");
     }
+  }
 }

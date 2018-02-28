@@ -8,20 +8,43 @@ package com.javarush.test.level15.lesson12.home05;
 */
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
-public class Solution {
-    public Solution() {}
-    public Solution(int s) {}
-    public Solution(short s) {}
-    protected Solution (Integer s) {}
-    protected Solution (Double s) {}
-    protected Solution (double s) {}
-    private Solution (byte s) {}
-    private Solution (long s) {}
-    private Solution (float s) {}
-    Solution (BigDecimal s) {}
-    Solution (Float s) {}
-    Solution (Object s) {}
+class Solution {
+
+  Solution() {
+  }
+
+  Solution(int s) {
+  }
+
+  Solution(short s) {
+  }
+
+  Solution(Integer s) {
+  }
+
+  Solution(Double s) {
+  }
+
+  Solution(double s) {
+  }
+
+  private Solution(byte s) {
+  }
+
+  private Solution(long s) {
+  }
+
+  private Solution(float s) {
+  }
+
+  Solution(BigDecimal s) {
+  }
+
+  Solution(Float s) {
+  }
+
+  Solution(Object s) {
+  }
 }
 

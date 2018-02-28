@@ -11,26 +11,27 @@ import java.util.Comparator;
 Все переданные компараторы сортируют дженерик тип Т
 В конструктор передается как минимум один компаратор
 */
-public class Solution {
-    public static class CustomizedComparator<T> implements Comparator<T> {
-        private Comparator<T>[] comparators;
+class Solution {
 
-        public CustomizedComparator(Comparator<T>... comparators)
-        {
-            this.comparators = comparators;
-        }
+  static class CustomizedComparator<T> implements Comparator<T> {
 
-        @Override
-        public int compare(T o1, T o2)
-        {
-            int difference = 0;
-            for (Comparator<T> comparator : comparators)
-            {
-                difference = comparator.compare(o1, o2);
-                if (difference != 0)
-                    break;
-            }
-            return difference;
-        }
+    private final Comparator<T>[] comparators;
+
+    @SafeVarargs
+    public CustomizedComparator(Comparator<T>... comparators) {
+      this.comparators = comparators;
     }
+
+    @Override
+    public int compare(T o1, T o2) {
+      int difference = 0;
+      for (Comparator<T> comparator : comparators) {
+        difference = comparator.compare(o1, o2);
+        if (difference != 0) {
+          break;
+        }
+      }
+      return difference;
+    }
+  }
 }

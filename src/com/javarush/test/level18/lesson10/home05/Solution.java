@@ -11,39 +11,44 @@ package com.javarush.test.level18.lesson10.home05;
 3.51 - 4
 */
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-public class Solution {
-    public static void main(String[] args) throws IOException
-    {
-        ArrayList<Integer> numbers = new ArrayList<Integer>();
+class Solution {
 
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String fileName1 = reader.readLine();
-        String fileName2 = reader.readLine();
-        reader.close();
+  public static void main(String[] args) throws IOException {
+    ArrayList<Integer> numbers = new ArrayList<>();
 
-        BufferedReader fileReader = new BufferedReader(new FileReader(fileName1));
-        String str;
-        String[] strMass;
-        double tmp;
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String fileName1 = reader.readLine();
+    String fileName2 = reader.readLine();
+    reader.close();
 
-        while ((str = fileReader.readLine()) != null) {
-            strMass = str.split(" ");
-            for (String strMas : strMass)
-            {
-                tmp = Math.round(Double.parseDouble(strMas));
-                numbers.add((int)tmp);
-            }
-        }
-        fileReader.close();
+    BufferedReader fileReader = new BufferedReader(new FileReader(fileName1));
+    String str;
+    String[] strMass;
+    double tmp;
 
-        BufferedWriter fileWriter = new BufferedWriter(new FileWriter(fileName2));
-        String num = "";
-        for (int a : numbers)
-            num = num+a+" ";
-        fileWriter.write(num);
-        fileWriter.close();
+    while ((str = fileReader.readLine()) != null) {
+      strMass = str.split(" ");
+      for (String strMas : strMass) {
+        tmp = Math.round(Double.parseDouble(strMas));
+        numbers.add((int) tmp);
+      }
     }
+    fileReader.close();
+
+    BufferedWriter fileWriter = new BufferedWriter(new FileWriter(fileName2));
+    StringBuilder num = new StringBuilder();
+    for (int a : numbers) {
+      num.append(a).append(" ");
+    }
+    fileWriter.write(num.toString());
+    fileWriter.close();
+  }
 }

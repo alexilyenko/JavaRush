@@ -14,21 +14,22 @@ import java.util.concurrent.Executors;
 */
 
 
-public class Solution {
-    public static void main(String[] args) throws Exception {
-        ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
+class Solution {
 
-        Producer producer = new Producer(map);
-        Consumer consumer = new Consumer(map);
+  public static void main(String[] args) throws Exception {
+    ConcurrentHashMap<String, String> map = new ConcurrentHashMap<>();
 
-        ExecutorService executorService = Executors.newCachedThreadPool();
-        executorService.submit(producer);
-        executorService.submit(consumer);
+    Producer producer = new Producer(map);
+    Consumer consumer = new Consumer(map);
 
-        Thread.sleep(2000);
+    ExecutorService executorService = Executors.newCachedThreadPool();
+    executorService.submit(producer);
+    executorService.submit(consumer);
 
-        executorService.shutdownNow();
-        //finally 5 lines have to be printed
-    }
+    Thread.sleep(2000);
+
+    executorService.shutdownNow();
+    //finally 5 lines have to be printed
+  }
 }
 

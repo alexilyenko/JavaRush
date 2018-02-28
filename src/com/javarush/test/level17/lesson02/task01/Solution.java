@@ -13,38 +13,41 @@ import java.util.List;
 2.3. в качестве первого параметра в removeNote передай имя нити - метод getName()
 */
 
-public class Solution {
-    public static void main(String[] args) throws InterruptedException
-    {
-        NoteThread nt = new NoteThread();
+class Solution {
+
+  public static void main(String[] args) {
+    NoteThread nt = new NoteThread();
+  }
+
+  static class NoteThread extends Thread {
+
+    NoteThread() {
+      this.start();
     }
 
-    public static class NoteThread extends Thread {
-        public NoteThread() {
-            this.start();
-        }
-        public void run() {
-            for (int i = 0; i<1000; i++) {
-                Note.addNote(this.getName() + "-Note" + i);
-                Note.removeNote(this.getName());
-            }
-        }
+    public void run() {
+      for (int i = 0; i < 1000; i++) {
+        Note.addNote(this.getName() + "-Note" + i);
+        Note.removeNote(this.getName());
+      }
+    }
+  }
+
+  static class Note {
+
+    static final List<String> notes = new ArrayList<>();
+
+    static void addNote(String note) {
+      notes.add(0, note);
     }
 
-    public static class Note {
-
-        public static final List<String> notes = new ArrayList<String>();
-
-        public static void addNote(String note) {
-            notes.add(0, note);
-        }
-
-        public static void removeNote(String threadName) {
-            String note = notes.remove(0);
-            if (note == null)
-                System.out.println("Другая нить удалила нашу заметку");
-            else if (!note.startsWith(threadName))
-                System.out.println("Нить [" + threadName + "] удалила чужую заметку [" + note + "]");
-        }
+    static void removeNote(String threadName) {
+      String note = notes.remove(0);
+      if (note == null) {
+        System.out.println("Другая нить удалила нашу заметку");
+      } else if (!note.startsWith(threadName)) {
+        System.out.println("Нить [" + threadName + "] удалила чужую заметку [" + note + "]");
+      }
     }
+  }
 }

@@ -11,26 +11,25 @@ package com.javarush.test.level08.lesson03.task02;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Map<String, String> hash = new HashMap<String, String>();
-        hash.put("арбуз", "ягода");
-        hash.put("банан", "трава");
-        hash.put("вишня", "ягода");
-        hash.put("груша", "фрукт");
-        hash.put("дыня", "овощ");
-        hash.put("ежевика", "куст");
-        hash.put("жень-шень", "корень");
-        hash.put("земляника", "ягода");
-        hash.put("ирис", "цветок");
-        hash.put("картофель", "клубень");
+class Solution {
 
-        for(Map.Entry<String, String> text: hash.entrySet()) {
-            String value = text.getValue();
-            String key = text.getKey();
-            System.out.println(key+" - " + value);
-        }
+  public static void main(String[] args) {
+    Map<String, String> hash = new HashMap<>();
+    hash.put("арбуз", "ягода");
+    hash.put("банан", "трава");
+    hash.put("вишня", "ягода");
+    hash.put("груша", "фрукт");
+    hash.put("дыня", "овощ");
+    hash.put("ежевика", "куст");
+    hash.put("жень-шень", "корень");
+    hash.put("земляника", "ягода");
+    hash.put("ирис", "цветок");
+    hash.put("картофель", "клубень");
+
+    for (Map.Entry<String, String> text : hash.entrySet()) {
+      String value = text.getValue();
+      String key = text.getKey();
+      System.out.println(key + " - " + value);
     }
+  }
 }

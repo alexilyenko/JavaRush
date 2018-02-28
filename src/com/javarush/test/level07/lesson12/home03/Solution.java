@@ -9,32 +9,34 @@ import java.io.InputStreamReader;
 Вывести на экран максимальное и минимальное числа через пробел.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int maximum;
-        int minimum;
-        int[] mass = new int[20];
+class Solution {
 
-        for (int i=0; i<mass.length; i++)
-            mass[i]=Integer.parseInt(reader.readLine());
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int maximum;
+    int minimum;
+    int[] mass = new int[20];
 
-        maximum=mass[0];
-        minimum=mass[0];
-
-        for (int i=1; i<mass.length; i++) {
-            if (mass[i]>maximum)
-                maximum=mass[i];
-        }
-
-        for (int i=1; i<mass.length; i++) {
-            if (mass[i]<minimum)
-                minimum=mass[i];
-        }
-
-        System.out.print(maximum + " ");
-        System.out.print(minimum);
+    for (int i = 0; i < mass.length; i++) {
+      mass[i] = Integer.parseInt(reader.readLine());
     }
+
+    maximum = mass[0];
+    minimum = mass[0];
+
+    for (int i = 1; i < mass.length; i++) {
+      if (mass[i] > maximum) {
+        maximum = mass[i];
+      }
+    }
+
+    for (int i = 1; i < mass.length; i++) {
+      if (mass[i] < minimum) {
+        minimum = mass[i];
+      }
+    }
+
+    System.out.print(maximum + " ");
+    System.out.print(minimum);
+  }
 }

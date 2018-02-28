@@ -7,22 +7,20 @@ package com.javarush.test.level05.lesson12.home05;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        int sum=0;
-        while (true) {
-            String aString = reader.readLine();
-            if (aString.equals("сумма")) {
-                System.out.println(sum);
-                break;
-            }
-            else {
-            int a = Integer.parseInt(aString);
-            sum = sum +a;
-            }
-        }
+class Solution {
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    int sum = 0;
+    while (true) {
+      String aString = reader.readLine();
+      if (aString.equals("сумма")) {
+        System.out.println(sum);
+        break;
+      } else {
+        int a = Integer.parseInt(aString);
+        sum = sum + a;
+      }
     }
+  }
 }

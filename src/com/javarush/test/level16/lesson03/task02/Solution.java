@@ -6,19 +6,21 @@ package com.javarush.test.level16.lesson03.task02;
 3. Метод run должен выводить в консоль "it's run method".
 */
 
-public class Solution {
-    public static void main(String[] args) {
-        TestThread thread = new TestThread();
-        thread.start();
+class Solution {
+
+  public static void main(String[] args) {
+    TestThread thread = new TestThread();
+    thread.start();
+  }
+
+  static class TestThread extends Thread {
+
+    static {
+      System.out.println("it's static block inside TestThread");
     }
 
-    public static class TestThread extends Thread {
-        static {
-            System.out.println("it's static block inside TestThread");
-        }
-
-        public void run() {
-            System.out.println("it's run method");
-        }
+    public void run() {
+      System.out.println("it's run method");
     }
+  }
 }

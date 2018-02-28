@@ -8,29 +8,31 @@ package com.javarush.test.level16.lesson10.task04;
 
 import java.util.concurrent.TimeUnit;
 
-public class Solution {
-    public static void main(String[] args) throws InterruptedException {
-        Thread t = new Thread(new TestThread());
-        t.start();
-        TimeUnit.SECONDS.sleep(3);
-        ourInterruptMethod();
-    }
+class Solution {
 
-    public static void ourInterruptMethod()
-    {
-        TestThread.cause = false;
-    }
+  public static void main(String[] args) throws InterruptedException {
+    Thread t = new Thread(new TestThread());
+    t.start();
+    TimeUnit.SECONDS.sleep(3);
+    ourInterruptMethod();
+  }
 
-    public static class TestThread implements Runnable {
-        public static boolean cause = true;
-        public void run() {
-            while(cause) {
-                try {
-                    System.out.println("he-he");
-                    TimeUnit.MILLISECONDS.sleep(500);
-                } catch (InterruptedException ignored) {
-                }
-            }
+  private static void ourInterruptMethod() {
+    TestThread.cause = false;
+  }
+
+  static class TestThread implements Runnable {
+
+    static boolean cause = true;
+
+    public void run() {
+      while (cause) {
+        try {
+          System.out.println("he-he");
+          TimeUnit.MILLISECONDS.sleep(500);
+        } catch (InterruptedException ignored) {
         }
+      }
     }
+  }
 }

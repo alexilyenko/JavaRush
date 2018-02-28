@@ -12,24 +12,24 @@ import java.util.List;
 Числа выводить с новой строки сохраняя порядок ввода
 */
 
-public class Solution
-{
-    public static void main(String[] args) {
-        readData();
-    }
+class Solution {
 
-    public static void readData() {
-     List<Integer> list = new ArrayList<Integer>();
-     BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-           for (int i = 0; i<list.size()+1; i++)
-                list.add(Integer.parseInt(reader.readLine()));
-        }
-        catch (Exception e)
-        {
-           for (int a : list)
-                System.out.println(a);
-        }
-     }
+  public static void main(String[] args) {
+    readData();
+  }
+
+  private static void readData() {
+    List<Integer> list = new ArrayList<>();
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      for (int i = 0; i < list.size() + 1; i++) {
+        list.add(Integer.parseInt(reader.readLine()));
+      }
+    } catch (Exception e) {
+      for (int a : list) {
+        System.out.println(a);
+      }
+    }
+  }
 }
 

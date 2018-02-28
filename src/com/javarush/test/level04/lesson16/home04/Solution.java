@@ -13,16 +13,15 @@ package com.javarush.test.level04.lesson16.home04;
 
 import java.util.Scanner;
 
-public class Solution
-{
-    public static void main(String[] args)   throws Exception
-    {
-         Scanner scan = new Scanner(System.in);
-         String name = scan.nextLine();
-         int b1 = scan.nextInt();
-         int b2 = scan.nextInt();
-         int b3 = scan.nextInt();
-         System.out.println("Меня зовут "+ name);
-         System.out.println("Я родился "+b3+"."+b2+"."+b1);
-    }
+class Solution {
+
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String name = scan.nextLine();
+    int b1 = scan.nextInt();
+    int b2 = scan.nextInt();
+    int b3 = scan.nextInt();
+    System.out.println("Меня зовут " + name);
+    System.out.println("Я родился " + b3 + "." + b2 + "." + b1);
+  }
 }

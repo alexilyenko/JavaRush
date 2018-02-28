@@ -12,24 +12,27 @@ import java.util.concurrent.locks.ReentrantLock;
 1.2.1 вызвать метод ifLockIsFree
 1.2.2 отпустить лок при любых условиях, даже если ifLockIsFree будет кидать исключение
 */
-public class Solution {
-    protected Lock lock = new ReentrantLock();
+class Solution {
 
-    public void someMethod() {
-        if (lock.tryLock()) {
-            try {
-                ifLockIsFree();
-            } finally {
-                lock.unlock();
-            }
-        } else {
-            ifLockIsBusy();
-        }
+  private final Lock lock = new ReentrantLock();
+
+  public void someMethod() {
+    if (lock.tryLock()) {
+      try {
+        ifLockIsFree();
+      } finally {
+        lock.unlock();
+      }
+    } else {
+      ifLockIsBusy();
+    }
+  }
+
+  @SuppressWarnings("EmptyMethod")
+  private void ifLockIsFree() {
     }
 
-    public void ifLockIsFree() {
-    }
-
-    public void ifLockIsBusy() {
+  @SuppressWarnings("EmptyMethod")
+  private void ifLockIsBusy() {
     }
 }

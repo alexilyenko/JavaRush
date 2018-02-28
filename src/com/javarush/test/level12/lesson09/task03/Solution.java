@@ -5,67 +5,66 @@ package com.javarush.test.level12.lesson09.task03;
 Добавь эти интерфейсы классам Dog(собака), Fish(рыба), Bird(птица), Airplane(самолет).
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
+public class Solution {
 
+  interface Fly {
+
+    void fly();
+  }
+
+  interface Run {
+
+    void run();
+  }
+
+  interface Swim {
+
+    void swim();
+  }
+
+  public class Dog implements Run, Swim {
+
+    public void run() {
+      System.out.println("Run!");
     }
 
-    public interface Fly
-    {
-        public void fly();
+    public void swim() {
+      System.out.println("Swim!");
+    }
+  }
+
+  public class Fish implements Swim {
+
+    public void swim() {
+      System.out.println("Swim!");
+    }
+  }
+
+  public class Bird implements Fly, Run, Swim {
+
+    public void fly() {
+      System.out.println("Fly!");
     }
 
-    public interface Run
-    {
-        public void run();
+    public void run() {
+      System.out.println("Run!");
     }
 
-    public interface Swim
-    {
-        public void swim();
+    public void swim() {
+      System.out.println("Swim!");
     }
 
-    public class Dog implements Run, Swim
-    {
-        public void run() {
-            System.out.println("Run!");
-        }
-        public void swim() {
-            System.out.println("Swim!");
-        }
+  }
+
+  public class Airplane implements Fly, Run {
+
+    public void fly() {
+      System.out.println("Fly!");
     }
 
-    public class Fish implements Swim
-    {
-        public void swim() {
-            System.out.println("Swim!");
-        }
+    public void run() {
+      System.out.println("Run!");
     }
 
-    public class Bird implements Fly, Run, Swim
-    {
-        public void fly() {
-            System.out.println("Fly!");
-        }
-        public void run() {
-            System.out.println("Run!");
-        }
-        public void swim() {
-            System.out.println("Swim!");
-        }
-
-    }
-
-    public class Airplane implements Fly, Run
-    {
-        public void fly() {
-            System.out.println("Fly!");
-        }
-        public void run() {
-            System.out.println("Run!");
-        }
-
-    }
+  }
 }

@@ -9,30 +9,31 @@ import java.util.logging.Logger;
 */
 public class Solution implements Serializable {
 
-    public static class Person implements Serializable  {
-        String firstName;
-        String lastName;
-        transient String fullName;
-        final transient String greetingString;
-        String country;
-        Sex sex;
-        transient PrintStream outputStream;
-        transient Logger logger;
+  enum Sex implements Serializable {
+    MALE,
+    FEMALE
+  }
 
-        Person(String firstName, String lastName, String country, Sex sex) {
-            this.firstName = firstName;
-            this.lastName = lastName;
-            this.fullName = String.format("%s, %s", lastName, firstName);
-            this.greetingString = "Hello, ";
-            this.country = country;
-            this.sex = sex;
-            this.outputStream = System.out;
-            this.logger = Logger.getLogger(String.valueOf(Person.class));
-        }
-    }
+  static class Person implements Serializable {
 
-    enum Sex implements Serializable {
-        MALE,
-        FEMALE
+    final transient String greetingString;
+    final String firstName;
+    final String lastName;
+    final transient String fullName;
+    final String country;
+    final Sex sex;
+    final transient PrintStream outputStream;
+    final transient Logger logger;
+
+    Person(String firstName, String lastName, String country, Sex sex) {
+      this.firstName = firstName;
+      this.lastName = lastName;
+      this.fullName = String.format("%s, %s", lastName, firstName);
+      this.greetingString = "Hello, ";
+      this.country = country;
+      this.sex = sex;
+      this.outputStream = System.out;
+      this.logger = Logger.getLogger(String.valueOf(Person.class));
     }
+  }
 }

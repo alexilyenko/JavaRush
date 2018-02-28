@@ -9,33 +9,31 @@ import java.util.Random;
 Удалить из множества все числа больше 10.
 */
 
-public class Solution
-{
-    public static void main (String[] args) {
-        HashSet<Integer> set = createSet();
-        set = removeAllNumbersMoreThen10(set);
-    }
+class Solution {
 
-    public static HashSet<Integer> createSet()
-    {
-        HashSet<Integer> set = new HashSet<Integer>();
-        Random rand = new Random();
-        for (int i=0; i<20; i++)
-            set.add(rand.nextInt());
-        return set;
-    }
+  public static void main(String[] args) {
+    HashSet<Integer> set = createSet();
+    removeAllNumbersMoreThen10(set);
+  }
 
-    public static HashSet<Integer> removeAllNumbersMoreThen10(HashSet<Integer> set)
-    {
-        ArrayList<Integer> aList= new ArrayList<Integer>();
-        aList.addAll(set);
-        for (int i=0; i<aList.size(); i++)
-            if (aList.get(i)>10){
-                aList.remove(i);
-                i--;
-            }
-        HashSet<Integer> newSet = new HashSet<Integer>();
-        newSet.addAll(aList);
-        return newSet;
+  private static HashSet<Integer> createSet() {
+    HashSet<Integer> set = new HashSet<>();
+    Random rand = new Random();
+    for (int i = 0; i < 20; i++) {
+      set.add(rand.nextInt());
     }
+    return set;
+  }
+
+  @SuppressWarnings("UnusedReturnValue")
+  private static HashSet<Integer> removeAllNumbersMoreThen10(HashSet<Integer> set) {
+    ArrayList<Integer> aList = new ArrayList<>(set);
+    for (int i = 0; i < aList.size(); i++) {
+      if (aList.get(i) > 10) {
+        aList.remove(i);
+        i--;
+      }
+    }
+    return new HashSet<>(aList);
+  }
 }

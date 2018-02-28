@@ -13,24 +13,26 @@ package com.javarush.test.level19.lesson08.task03;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class Solution {
-    public static TestString testString = new TestString();
+class Solution {
 
-    public static void main(String[] args) {
-        PrintStream defaultPrintStream = System.out;
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        testString.printSomething();
-        System.setOut(defaultPrintStream);
+  private static final TestString testString = new TestString();
 
-        String result;
-        result = byteArrayOutputStream.toString().replaceAll("[^0-9]", "");
-        System.out.println(result);
+  public static void main(String[] args) {
+    PrintStream defaultPrintStream = System.out;
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(byteArrayOutputStream));
+    testString.printSomething();
+    System.setOut(defaultPrintStream);
+
+    String result;
+    result = byteArrayOutputStream.toString().replaceAll("[^0-9]", "");
+    System.out.println(result);
+  }
+
+  static class TestString {
+
+    void printSomething() {
+      System.out.println("it's 1 a 23 text 4 f5-6or7 tes8ting");
     }
-
-    public static class TestString {
-        public void printSomething() {
-            System.out.println("it's 1 a 23 text 4 f5-6or7 tes8ting");
-        }
-    }
+  }
 }

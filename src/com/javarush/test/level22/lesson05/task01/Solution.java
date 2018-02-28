@@ -8,44 +8,50 @@ package com.javarush.test.level22.lesson05.task01;
 На некорректные данные бросить исключение TooShortStringException (сделать исключением).
 Сигнатуру метода getPartOfString не менять.
 */
-public class Solution {
-    public static String getPartOfString(String string) throws TooShortStringException
-    {
-            if (string == null)
-                throw new TooShortStringException();
-            int firstSpace = string.indexOf(" ");
-            if (firstSpace == -1)
-                throw new TooShortStringException();
-            int lastSpace = string.indexOf(" ", firstSpace + 1);
-            if (lastSpace == -1)
-                throw new TooShortStringException();
-            lastSpace = string.indexOf(" ", lastSpace + 1);
-            if (lastSpace == -1)
-                throw new TooShortStringException();
-            lastSpace = string.indexOf(" ", lastSpace + 1);
-            if (lastSpace == -1)
-                throw new TooShortStringException();
-            String afterLastSpace = string.substring(lastSpace + 1);
-            System.out.println(afterLastSpace);
-            char[] afterLastSpaceArray = afterLastSpace.toCharArray();
-            int index = 0;
-            if (!Character.isLetter(afterLastSpaceArray[0]))
-                throw new TooShortStringException();
-            for (int i = 1; i < afterLastSpaceArray.length; i++)
-            {
-                if (Character.isLetter(afterLastSpaceArray[i]))
-                    index = i;
-                else
-                    break;
-            }
-            return string.substring(firstSpace+1, lastSpace + index + 2);
-    }
+class Solution {
 
-    public static class TooShortStringException extends Exception {
+  private static String getPartOfString(String string) throws TooShortStringException {
+    if (string == null) {
+      throw new TooShortStringException();
     }
+    int firstSpace = string.indexOf(" ");
+    if (firstSpace == -1) {
+      throw new TooShortStringException();
+    }
+    int lastSpace = string.indexOf(" ", firstSpace + 1);
+    if (lastSpace == -1) {
+      throw new TooShortStringException();
+    }
+    lastSpace = string.indexOf(" ", lastSpace + 1);
+    if (lastSpace == -1) {
+      throw new TooShortStringException();
+    }
+    lastSpace = string.indexOf(" ", lastSpace + 1);
+    if (lastSpace == -1) {
+      throw new TooShortStringException();
+    }
+    String afterLastSpace = string.substring(lastSpace + 1);
+    System.out.println(afterLastSpace);
+    char[] afterLastSpaceArray = afterLastSpace.toCharArray();
+    int index = 0;
+    if (!Character.isLetter(afterLastSpaceArray[0])) {
+      throw new TooShortStringException();
+    }
+    for (int i = 1; i < afterLastSpaceArray.length; i++) {
+      if (Character.isLetter(afterLastSpaceArray[i])) {
+        index = i;
+      } else {
+        break;
+      }
+    }
+    return string.substring(firstSpace + 1, lastSpace + index + 2);
+  }
 
-    public static void main (String[] args) throws TooShortStringException
-    {
-        System.out.println(getPartOfString("JavaRush - лучший сервис обучения Java."));
-    }
+  public static void main(String[] args) throws TooShortStringException {
+    System.out.println(getPartOfString("JavaRush - лучший сервис обучения Java."));
+  }
+
+  private static class TooShortStringException extends Exception {
+
+  }
 }

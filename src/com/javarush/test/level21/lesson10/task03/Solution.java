@@ -7,37 +7,38 @@ import java.io.IOException;
 /* Найти и исправить ошибку
 Найти и исправить ошибку
 */
-public class Solution {
-    public static void main(String[] args) {
+class Solution {
 
-        for (int i = 0; i < 10; i++)
-            try {
-                new Solution().readFile("d:/1.txt");
-            } catch (Throwable throwable) {
-                System.out.println(i + " " + throwable.getClass().getSimpleName());
-            }
-    }
+  public static void main(String[] args) {
 
-    public void readFile(String path) {
-        try (BufferedReader br = new BufferedReader(new FileReader(path))) {
-            System.out.println(br.readLine());
-            dispose();
-        }
-        catch (IOException ignored) {
-            dispose();
-        }
-        System.out.println("finally");
+    for (int i = 0; i < 10; i++) {
+      try {
+        new Solution().readFile("d:/1.txt");
+      } catch (Throwable throwable) {
+        System.out.println(i + " " + throwable.getClass().getSimpleName());
+      }
     }
+  }
 
-    public void dispose() {
-        throw new RuntimeException("no matter");
+  private void readFile(String path) {
+    try (BufferedReader br = new BufferedReader(new FileReader(path))) {
+      System.out.println(br.readLine());
+      dispose();
+    } catch (IOException ignored) {
+      dispose();
     }
+    System.out.println("finally");
+  }
 
-    @Override
-    protected void finalize() throws Throwable {
-        super.finalize();
-        System.out.println("inside finalize - before throwing");
-        dispose();
-        System.out.println("inside finalize - after throwing");
-    }
+  private void dispose() {
+    throw new RuntimeException("no matter");
+  }
+
+  @Override
+  protected void finalize() throws Throwable {
+    super.finalize();
+    System.out.println("inside finalize - before throwing");
+    dispose();
+    System.out.println("inside finalize - after throwing");
+  }
 }

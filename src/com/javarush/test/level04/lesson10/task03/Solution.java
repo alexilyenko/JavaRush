@@ -13,17 +13,16 @@ import java.util.Scanner;
 абв
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Scanner scan = new Scanner(System.in);
-        String str = scan.nextLine();
-        int number = scan.nextInt();
-        int x=0;
-        while (x<number) {
-            System.out.println(str);
-            x++;
-        }
+class Solution {
+
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    String str = scan.nextLine();
+    int number = scan.nextInt();
+    int x = 0;
+    while (x < number) {
+      System.out.println(str);
+      x++;
     }
+  }
 }

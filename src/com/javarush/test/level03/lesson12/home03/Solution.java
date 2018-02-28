@@ -9,12 +9,11 @@ package com.javarush.test.level03.lesson12.home03;
 
 import java.util.Scanner;
 
-public class Solution
-{
-    public static void main(String[] args)   throws Exception
-    {
-        Scanner s = new Scanner(System.in);
-        int zp = s.nextInt();
-        System.out.println("Я буду зарабатывать $"+zp+" в час");
-    }
+class Solution {
+
+  public static void main(String[] args) {
+    Scanner s = new Scanner(System.in);
+    int zp = s.nextInt();
+    System.out.println("Я буду зарабатывать $" + zp + " в час");
+  }
 }

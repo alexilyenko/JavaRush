@@ -14,30 +14,29 @@ import java.math.BigInteger;
 0! = 1
 */
 
-public class Solution {
-    public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+class Solution {
 
-        int input = Integer.parseInt(reader.readLine());
-        reader.close();
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-        System.out.println(factorial(input));
+    int input = Integer.parseInt(reader.readLine());
+    reader.close();
+
+    System.out.println(factorial(input));
+  }
+
+  private static String factorial(int n) {
+    if (n < 0) {
+      return "0";
+    } else if (n == 0) {
+      return "1";
+    } else {
+      BigInteger fact = new BigInteger("1");
+      for (int i = n; i > 0; i--) {
+        BigInteger bigI = BigInteger.valueOf(i);
+        fact = fact.multiply(bigI);
+      }
+      return fact.toString();
     }
-
-    public static String factorial(int n) {
-        if (n < 0)
-            return "0";
-        else if (n == 0)
-            return "1";
-        else
-        {
-            BigInteger fact = new BigInteger("1");
-            for (int i = n; i > 0; i--)
-            {
-                BigInteger bigI = BigInteger.valueOf(i);
-                fact = fact.multiply(bigI);
-            }
-            return fact.toString();
-        }
-    }
+  }
 }

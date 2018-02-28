@@ -5,30 +5,22 @@ package com.javarush.test.level11.lesson11.home03;
 Унаследовать животных от рыб, обезьян от животных и человека от обезьян.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
 
-    public class Fish
-    {
+  class Fish {
 
-    }
+  }
 
-    public class Animal extends Fish
-    {
+  class Animal extends Fish {
 
-    }
+  }
 
-    public class Ape extends Animal
-    {
+  class Ape extends Animal {
 
-    }
+  }
 
-    public class Human extends Ape
-    {
+  private class Human extends Ape {
 
-    }
+  }
 
 }

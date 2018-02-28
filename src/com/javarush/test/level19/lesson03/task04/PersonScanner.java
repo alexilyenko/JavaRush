@@ -1,9 +1,8 @@
 package com.javarush.test.level19.lesson03.task04;
 
-import java.io.IOException;
+interface PersonScanner {
 
-public interface PersonScanner {
-    Person read() throws IOException;
+  Person read();
 
-    void close() throws IOException;
+  void close();
 }

@@ -1,6 +1,9 @@
 package com.javarush.test.level16.lesson13.home10;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 /* Последовательный вывод файлов
 1. Разберись, что делает программа.
@@ -18,70 +21,76 @@ import java.io.*;
 */
 
 public class Solution {
-    public static String firstFileName;
-    public static String secondFileName;
 
-    static {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        try
-        {
-            firstFileName = reader.readLine();
-            secondFileName = reader.readLine();
-            reader.close();
-        } catch (IOException ignore) {/*NOP*/}
+  @SuppressWarnings("CanBeFinal")
+  private static String firstFileName;
+  @SuppressWarnings("CanBeFinal")
+  private static String secondFileName;
+
+  static {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    try {
+      firstFileName = reader.readLine();
+      secondFileName = reader.readLine();
+      reader.close();
+    } catch (IOException ignore) {/*NOP*/}
+  }
+
+  public static void main(String[] args) throws InterruptedException {
+    systemOutPrintln(firstFileName);
+    systemOutPrintln(secondFileName);
+  }
+
+  private static void systemOutPrintln(String fileName) throws InterruptedException {
+    ReadFileInterface f = new ReadFileThread();
+    f.setFileName(fileName);
+    f.start();
+    f.join();
+    System.out.println(f.getFileContent());
+  }
+
+  interface ReadFileInterface {
+
+    void setFileName(String fullFileName);
+
+    String getFileContent();
+
+    @SuppressWarnings("RedundantThrows")
+    void join() throws InterruptedException;
+
+    void start();
+  }
+
+  public static class ReadFileThread extends Thread implements ReadFileInterface {
+
+    private String fullFileName;
+    private String fileContent = "";
+
+    @Override
+    public void setFileName(String fullFileName) {
+      this.fullFileName = fullFileName;
     }
 
-    public static class ReadFileThread extends Thread implements ReadFileInterface {
-        private String fullFileName;
-        private String fileContent = "";
-        @Override
-        public void setFileName(String fullFileName)
-        {
-            this.fullFileName = fullFileName;
+    @Override
+    public String getFileContent() {
+      return fileContent;
+    }
+
+    @Override
+    public void run() {
+      try {
+        BufferedReader reader = new BufferedReader(new FileReader(fullFileName));
+        String input;
+        StringBuilder res = new StringBuilder();
+        while ((input = reader.readLine()) != null) {
+          res = res.append(input).append(" ");
         }
+        fileContent = res.toString();
+        reader.close();
+      } catch (IOException ignore) {/*NOP*/}
 
-        @Override
-        public String getFileContent()
-        {
-           return fileContent;
-        }
-
-        @Override
-        public void run()
-        {
-            try
-            {
-                BufferedReader reader = new BufferedReader(new FileReader(fullFileName));
-                String input;
-                while ((input = reader.readLine()) != null)
-                    fileContent = fileContent+input+" ";
-                reader.close();
-            } catch (IOException ignore) {/*NOP*/}
-
-        }
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        systemOutPrintln(firstFileName);
-        systemOutPrintln(secondFileName);
-    }
 
-    public static void systemOutPrintln(String fileName) throws InterruptedException {
-        ReadFileInterface f = new ReadFileThread();
-        f.setFileName(fileName);
-        f.start();
-        f.join();
-        System.out.println(f.getFileContent());
-    }
-
-    public static interface ReadFileInterface {
-
-        void setFileName(String fullFileName);
-
-        String getFileContent();
-
-        void join() throws InterruptedException;
-
-        void start();
-    }
+  }
 }

@@ -7,21 +7,25 @@ package com.javarush.test.level05.lesson09.task01;
 - Имя, возраст, пол
 */
 
-    public class Friend
-    {
-        private String name;
-        private int age;
-        private boolean gender;
-        public Friend (String name) {
-            this.name=name;
-        }
-        public Friend (String name, int age) {
-            this.name=name;
-            this.age=age;
-        }
-        public Friend (String name, int age, boolean gender) {
-            this.name=name;
-            this.age=age;
-            this.gender=gender;
-        }
-    }
+class Friend {
+
+  private final String name;
+  private int age;
+  @SuppressWarnings("FieldCanBeLocal")
+  private boolean gender;
+
+  public Friend(String name) {
+    this.name = name;
+  }
+
+  public Friend(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public Friend(String name, int age, boolean gender) {
+    this.name = name;
+    this.age = age;
+    this.gender = gender;
+  }
+}

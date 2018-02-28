@@ -6,23 +6,25 @@ package com.javarush.test.level16.lesson03.task04;
 Подсказка: main thread уже выводит в консоль свой стек-трейс.
 */
 
-public class Solution {
-    public static void main(String[] args) throws InterruptedException {
-        Thread thread = new Thread(new SpecialThread());
-        thread.start();
+class Solution {
 
-        System.out.println("*****************");
+  public static void main(String[] args) {
+    Thread thread = new Thread(new SpecialThread());
+    thread.start();
 
-        for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
-            System.out.println(element);
-        }
+    System.out.println("*****************");
+
+    for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+      System.out.println(element);
     }
+  }
 
-    public static class SpecialThread implements Runnable {
-        public void run() {
-            for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
-                System.out.println(element);
-            }
-        }
+  static class SpecialThread implements Runnable {
+
+    public void run() {
+      for (StackTraceElement element : Thread.currentThread().getStackTrace()) {
+        System.out.println(element);
+      }
     }
+  }
 }

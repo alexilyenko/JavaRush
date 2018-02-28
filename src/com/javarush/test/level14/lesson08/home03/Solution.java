@@ -20,41 +20,41 @@ import java.util.ArrayList;
 3.4. Вызывает метод enjoy(), если person имеет тип Proger.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        Person person = null;
-        String key = null;
-        ArrayList<Person> persons = new ArrayList<Person>();
-        while (true) {
-        String input = reader.readLine();
-            if (input.equalsIgnoreCase("user"))
-                person = new Person.User();
-            else if (input.equalsIgnoreCase("looser"))
-                person = new Person.Looser();
-            else if (input.equalsIgnoreCase("coder"))
-                person = new Person.Coder();
-            else if (input.equalsIgnoreCase("proger"))
-                person = new Person.Proger();
-            else
-                break;
-        //тут цикл по чтению ключей, пункт 1
-        //создаем объект, пункт 2
-        doWork(person); //вызываем doWork
-        }
-    }
+class Solution {
 
-    public static void doWork(Person person)
-    {
-        if (person instanceof Person.User)
-            ((Person.User) person).live();
-        else if (person instanceof Person.Looser)
-            ((Person.Looser) person).doNothing();
-        else if (person instanceof Person.Coder)
-            ((Person.Coder) person).coding();
-        else if (person instanceof Person.Proger)
-            ((Person.Proger) person).enjoy();
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    Person person;
+    String key = null;
+    ArrayList<Person> persons = new ArrayList<>();
+    while (true) {
+      String input = reader.readLine();
+      if (input.equalsIgnoreCase("user")) {
+        person = new Person.User();
+      } else if (input.equalsIgnoreCase("looser")) {
+        person = new Person.Looser();
+      } else if (input.equalsIgnoreCase("coder")) {
+        person = new Person.Coder();
+      } else if (input.equalsIgnoreCase("proger")) {
+        person = new Person.Proger();
+      } else {
+        break;
+      }
+      //тут цикл по чтению ключей, пункт 1
+      //создаем объект, пункт 2
+      doWork(person); //вызываем doWork
     }
+  }
+
+  private static void doWork(Person person) {
+    if (person instanceof Person.User) {
+      ((Person.User) person).live();
+    } else if (person instanceof Person.Looser) {
+      ((Person.Looser) person).doNothing();
+    } else if (person instanceof Person.Coder) {
+      ((Person.Coder) person).coding();
+    } else if (person instanceof Person.Proger) {
+      ((Person.Proger) person).enjoy();
+    }
+  }
 }

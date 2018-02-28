@@ -9,38 +9,40 @@ package com.javarush.test.level16.lesson07.task01;
 
 import java.util.concurrent.TimeUnit;
 
-public class Solution {
-    public static volatile boolean isStopped = false;
+class Solution {
 
-    public static void main(String[] args) throws InterruptedException {
-        Clock clock = new Clock();
-        TimeUnit.SECONDS.sleep(2);
-        isStopped = true;
-        System.out.println("Clock has to be stopped");
-        TimeUnit.SECONDS.sleep(1);
-        System.out.println("Double-check");
+  private static volatile boolean isStopped = false;
+
+  public static void main(String[] args) throws InterruptedException {
+    Clock clock = new Clock();
+    TimeUnit.SECONDS.sleep(2);
+    isStopped = true;
+    System.out.println("Clock has to be stopped");
+    TimeUnit.SECONDS.sleep(1);
+    System.out.println("Double-check");
+  }
+
+  static class Clock extends Thread {
+
+    Clock() {
+      setPriority(MAX_PRIORITY);
+      start();
     }
 
-    public static class Clock extends Thread {
-        public Clock() {
-            setPriority(MAX_PRIORITY);
-            start();
+    public void run() {
+      try {
+        while (!isStopped) {
+          printTikTak();
         }
-
-        public void run() {
-            try {
-                while (!isStopped) {
-                    printTikTak();
-                }
-            } catch (InterruptedException ignored) {
-            }
-        }
-
-        private void printTikTak() throws InterruptedException {
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.println("Tik.");
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.println("Tak.");
-        }
+      } catch (InterruptedException ignored) {
+      }
     }
+
+    private void printTikTak() throws InterruptedException {
+      TimeUnit.MILLISECONDS.sleep(500);
+      System.out.println("Tik.");
+      TimeUnit.MILLISECONDS.sleep(500);
+      System.out.println("Tak.");
+    }
+  }
 }

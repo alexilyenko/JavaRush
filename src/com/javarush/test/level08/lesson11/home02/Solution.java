@@ -12,67 +12,68 @@ import java.util.Set;
 6. Реализовать метод printPets, котороый должен выводить на экран всех животных, которые в нем есть. Каждое животное с новой строки
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Set<Cat> cats = createCats();
-        Set<Dog> dogs = createDogs();
-        Set<Object> pets = join(cats, dogs);
-        printPets(pets);
-        removeCats(pets, cats);
-        printPets(pets);
+class Solution {
+
+  public static void main(String[] args) {
+    Set<Cat> cats = createCats();
+    Set<Dog> dogs = createDogs();
+    Set<Object> pets = join(cats, dogs);
+    printPets(pets);
+    removeCats(pets, cats);
+    printPets(pets);
+  }
+
+  private static Set<Cat> createCats() {
+    HashSet<Cat> resultCat = new HashSet<>();
+    for (int i = 0; i < 4; i++) {
+      resultCat.add(new Cat());
     }
+    return resultCat;
+  }
 
-    public static Set<Cat> createCats()
-    {
-        HashSet<Cat> resultCat = new HashSet<Cat>();
-        for (int i=0; i<4; i++)
-                resultCat.add(new Cat());
-        return resultCat;
+  private static Set<Dog> createDogs() {
+    HashSet<Dog> resultDog = new HashSet<>();
+    for (int i = 0; i < 3; i++) {
+      resultDog.add(new Dog());
     }
+    return resultDog;
+  }
 
-    public static Set<Dog> createDogs()
-    {
-        HashSet<Dog> resultDog = new HashSet<Dog>();
-        for (int i=0; i<3; i++)
-            resultDog.add(new Dog());
-        return resultDog;
-    }
+  private static Set<Object> join(Set<Cat> cats, Set<Dog> dogs) {
+    Set<Object> pets = new HashSet<>();
+    pets.addAll(cats);
 
-    public static Set<Object> join(Set<Cat> cats, Set<Dog> dogs)
-    {
-        Set<Object> pets = new HashSet<Object>();
-        for (Cat cat : cats)
-            pets.add(cat);
+    pets.addAll(dogs);
 
-        for (Dog dog : dogs)
-            pets.add(dog);
+    return pets;
+  }
 
-        return pets;
-    }
-
-    public static void removeCats(Set<Object> pets, Set<Cat> cats)
-    {
-        Set<Object> catsForDelete = new HashSet<Object>();
-        for (Object animal : pets)
-        {
-            for (Cat kot : cats) {
-                if (animal.equals(kot))
-                    catsForDelete.add(animal);
-            }
-
+  private static void removeCats(Set<Object> pets, Set<Cat> cats) {
+    Set<Object> catsForDelete = new HashSet<>();
+    for (Object animal : pets) {
+      for (Cat kot : cats) {
+        if (animal.equals(kot)) {
+          catsForDelete.add(animal);
         }
-        for (Object o : catsForDelete)
-           pets.remove(o);
-    }
+      }
 
-    public static void printPets(Set<Object> pets)
-    {
-        for (Object p : pets)
-           System.out.println(p);
     }
+    for (Object o : catsForDelete) {
+      pets.remove(o);
+    }
+  }
 
-    public static class Cat {}
-    public static class Dog {}
+  private static void printPets(Set<Object> pets) {
+    for (Object p : pets) {
+      System.out.println(p);
+    }
+  }
+
+  static class Cat {
+
+  }
+
+  static class Dog {
+
+  }
 }

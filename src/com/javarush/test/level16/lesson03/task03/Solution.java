@@ -7,20 +7,23 @@ import java.util.List;
 В методе main добавить в статический объект list 5 нитей SpecialThread - различных объектов.
 */
 
-public class Solution {
-    public static volatile List<Thread> list = new ArrayList<Thread>(5);
+class Solution {
 
-    public static void main(String[] args) {
-        list.add(new Thread(new SpecialThread()));
-        list.add(new Thread(new SpecialThread()));
-        list.add(new Thread(new SpecialThread()));
-        list.add(new Thread(new SpecialThread()));
-        list.add(new Thread(new SpecialThread()));
-    }
+  @SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
+  private static final List<Thread> list = new ArrayList<>();
 
-    public static class SpecialThread implements Runnable {
-        public void run() {
-            System.out.println("it's run method inside SpecialThread");
-        }
+  public static void main(String[] args) {
+    list.add(new Thread(new SpecialThread()));
+    list.add(new Thread(new SpecialThread()));
+    list.add(new Thread(new SpecialThread()));
+    list.add(new Thread(new SpecialThread()));
+    list.add(new Thread(new SpecialThread()));
+  }
+
+  static class SpecialThread implements Runnable {
+
+    public void run() {
+      System.out.println("it's run method inside SpecialThread");
     }
+  }
 }

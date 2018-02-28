@@ -4,11 +4,12 @@ package com.javarush.test.level06.lesson08.task01;
 Создать статическую переменную int catCount в классе Cat. Создай конструктор [public Cat()], в котором увеличивай данную переменную на 1.
 */
 
-public class Cat
-{
-     public static int catCount;
-     public Cat() {
-         catCount++;
-     }
+class Cat {
+
+  private static int catCount;
+
+  public Cat() {
+    catCount++;
+  }
 
 }

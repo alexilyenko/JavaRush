@@ -6,22 +6,25 @@ import java.io.Serializable;
 Сделайте так, чтобы сериализация класса Object была возможной
 */
 public class Solution {
-    public static class Object implements Serializable {
-        public String string1;
-        public String string2;
+
+  private static int countStrings;
+
+  private static class Object implements Serializable {
+
+    public String string1;
+    public String string2;
+  }
+
+  public static class String implements Serializable {
+
+    private final int number;
+
+    public String() {
+      number = ++countStrings;
     }
 
-    public static int countStrings;
-
-    public static class String implements Serializable {
-        private final int number;
-
-        public String() {
-            number = ++countStrings;
-        }
-
-        public void print() {
-            System.out.println("string #" + number);
-        }
+    public void print() {
+      System.out.println("string #" + number);
     }
+  }
 }

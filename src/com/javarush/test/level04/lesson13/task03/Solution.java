@@ -9,15 +9,15 @@ package com.javarush.test.level04.lesson13.task03;
 ...
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        int y, x;
-        for (y=1;y<=10;y++){
-            for (x=0; x<y; x++)
-                System.out.print(8);
-            System.out.println("");
-        }
+class Solution {
+
+  public static void main(String[] args) {
+    int y, x;
+    for (y = 1; y <= 10; y++) {
+      for (x = 0; x < y; x++) {
+        System.out.print(8);
+      }
+      System.out.println("");
     }
+  }
 }

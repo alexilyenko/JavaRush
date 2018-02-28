@@ -7,21 +7,22 @@ package com.javarush.test.level06.lesson11.home05;
 на экран описание идеи - это то, что возвращает метод getDescription
 */
 
-public class Solution
-{
-    public static void main(String[] args) {
-        Idea op = new Idea();
-        printIdea(op);
-    }
+class Solution {
 
-    public static class Idea {
-        public String getDescription() {
-            return "waaaat?";
-        }
-    }
+  public static void main(String[] args) {
+    Idea op = new Idea();
+    printIdea(op);
+  }
 
-    public static void printIdea(Idea id)
-    {
-        System.out.println(id.getDescription());
+  private static void printIdea(Idea id) {
+    System.out.println(id.getDescription());
+  }
+
+  static class Idea {
+
+    @SuppressWarnings("SameReturnValue")
+    String getDescription() {
+      return "waaaat?";
     }
+  }
 }

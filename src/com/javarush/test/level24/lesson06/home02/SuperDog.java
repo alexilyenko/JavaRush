@@ -2,11 +2,13 @@ package com.javarush.test.level24.lesson06.home02;
 
 import java.text.SimpleDateFormat;
 
-public abstract class SuperDog {
-    protected String getSuperQuotes() {
-        //some logic here
-        return " *** ";
-    }
+abstract class SuperDog {
 
-    protected SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy EEE");
+  final SimpleDateFormat formatter = new SimpleDateFormat("dd-MMM-yyyy EEE");
+
+  @SuppressWarnings("SameReturnValue")
+  String getSuperQuotes() {
+    //some logic here
+    return " *** ";
+  }
 }

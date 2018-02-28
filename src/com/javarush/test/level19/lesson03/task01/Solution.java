@@ -7,43 +7,48 @@ package com.javarush.test.level19.lesson03.task01;
 */
 
 public class Solution {
-    public static void main(String[] args) {
-        ATable aTable = new ATable() {
-            @Override
-            public String getCurrentUserName() {
-                return "Amigo";
-            }
 
-            @Override
-            public String getTableName() {
-                return "DashboardTable";
-            }
-        };
+  public static void main(String[] args) {
+    ATable aTable = new ATable() {
+      @Override
+      public String getCurrentUserName() {
+        return "Amigo";
+      }
 
-        BTable table = new TableAdapter(aTable);
-        System.out.println(table.getHeaderText());
+      @Override
+      public String getTableName() {
+        return "DashboardTable";
+      }
+    };
+
+    BTable table = new TableAdapter(aTable);
+    System.out.println(table.getHeaderText());
+  }
+
+  @SuppressWarnings("SameReturnValue")
+  interface ATable {
+
+    String getCurrentUserName();
+
+    String getTableName();
+  }
+
+  interface BTable {
+
+    String getHeaderText();
+  }
+
+  public static class TableAdapter implements BTable {
+
+    final ATable table;
+
+    TableAdapter(ATable table) {
+      this.table = table;
     }
 
-    public static class TableAdapter implements BTable {
-        ATable table;
-
-        public TableAdapter (ATable table) {
-            this.table = table;
-        }
-
-        @Override
-        public String getHeaderText()
-        {
-            return "["+this.table.getCurrentUserName()+"] : "+this.table.getTableName();
-        }
+    @Override
+    public String getHeaderText() {
+      return "[" + this.table.getCurrentUserName() + "] : " + this.table.getTableName();
     }
-
-    public interface ATable {
-        String getCurrentUserName();
-        String getTableName();
-    }
-
-    public interface BTable {
-        String getHeaderText();
-    }
+  }
 }

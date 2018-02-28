@@ -6,28 +6,30 @@ package com.javarush.test.level15.lesson04.task04;
 3. Реализация метода printName должна быть одна.
 */
 
-public class Solution {
-    public static void main(String[] args) {
-        Human man = new Man();
-        Human woman = new Woman();
+class Solution {
 
-        printName(man);
-        printName(woman);
-    }
+  public static void main(String[] args) {
+    Human man = new Man();
+    Human woman = new Woman();
 
-    public static void printName(Human human) {
+    printName(man);
+    printName(woman);
+  }
 
-    }
+  @SuppressWarnings("EmptyMethod")
+  private static void printName(Human human) {
 
-    public static class Human {
+  }
 
-    }
+  static class Human {
 
-    public static class Man extends Human {
+  }
 
-    }
+  private static class Man extends Human {
 
-    public static class Woman extends Human {
+  }
 
-    }
+  private static class Woman extends Human {
+
+  }
 }

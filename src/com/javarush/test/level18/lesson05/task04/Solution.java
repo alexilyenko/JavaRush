@@ -11,33 +11,33 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 
-public class Solution {
-    public static void main(String[] args) throws Exception {
+class Solution {
 
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        String fileName1 = bufferedReader.readLine();
-        String fileName2 = bufferedReader.readLine();
+  public static void main(String[] args) throws Exception {
 
-        FileInputStream fileInputStream = new FileInputStream(fileName1);
-        FileOutputStream fileOutputStream2 = new FileOutputStream(fileName2);
+    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+    String fileName1 = bufferedReader.readLine();
+    String fileName2 = bufferedReader.readLine();
 
-        byte[] buffer = new byte[fileInputStream.available()];
-        if (fileInputStream.available() > 0)
-        {
-            fileInputStream.read(buffer);
-        }
+    FileInputStream fileInputStream = new FileInputStream(fileName1);
+    FileOutputStream fileOutputStream2 = new FileOutputStream(fileName2);
 
-        byte[] buffer2 = new byte[buffer.length];
-        for (int i = 0; i<buffer.length; i++) {
-            buffer2[i] = buffer[buffer.length-1-i];
-        }
-
-        fileOutputStream2.write(buffer2);
-
-
-        bufferedReader.close();
-        fileInputStream.close();
-        fileOutputStream2.close();
-
+    byte[] buffer = new byte[fileInputStream.available()];
+    if (fileInputStream.available() > 0) {
+      //noinspection ResultOfMethodCallIgnored
+      fileInputStream.read(buffer);
     }
+
+    byte[] buffer2 = new byte[buffer.length];
+    for (int i = 0; i < buffer.length; i++) {
+      buffer2[i] = buffer[buffer.length - 1 - i];
+    }
+
+    fileOutputStream2.write(buffer2);
+
+    bufferedReader.close();
+    fileInputStream.close();
+    fileOutputStream2.close();
+
+  }
 }

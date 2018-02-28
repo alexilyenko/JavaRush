@@ -3,15 +3,9 @@ package com.javarush.test.level23.lesson02.task02;
 /* Запретите переопределение
 Запретите переопределение метода onMouseDown.
 */
-public class Solution {
+class Solution {
 
-    public static class Listener {
-        public final void onMouseDown(int x, int y) {
-            //do something on mouse down event
-        }
+  private static class Listener {
 
-        public void onMouseUp(int x, int y) {
-            //do something on mouse up event
-        }
-    }
+  }
 }

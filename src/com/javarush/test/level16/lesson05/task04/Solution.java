@@ -9,29 +9,32 @@ package com.javarush.test.level16.lesson05.task04;
 
 import java.util.concurrent.TimeUnit;
 
-public class Solution {
-    public static void main(String[] args) throws InterruptedException {
-        Mouse alpha = new Mouse("#1");
-        Mouse mouse1 = new Mouse("#2");
-        Mouse mouse2 = new Mouse("#3");
+class Solution {
+
+  public static void main(String[] args) {
+    Mouse alpha = new Mouse("#1");
+    Mouse mouse1 = new Mouse("#2");
+    Mouse mouse2 = new Mouse("#3");
+  }
+
+  private static void eating() {
+    try {
+      TimeUnit.SECONDS.sleep(2);
+    } catch (InterruptedException ignored) {
+    }
+  }
+
+  static class Mouse extends Thread {
+
+    Mouse(String name) {
+      super(name);
+      start();
     }
 
-    public static class Mouse extends Thread {
-        public Mouse(String name) {
-            super(name);
-            start();
-        }
-
-        public void run() {
-            System.out.println(getName() + " starts eating");
-            eating();
-            System.out.println(getName() + " finished");
-        }
+    public void run() {
+      System.out.println(getName() + " starts eating");
+      eating();
+      System.out.println(getName() + " finished");
     }
-    private static void eating() {
-        try {
-            TimeUnit.SECONDS.sleep(2);
-        } catch (InterruptedException ignored) {
-        }
-    }
+  }
 }

@@ -6,12 +6,11 @@ package com.javarush.test.level03.lesson06.task03;
 Цвета разделяй пробелом.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        System.out.println("красный оранжевый желтый");
-        System.out.println("зеленый голубой синий");
-        System.out.println("фиолетовый");
-    }
+class Solution {
+
+  public static void main(String[] args) {
+    System.out.println("красный оранжевый желтый");
+    System.out.println("зеленый голубой синий");
+    System.out.println("фиолетовый");
+  }
 }

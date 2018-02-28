@@ -6,22 +6,23 @@ package com.javarush.test.level17.lesson04.task04;
 Внутри синхронизированного блока инициализируйте president.
 */
 
-public class Solution {
-    public static class OurPresident {
+class Solution {
 
-        private static OurPresident president;
+  static class OurPresident {
 
-        private OurPresident() {
-        }
+    private static final OurPresident president;
 
-        static {
-            synchronized(OurPresident.class) {
-                president = getOurPresident();
-            }
-        }
-
-        public static OurPresident getOurPresident() {
-            return president;
-        }
+    static {
+      synchronized (OurPresident.class) {
+        president = getOurPresident();
+      }
     }
+
+    private OurPresident() {
+    }
+
+    static OurPresident getOurPresident() {
+      return president;
+    }
+  }
 }

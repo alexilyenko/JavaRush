@@ -10,20 +10,21 @@ import java.io.InputStreamReader;
 Закрыть поток ввода-вывода
 */
 
-public class Solution {
-    public static void main(String[] args) throws Exception {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        String fileName = reader.readLine();
-        reader.close();
-        FileInputStream input = new FileInputStream(fileName);
-        int min = input.read();
-        while (input.available() > 0)
-        {
-            int data = input.read();
-            if (data < min)
-                min = data;
-        }
-        input.close();
-        System.out.println(min);
+class Solution {
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    String fileName = reader.readLine();
+    reader.close();
+    FileInputStream input = new FileInputStream(fileName);
+    int min = input.read();
+    while (input.available() > 0) {
+      int data = input.read();
+      if (data < min) {
+        min = data;
+      }
     }
+    input.close();
+    System.out.println(min);
+  }
 }

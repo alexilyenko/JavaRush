@@ -14,40 +14,42 @@ import java.util.concurrent.TimeUnit;
 Строка 0
 */
 
-public class Solution {
-    public static volatile List<String> list = new ArrayList<String>(5);
+class Solution {
 
-    static {
-        for (int i = 0; i < 5; i++) {
-            list.add("Строка " + i);
-        }
+  private static final List<String> list = new ArrayList<>(5);
+
+  static {
+    for (int i = 0; i < 5; i++) {
+      list.add("Строка " + i);
+    }
+  }
+
+  public static void main(String[] args) {
+    Thread t = new Thread(new Countdown(3));
+    t.start();
+  }
+
+  static class Countdown implements Runnable {
+
+    private int countFrom;
+
+    Countdown(int countFrom) {
+      this.countFrom = countFrom;
     }
 
-    public static void main(String[] args) throws InterruptedException {
-        Thread t = new Thread(new Countdown(3));
-        t.start();
+    public void run() {
+      try {
+        while (countFrom > 0) {
+          printCountdown();
+        }
+      } catch (InterruptedException ignored) {
+      }
     }
 
-    public static class Countdown implements Runnable {
-        private int countFrom;
-
-        public Countdown(int countFrom) {
-            this.countFrom = countFrom;
-        }
-
-        public void run() {
-            try {
-                while (countFrom > 0) {
-                    printCountdown();
-                }
-            } catch (InterruptedException ignored) {
-            }
-        }
-
-        public void printCountdown() throws InterruptedException {
-            countFrom--;
-            TimeUnit.MILLISECONDS.sleep(500);
-            System.out.println(list.get(countFrom));
-        }
+    void printCountdown() throws InterruptedException {
+      countFrom--;
+      TimeUnit.MILLISECONDS.sleep(500);
+      System.out.println(list.get(countFrom));
     }
+  }
 }

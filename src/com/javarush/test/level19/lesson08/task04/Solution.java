@@ -17,36 +17,44 @@ package com.javarush.test.level19.lesson08.task04;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-public class Solution {
-    public static TestString testString = new TestString();
+class Solution {
 
-    public static void main(String[] args) {
-        PrintStream defaultPrintStream = System.out;
-        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(byteArrayOutputStream));
-        testString.printSomething();
-        System.setOut(defaultPrintStream);
+  private static final TestString testString = new TestString();
 
-        String result = byteArrayOutputStream.toString();
-        String[] resultArray = result.split(" ");
-        int firstNum = Integer.parseInt(resultArray[0]);
-        int secondNum = Integer.parseInt(resultArray[2]);
-        int arithmeticResult;
+  public static void main(String[] args) {
+    PrintStream defaultPrintStream = System.out;
+    ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+    System.setOut(new PrintStream(byteArrayOutputStream));
+    testString.printSomething();
+    System.setOut(defaultPrintStream);
 
-        if (resultArray[1].equals("+"))
-            arithmeticResult = firstNum + secondNum;
-        else if (resultArray[1].equals("-"))
-            arithmeticResult = firstNum - secondNum;
-        else
-            arithmeticResult = firstNum * secondNum;
+    String result = byteArrayOutputStream.toString();
+    String[] resultArray = result.split(" ");
+    int firstNum = Integer.parseInt(resultArray[0]);
+    int secondNum = Integer.parseInt(resultArray[2]);
+    int arithmeticResult;
 
-        System.out.println(firstNum+" "+resultArray[1]+" "+secondNum+" = "+arithmeticResult);
+    switch (resultArray[1]) {
+      case "+":
+        arithmeticResult = firstNum + secondNum;
+        break;
+      case "-":
+        arithmeticResult = firstNum - secondNum;
+        break;
+      default:
+        arithmeticResult = firstNum * secondNum;
+        break;
     }
 
-    public static class TestString {
-        public void printSomething() {
-            System.out.println("3 + 6 = ");
-        }
+    System.out
+        .println(firstNum + " " + resultArray[1] + " " + secondNum + " = " + arithmeticResult);
+  }
+
+  static class TestString {
+
+    void printSomething() {
+      System.out.println("3 + 6 = ");
     }
+  }
 }
 

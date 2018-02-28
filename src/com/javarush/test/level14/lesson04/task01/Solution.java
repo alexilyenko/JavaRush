@@ -6,42 +6,37 @@ package com.javarush.test.level14.lesson04.task01;
 3. Измени null на объект класса Building или School.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Building school = getSchool();
-        Building shop = getBuilding();
+public class Solution {
 
-        System.out.println(school);
-        System.out.println(shop);
-    }
+  public static void main(String[] args) {
+    Building school = getSchool();
+    Building shop = getBuilding();
 
-    public static Building getSchool()
-    {
-        return new School();
-    }
+    System.out.println(school);
+    System.out.println(shop);
+  }
 
-    public static Building getBuilding()
-    {
-        return new Building();
-    }
+  private static Building getSchool() {
+    return new School();
+  }
 
-    static class School extends Building
-    {
-        @Override
-        public String toString()
-        {
-            return "School";
-        }
-    }
+  private static Building getBuilding() {
+    return new Building();
+  }
 
-    static class Building 
-    {
-        @Override
-        public String toString()
-        {
-            return "Building";
-        }
+  static class School extends Building {
+
+    @Override
+    public String toString() {
+      return "School";
     }
+  }
+
+  static class Building {
+
+    @Override
+    public String toString() {
+      return "Building";
+    }
+  }
 }

@@ -12,20 +12,22 @@ import java.util.ArrayList;
 Вывести строки на экран, каждую с новой строки.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws IOException
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        ArrayList<String> list = new ArrayList<String>();
+class Solution {
 
-        while (true) {
-            String s = reader.readLine();
-            if (!s.equals("end"))
-                list.add(s);
-            else
-                break;
-        }
-        for (String aList : list) System.out.println(aList);
+  public static void main(String[] args) throws IOException {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    ArrayList<String> list = new ArrayList<>();
+
+    while (true) {
+      String s = reader.readLine();
+      if (!s.equals("end")) {
+        list.add(s);
+      } else {
+        break;
+      }
     }
+    for (String aList : list) {
+      System.out.println(aList);
+    }
+  }
 }

@@ -14,78 +14,81 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Solution {
-    public static void main(String[] args) {
-        List<Book> books = new LinkedList<Book>();
-        books.add(new MarkTwainBook("Tom Sawyer"));
-        books.add(new AgathaChristieBook("Hercule Poirot"));
-        System.out.println(books);
+
+  public static void main(String[] args) {
+    List<Book> books = new LinkedList<>();
+    books.add(new MarkTwainBook("Tom Sawyer"));
+    books.add(new AgathaChristieBook("Hercule Poirot"));
+    System.out.println(books);
+  }
+
+  protected abstract static class Book {
+
+    private final String author;
+
+    Book(String author) {
+      this.author = author;
     }
 
-    public abstract static class Book {
-        private String author;
+    protected abstract Book getBook();
 
-        public Book(String author) {
-            this.author = author;
-        }
+    protected abstract String getName();
 
-        public abstract Book getBook();
+    private String getOutputByBookType() {
+      String agathaChristieOutput = author + ", " + getBook().getName() + " is a detective";
+      String markTwainOutput = getBook().getName() + " book was written by " + author;
 
-        public abstract String getName();
+      String output = "output";
 
-        private String getOutputByBookType() {
-            String agathaChristieOutput = author + ", " + getBook().getName() + " is a detective";
-            String markTwainOutput = getBook().getName() + " book was written by " + author;
+      if (this instanceof MarkTwainBook) {
+        output = markTwainOutput;
+      } else if (this instanceof AgathaChristieBook) {
+        output = agathaChristieOutput;
+      }
 
-            String output = "output";
-
-            if (this instanceof MarkTwainBook)
-                output = markTwainOutput;
-            else if (this instanceof AgathaChristieBook)
-                output = agathaChristieOutput;
-
-            return output;
-        }
-
-        public String toString() {
-            return getOutputByBookType();
-        }
+      return output;
     }
 
-    public static class MarkTwainBook extends Book {
+    public String toString() {
+      return getOutputByBookType();
+    }
+  }
 
-        private String name;
-        private static String author = "Mark Twain";
+  public static class MarkTwainBook extends Book {
 
-        public MarkTwainBook (String name){
-             super(author);
-             this.name = name;
-        }
+    private static final String author = "Mark Twain";
+    private final String name;
 
-        public MarkTwainBook getBook() {
-            return this;
-        }
-
-        public String getName() {
-            return this.name;
-        }
+    MarkTwainBook(String name) {
+      super(author);
+      this.name = name;
     }
 
-    public static class AgathaChristieBook extends Book {
-
-        private String name;
-        private static String author = "Agatha Christie";
-
-        public AgathaChristieBook (String name){
-            super(author);
-            this.name = name;
-        }
-
-        public AgathaChristieBook getBook() {
-            return this;
-        }
-
-        public String getName() {
-            return this.name;
-        }
+    public MarkTwainBook getBook() {
+      return this;
     }
+
+    public String getName() {
+      return this.name;
+    }
+  }
+
+  public static class AgathaChristieBook extends Book {
+
+    private static final String author = "Agatha Christie";
+    private final String name;
+
+    AgathaChristieBook(String name) {
+      super(author);
+      this.name = name;
+    }
+
+    public AgathaChristieBook getBook() {
+      return this;
+    }
+
+    public String getName() {
+      return this.name;
+    }
+  }
 }

@@ -7,26 +7,27 @@ package com.javarush.test.level08.lesson03.task01;
 Посмотреть, как изменился порядок добавленных элементов.
 */
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.Set;
 
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Set<String> hash = new HashSet<String>();
-        hash.add("арбуз");
-        hash.add("банан");
-        hash.add("вишня");
-        hash.add("груша");
-        hash.add("дыня");
-        hash.add("ежевика");
-        hash.add("жень-шень");
-        hash.add("земляника");
-        hash.add("ирис");
-        hash.add("картофель");
+class Solution {
 
-        for(String text: hash)
-            System.out.println(text);
+  public static void main(String[] args) {
+    Set<String> hash = new HashSet<>();
+    hash.add("арбуз");
+    hash.add("банан");
+    hash.add("вишня");
+    hash.add("груша");
+    hash.add("дыня");
+    hash.add("ежевика");
+    hash.add("жень-шень");
+    hash.add("земляника");
+    hash.add("ирис");
+    hash.add("картофель");
+
+    for (String text : hash) {
+      System.out.println(text);
     }
+  }
 }

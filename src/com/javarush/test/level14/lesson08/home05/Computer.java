@@ -3,32 +3,28 @@ package com.javarush.test.level14.lesson08.home05;
 /**
  * Created by Алексей on 12.04.2014.
  */
-public class Computer
-{
-    private Keyboard keyboard;
-    private Monitor monitor;
-    private Mouse mouse;
+class Computer {
 
-    public Computer()
-    {
-        this.keyboard = new Keyboard();
-        this.monitor = new Monitor();
-        this.mouse = new Mouse();
-    }
+  private final Keyboard keyboard;
+  private final Monitor monitor;
+  private final Mouse mouse;
 
-    public Keyboard getKeyboard()
-    {
-        return keyboard;
-    }
+  Computer() {
+    this.keyboard = new Keyboard();
+    this.monitor = new Monitor();
+    this.mouse = new Mouse();
+  }
 
-    public Monitor getMonitor()
-    {
-        return monitor;
-    }
+  public Keyboard getKeyboard() {
+    return keyboard;
+  }
 
-    public Mouse getMouse()
-    {
-        return mouse;
-    }
+  public Monitor getMonitor() {
+    return monitor;
+  }
+
+  public Mouse getMouse() {
+    return mouse;
+  }
 
 }

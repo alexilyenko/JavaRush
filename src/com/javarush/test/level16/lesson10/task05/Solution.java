@@ -14,52 +14,55 @@ import java.util.concurrent.TimeUnit;
 3.2. threadName - должна равняться значению метода getName (реализовано в классе Thread) у текущей нити.
 */
 
-public class Solution {
-    public static byte countThreads = 3;
-    static List<Thread> threads = new ArrayList<Thread>(countThreads);
+class Solution {
 
-    public static void main(String[] args) throws InterruptedException {
-        initThreadsAndStart();
-        TimeUnit.SECONDS.sleep(3);
-        ourInterruptMethod();
+  private static final byte countThreads = 3;
+  private static final List<Thread> threads = new ArrayList<>(countThreads);
+
+  public static void main(String[] args) throws InterruptedException {
+    initThreadsAndStart();
+    TimeUnit.SECONDS.sleep(3);
+    ourInterruptMethod();
+  }
+
+  private static void ourInterruptMethod() {
+    for (Thread thread : threads) {
+      thread.interrupt();
+    }
+  }
+
+  private static void initThreadsAndStart() {
+    Water water = new Water("water");
+    for (int i = 0; i < countThreads; i++) {
+      threads.add(new Thread(water, "#" + i));
     }
 
-    public static void ourInterruptMethod() {
-        for (Thread thread : threads)
-            thread.interrupt();
+    for (int i = 0; i < countThreads; i++) {
+      threads.get(i).start();
+    }
+  }
+
+  static class Water implements Runnable {
+
+    private final String commonResource;
+
+    Water(String commonResource) {
+      this.commonResource = commonResource;
     }
 
-    private static void initThreadsAndStart() {
-        Water water = new Water("water");
-        for (int i = 0; i < countThreads; i++) {
-            threads.add(new Thread(water, "#" + i));
-        }
+    public void run() {
+      Thread current = Thread.currentThread();
+      boolean isCurrentThreadInterrupted = current.isInterrupted();
+      String threadName = current.getName();
 
-        for (int i = 0; i < countThreads; i++) {
-            threads.get(i).start();
+      try {
+        while (!isCurrentThreadInterrupted) {
+
+          System.out.println("Объект " + commonResource + ", нить " + threadName);
+          TimeUnit.SECONDS.sleep(1);
         }
+      } catch (InterruptedException ignored) {
+      }
     }
-
-    public static class Water implements Runnable {
-        private String commonResource;
-
-        public Water(String commonResource) {
-            this.commonResource = commonResource;
-        }
-
-        public void run() {
-            Thread current = Thread.currentThread();
-            boolean isCurrentThreadInterrupted = current.isInterrupted();
-            String threadName = current.getName();
-
-            try {
-                while (!isCurrentThreadInterrupted) {
-
-                    System.out.println("Объект " + commonResource + ", нить " + threadName);
-                    TimeUnit.SECONDS.sleep(1);
-                }
-            } catch (InterruptedException ignored) {
-            }
-        }
-    }
+  }
 }

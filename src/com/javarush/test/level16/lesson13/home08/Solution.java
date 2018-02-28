@@ -16,58 +16,61 @@ import java.util.List;
 2.2. Используй countReadStrings для подсчета уже считанных с консоли слов.
 */
 
-public class Solution {
-    public static volatile byte countReadStrings;
-    public static volatile BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+class Solution {
 
-    public static void main(String[] args) throws IOException {
-        //read count of strings
-        int count = Integer.parseInt(reader.readLine());
+  private static final BufferedReader reader = new BufferedReader(
+      new InputStreamReader(System.in));
+  private static volatile byte countReadStrings;
 
-        //init threads
-        ReaderThread consolReader1 = new ReaderThread();
-        ReaderThread consolReader2 = new ReaderThread();
-        ReaderThread consolReader3 = new ReaderThread();
+  public static void main(String[] args) throws IOException {
+    //read count of strings
+    int count = Integer.parseInt(reader.readLine());
 
-        while (count > countReadStrings) {
-        }
+    //init threads
+    ReaderThread consolReader1 = new ReaderThread();
+    ReaderThread consolReader2 = new ReaderThread();
+    ReaderThread consolReader3 = new ReaderThread();
 
-        consolReader1.interrupt();
-        consolReader2.interrupt();
-        consolReader3.interrupt();
-        System.out.println("#1:" + consolReader1);
-        System.out.println("#2:" + consolReader2);
-        System.out.println("#3:" + consolReader3);
-
-        reader.close();
+    //noinspection StatementWithEmptyBody
+    while (count > countReadStrings) {
     }
 
-    public static class ReaderThread extends Thread {
-        private List<String> result = new ArrayList<String>();
+    consolReader1.interrupt();
+    consolReader2.interrupt();
+    consolReader3.interrupt();
+    System.out.println("#1:" + consolReader1);
+    System.out.println("#2:" + consolReader2);
+    System.out.println("#3:" + consolReader3);
 
-        public ReaderThread() {
-            start();
-        }
+    reader.close();
+  }
 
-        public void run()
-        {
-            while (!isInterrupted()) {
-                try
-                {
-                    String input = reader.readLine();
-                    result.add(input);
-                    countReadStrings++;
-                }
-                catch (IOException e) {}
+  static class ReaderThread extends Thread {
 
-            }
-        }
+    private final List<String> result = new ArrayList<>();
 
-        @Override
-        public String toString() {
-            String s = result.toString();
-            return s.substring(1, s.length()-1);
-        }
+    ReaderThread() {
+      start();
     }
+
+    @SuppressWarnings("NonAtomicOperationOnVolatileField")
+    public void run() {
+      while (!isInterrupted()) {
+        try {
+          String input = reader.readLine();
+          result.add(input);
+          countReadStrings++;
+        } catch (IOException ignored) {
+        }
+
+      }
+    }
+
+    @Override
+    public String toString() {
+      String s = result.toString();
+      return s.substring(1, s.length() - 1);
+    }
+  }
 }
 

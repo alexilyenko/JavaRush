@@ -8,20 +8,18 @@ package com.javarush.test.level14.lesson08.bonus02;
 
 import java.util.Scanner;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Scanner scan = new Scanner(System.in);
-        int a = scan.nextInt();
-        int b = scan.nextInt();
-        int nod = 1;
-        for (int i=2; i<=a; i++) {
-            if ((a % i == 0) && (b % i == 0))
-            {
-                nod = i;
-            }
-        }
-        System.out.println(nod);
+class Solution {
+
+  public static void main(String[] args) {
+    Scanner scan = new Scanner(System.in);
+    int a = scan.nextInt();
+    int b = scan.nextInt();
+    int nod = 1;
+    for (int i = 2; i <= a; i++) {
+      if ((a % i == 0) && (b % i == 0)) {
+        nod = i;
+      }
     }
+    System.out.println(nod);
+  }
 }

@@ -15,23 +15,23 @@ import java.util.zip.ZipFile;
 Отрефакторите метод writeZipEntriesToFile в соответствии с java7 try-with-resources.
 Допускаются только текстовые коментарии.
 */
-public class Solution {
-    public static void writeZipEntriesToFile(String zipFileName, String outputFileName)
-    {
-        Charset charset = StandardCharsets.UTF_8;
-        Path outputFilePath = Paths.get(outputFileName);
+class Solution {
 
-        try (
-                ZipFile zip = new ZipFile(zipFileName);
-                BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)
-            ) {
-            String newLine = System.getProperty("line.separator");
-            for (Enumeration entries = zip.entries(); entries.hasMoreElements(); ) {
-                String zipEntryName = ((ZipEntry) entries.nextElement()).getName() + newLine;
-                writer.write(zipEntryName, 0, zipEntryName.length());
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+  public static void writeZipEntriesToFile(String zipFileName, String outputFileName) {
+    Charset charset = StandardCharsets.UTF_8;
+    Path outputFilePath = Paths.get(outputFileName);
+
+    try (
+        ZipFile zip = new ZipFile(zipFileName);
+        BufferedWriter writer = Files.newBufferedWriter(outputFilePath, charset)
+    ) {
+      String newLine = System.getProperty("line.separator");
+      for (Enumeration entries = zip.entries(); entries.hasMoreElements(); ) {
+        String zipEntryName = ((ZipEntry) entries.nextElement()).getName() + newLine;
+        writer.write(zipEntryName, 0, zipEntryName.length());
+      }
+    } catch (IOException e) {
+      e.printStackTrace();
     }
+  }
 }

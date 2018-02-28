@@ -5,19 +5,13 @@ package com.javarush.test.level11.lesson11.home02;
 Унаследовать SamsungGalaxyS2 от AppleIPhone.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-    }
+class Solution {
 
-    public class AppleIPhone
-    {
+  class AppleIPhone {
 
-    }
+  }
 
-    public class SamsungGalaxyS2 extends AppleIPhone
-    {
+  private class SamsungGalaxyS2 extends AppleIPhone {
 
-    }
+  }
 }

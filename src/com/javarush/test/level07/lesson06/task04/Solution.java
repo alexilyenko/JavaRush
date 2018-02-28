@@ -9,14 +9,16 @@ package com.javarush.test.level07.lesson06.task04;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        ArrayList<String> list = new ArrayList<String>();
-        Scanner scan = new Scanner(System.in);
-        for (int i=0; i<5; i++)
-            list.add(0, scan.nextLine());
-        for (String aList : list) System.out.println(aList);
+class Solution {
+
+  public static void main(String[] args) {
+    ArrayList<String> list = new ArrayList<>();
+    Scanner scan = new Scanner(System.in);
+    for (int i = 0; i < 5; i++) {
+      list.add(0, scan.nextLine());
     }
+    for (String aList : list) {
+      System.out.println(aList);
+    }
+  }
 }

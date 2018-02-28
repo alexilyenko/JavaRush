@@ -4,19 +4,14 @@ package com.javarush.test.level12.lesson06.task01;
 Сделать класс Pet абстрактным.
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
+class Solution {
 
-    }
+  private static abstract class Pet {
 
-    public static abstract class Pet
-    {
-        public String getName()
-        {
-            return "Я - котенок";
-        }
+    @SuppressWarnings("SameReturnValue")
+    public String getName() {
+      return "Я - котенок";
     }
+  }
 
 }

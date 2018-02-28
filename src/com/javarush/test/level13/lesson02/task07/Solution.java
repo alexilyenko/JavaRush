@@ -4,21 +4,17 @@ package com.javarush.test.level13.lesson02.task07;
 В классе StringObject реализуй интерфейс SimpleObject с параметром типа String.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-    }
+public class Solution {
 
-    interface SimpleObject<T>
-    {
-        SimpleObject<T> getInstance();
-    }
+  interface SimpleObject<T> {
 
-    class StringObject implements SimpleObject<String>
-    {
-        public SimpleObject<String> getInstance(){
-            return new StringObject();
-        }
+    SimpleObject<T> getInstance();
+  }
+
+  class StringObject implements SimpleObject<String> {
+
+    public SimpleObject<String> getInstance() {
+      return new StringObject();
     }
+  }
 }

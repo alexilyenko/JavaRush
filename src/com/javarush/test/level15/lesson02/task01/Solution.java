@@ -5,35 +5,32 @@ package com.javarush.test.level15.lesson02.task01;
 2. Реализовать их методы.
 */
 
-public class Solution
-{
-    public static interface Movable
-    {
-        boolean getAllowedAction(String name);
+public class Solution {
+
+  public interface Movable {
+
+    boolean getAllowedAction(String name);
+  }
+
+  interface Sellable {
+
+    Object getAllowedAction(String name);
+  }
+
+  interface Discountable {
+
+    Object getAllowedAction();
+  }
+
+  public static class Clothes implements Sellable, Discountable {
+
+    public Object getAllowedAction(String name) {
+      return this;
     }
 
-    public static interface Sellable
-    {
-        Object getAllowedAction(String name);
+    public Object getAllowedAction() {
+      return this;
     }
 
-    public static interface Discountable
-    {
-        Object getAllowedAction();
-    }
-
-    public static class Clothes implements Sellable, Discountable
-    {
-
-        public Object getAllowedAction(String name)
-        {
-            return this;
-        }
-
-        public Object getAllowedAction()
-        {
-            return this;
-        }
-
-    }
+  }
 }

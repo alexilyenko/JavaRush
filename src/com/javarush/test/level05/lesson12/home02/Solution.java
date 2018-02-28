@@ -8,46 +8,51 @@ package com.javarush.test.level05.lesson12.home02;
 5. Объекты выведи на экран в таком формате [name + " " + age + " " + address].
 */
 
-    public class Solution
-    {
-        public static void main(String[] args)
-        {
-            Man man1 = new Man("Alex", 24, "Ussuriyska");
-            Man man2 = new Man("Eugene", 25, "Chernihivkska");
-            Woman woman1 = new Woman("Oksana", 20, "Ussuriyska");
-            Woman woman2 = new Woman("Ira", 22, "Vyborzka");
+class Solution {
 
-            man1.getOutPut();
-            man2.getOutPut();
-            woman1.getOutPut();
-            woman2.getOutPut();
-        }
+  public static void main(String[] args) {
+    Man man1 = new Man("Alex", 24, "Ussuriyska");
+    Man man2 = new Man("Eugene", 25, "Chernihivkska");
+    Woman woman1 = new Woman("Oksana", 20, "Ussuriyska");
+    Woman woman2 = new Woman("Ira", 22, "Vyborzka");
 
-        public static class Man {
-            private String name;
-            private int age;
-            private String address;
-            public Man(String name, int age, String address) {
-                this.name = name;
-                this.age= age;
-                this.address=address;
-            }
-            public void getOutPut(){
-            System.out.println(name+" "+age+" "+address);
-            }
-        }
+    man1.getOutPut();
+    man2.getOutPut();
+    woman1.getOutPut();
+    woman2.getOutPut();
+  }
 
-        public static class Woman {
-            private String name;
-            private int age;
-            private String address;
-            public Woman(String name, int age, String address) {
-                this.name = name;
-                this.age= age;
-                this.address=address;
-            }
-            public void getOutPut(){
-                System.out.println(name+" "+age+" "+address);
-            }
-        }
+  static class Man {
+
+    private final String name;
+    private final int age;
+    private final String address;
+
+    Man(String name, int age, String address) {
+      this.name = name;
+      this.age = age;
+      this.address = address;
     }
+
+    void getOutPut() {
+      System.out.println(name + " " + age + " " + address);
+    }
+  }
+
+  static class Woman {
+
+    private final String name;
+    private final int age;
+    private final String address;
+
+    Woman(String name, int age, String address) {
+      this.name = name;
+      this.age = age;
+      this.address = address;
+    }
+
+    void getOutPut() {
+      System.out.println(name + " " + age + " " + address);
+    }
+  }
+}

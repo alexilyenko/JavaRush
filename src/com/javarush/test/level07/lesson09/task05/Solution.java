@@ -9,24 +9,26 @@ import java.util.Scanner;
 3. Используя цикл for выведи результат на экран, каждое значение с новой строки.
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception {
-        ArrayList<String> list = new ArrayList<String>();
-        Scanner scan = new Scanner(System.in);
-        for (int i=0; i<10; i++)
-            list.add(scan.nextLine());
-        ArrayList<String> result = doubleValues(list);
+class Solution {
 
-        for (String aResult : result)
-            System.out.println(aResult);
+  public static void main(String[] args) {
+    ArrayList<String> list = new ArrayList<>();
+    Scanner scan = new Scanner(System.in);
+    for (int i = 0; i < 10; i++) {
+      list.add(scan.nextLine());
     }
+    ArrayList<String> result = doubleValues(list);
 
-    public static ArrayList<String> doubleValues(ArrayList<String> list) {
-        for (int i=0; i<list.size();) {
-            list.add(i+1, list.get(i));
-            i+=2;
-        }
-        return list;
+    for (String aResult : result) {
+      System.out.println(aResult);
     }
+  }
+
+  private static ArrayList<String> doubleValues(ArrayList<String> list) {
+    for (int i = 0; i < list.size(); ) {
+      list.add(i + 1, list.get(i));
+      i += 2;
+    }
+    return list;
+  }
 }

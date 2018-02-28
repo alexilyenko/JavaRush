@@ -9,49 +9,53 @@ import java.util.Map;
 */
 public class Solution {
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        solution.users.put("Hubert", new User(172, "Hubert"));
-        solution.users.put("Zapp", new User(41, "Zapp"));
-        Solution clone = null;
-        try {
-            clone = solution.clone();
-            System.out.println(solution);
-            System.out.println(clone);
+  private final Map<String, User> users = new LinkedHashMap<>();
 
-            System.out.println(solution.users);
-            System.out.println(clone.users);
+  public static void main(String[] args) {
+    Solution solution = new Solution();
+    solution.users.put("Hubert", new User(172, "Hubert"));
+    solution.users.put("Zapp", new User(41, "Zapp"));
+    Solution clone;
+    try {
+      clone = solution.clone();
+      System.out.println(solution);
+      System.out.println(clone);
 
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace(System.err);
-        }
+      System.out.println(solution.users);
+      System.out.println(clone.users);
+
+    } catch (CloneNotSupportedException e) {
+      e.printStackTrace(System.err);
     }
+  }
 
-    protected Map<String, User> users = new LinkedHashMap();
+  @Override
+  protected Solution clone() throws CloneNotSupportedException {
+    Solution solution1 = (Solution) super.clone();
+    Map<String, User> users = new LinkedHashMap<>();
+    for (Map.Entry<String, User> entry : this.users.entrySet()) {
+      User user = entry.getValue().clone();
+      users.put(entry.getKey(), user);
+    }
+    Solution solution = new Solution();
+    solution.users.putAll(users);
+    return solution;
+  }
 
-    public static class User {
-        int age;
-        String name;
+  protected static class User {
 
-        public User(int age, String name) {
-            this.age = age;
-            this.name = name;
-        }
-        @Override
-        protected User clone() throws CloneNotSupportedException{
-            return new User(this.age,this.name);
-        }
+    final int age;
+    final String name;
+
+    User(int age, String name) {
+      this.age = age;
+      this.name = name;
     }
 
     @Override
-    protected Solution clone() throws CloneNotSupportedException {
-        Map<String, User> users = new LinkedHashMap();
-        for(Map.Entry<String,User> entry : this.users.entrySet()){
-            User user = entry.getValue().clone();
-            users.put(entry.getKey(),user);
-        }
-        Solution solution = new Solution();
-        solution.users.putAll(users);
-        return solution;
+    protected User clone() throws CloneNotSupportedException {
+      User user = (User) super.clone();
+      return new User(this.age, this.name);
     }
+  }
 }

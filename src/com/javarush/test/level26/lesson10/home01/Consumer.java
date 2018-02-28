@@ -5,21 +5,25 @@ import java.util.concurrent.BlockingQueue;
 /**
  * Created by ailenko on 08.05.2014.
  */
-public class Consumer implements Runnable {
-    protected BlockingQueue queue;
+class Consumer implements Runnable {
 
-    public Consumer(BlockingQueue queue) {
-        this.queue = queue;
-    }
+  private final BlockingQueue queue;
 
-    public void run() {
-        try {
-            while (true) {
-                System.out.println(queue.take());
-                Thread.sleep(500);
-            }
-        } catch (InterruptedException e) {
-            System.out.println(String.format("[%s] thread was terminated", Thread.currentThread().getName()));
-        }
+  Consumer(BlockingQueue queue) {
+    this.queue = queue;
+  }
+
+  @SuppressWarnings("InfiniteLoopStatement")
+  public void run() {
+    try {
+      //noinspection InfiniteLoopStatement
+      while (true) {
+        System.out.println(queue.take());
+        Thread.sleep(500);
+      }
+    } catch (InterruptedException e) {
+      System.out
+          .println(String.format("[%s] thread was terminated", Thread.currentThread().getName()));
     }
+  }
 }

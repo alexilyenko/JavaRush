@@ -5,21 +5,20 @@ package com.javarush.test.level13.lesson04.task02;
 Метод main менять нельзя!
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        Translator translator = new Translator();
-        System.out.println(translator.translate());
-    }
+class Solution {
 
-    public static class Translator
-    {
-        public String translate()
-        {
-            return "Я переводчик с английского";
-        }
+  public static void main(String[] args) {
+    Translator translator = new Translator();
+    System.out.println(translator.translate());
+  }
+
+  static class Translator {
+
+    @SuppressWarnings("SameReturnValue")
+    String translate() {
+      return "Я переводчик с английского";
     }
+  }
 
 
 }

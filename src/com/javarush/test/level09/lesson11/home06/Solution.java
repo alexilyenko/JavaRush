@@ -11,40 +11,47 @@ PS: пирожки никто не ел. Их только несли. Волк 
 */
 
 public class Solution {
-    public static LittleRedRidingHood hood = new LittleRedRidingHood();
-    public static Grandmother grandmother = new Grandmother();
-    public static Patty patty = new Patty();
-    public static Woodman woodman = new Woodman();
-    public static Wolf wolf = new Wolf();
 
-    public static void main(String[] args) {
-        wolf.ate.add(grandmother);
-        wolf.ate.add(hood);
-        woodman.killed.add(wolf);
-    }
+  private static final LittleRedRidingHood hood = new LittleRedRidingHood();
+  private static final Grandmother grandmother = new Grandmother();
+  private static final Woodman woodman = new Woodman();
+  private static final Wolf wolf = new Wolf();
+  public static Patty patty = new Patty();
 
-    //красная шапочка
-    public static class LittleRedRidingHood extends StoryItem {
-    }
+  public static void main(String[] args) {
+    wolf.ate.add(grandmother);
+    wolf.ate.add(hood);
+    woodman.killed.add(wolf);
+  }
 
-    //бабушка
-    public static class Grandmother extends StoryItem {
-    }
+  //красная шапочка
+  private static class LittleRedRidingHood extends StoryItem {
 
-    //пирожок
-    public static class Patty extends StoryItem {
-    }
+  }
 
-    //дровосек
-    public static class Woodman extends StoryItem {
-    }
+  //бабушка
+  private static class Grandmother extends StoryItem {
 
-    //волк
-    public static class Wolf extends StoryItem {
-    }
+  }
 
-    public static abstract class StoryItem {
-        public ArrayList<StoryItem> killed = new ArrayList<StoryItem>();
-        public ArrayList<StoryItem> ate = new ArrayList<StoryItem>();
-    }
+  //пирожок
+  private static class Patty extends StoryItem {
+
+  }
+
+  //дровосек
+  private static class Woodman extends StoryItem {
+
+  }
+
+  //волк
+  private static class Wolf extends StoryItem {
+
+  }
+
+  static abstract class StoryItem {
+
+    final ArrayList<StoryItem> killed = new ArrayList<>();
+    final ArrayList<StoryItem> ate = new ArrayList<>();
+  }
 }

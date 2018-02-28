@@ -13,90 +13,84 @@ import java.util.List;
 4. Вывести на экран cat.toString().
 */
 
-public class Solution
-{
-    public static void main(String[] args) throws Exception
-    {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        List<Cat> list = new ArrayList<Cat>();
-        while (true) {
-            String currentCat = reader.readLine();
-            if (currentCat.equals(""))
-                break;
-            Cat cat = CatFactory.getCatByKey(currentCat);
-            list.add(cat);
-        }
-        for (Cat i : list)
-            System.out.println(i);
+public class Solution {
+
+  public static void main(String[] args) throws Exception {
+    BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    List<Cat> list = new ArrayList<>();
+    while (true) {
+      String currentCat = reader.readLine();
+      if (currentCat.equals("")) {
+        break;
+      }
+      Cat cat = CatFactory.getCatByKey(currentCat);
+      list.add(cat);
+    }
+    for (Cat i : list) {
+      System.out.println(i);
+    }
+  }
+
+  static class CatFactory {
+
+    static Cat getCatByKey(String key) {
+      Cat cat;
+      switch (key) {
+        case "vaska":
+          cat = new MaleCat("Василий");
+          break;
+        case "murka":
+          cat = new FemaleCat("Мурочка");
+          break;
+        case "kiska":
+          cat = new FemaleCat("Кисюлька");
+          break;
+        default:
+          cat = new Cat(key);
+          break;
+      }
+
+      return cat;
+    }
+  }
+
+  static class Cat {
+
+    private final String name;
+
+    Cat(String name) {
+      this.name = name;
     }
 
-    static class CatFactory
-    {
-
-        static Cat getCatByKey(String key)
-        {
-            Cat cat = null;
-            if ("vaska".equals(key))
-            {
-                cat = new MaleCat("Василий");
-            } else if ("murka".equals(key))
-            {
-                cat = new FemaleCat("Мурочка");
-            } else if ("kiska".equals(key))
-            {
-                cat = new FemaleCat("Кисюлька");
-            } else
-            {
-                cat = new Cat(key);
-            }
-
-            return cat;
-        }
+    String getName() {
+      return this.name;
     }
 
-    static class Cat
-    {
-        private String name;
+    public String toString() {
+      return "Я уличный кот " + getName();
+    }
+  }
 
-        protected Cat(String name)
-        {
-            this.name = name;
-        }
+  static class MaleCat extends Cat {
 
-        public String getName()
-        {
-            return this.name;
-        }
-
-        public String toString()
-        {
-            return "Я уличный кот " + getName();
-        }
+    @SuppressWarnings("SameParameterValue")
+    MaleCat(String name) {
+      super(name);
     }
 
-    static class MaleCat extends Cat
-    {
-        MaleCat(String name)
-        {
-            super(name);
-        }
+    public String toString() {
+      return "Я - солидный кошак по имени " + getName();
+    }
+  }
 
-        public String toString()
-        {
-            return "Я - солидный кошак по имени " + getName();
-        }
+  static class FemaleCat extends Cat {
+
+    FemaleCat(String name) {
+      super(name);
     }
 
-    static class FemaleCat extends Cat
-    {
-        FemaleCat(String name)
-        {
-            super(name);
-        }
-
-        public String toString()
-        {
-            return "Я - милая кошечка по имени " + getName();
-        }
+    public String toString() {
+      return "Я - милая кошечка по имени " + getName();
     }
+  }
 }

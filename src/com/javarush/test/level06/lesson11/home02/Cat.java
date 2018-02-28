@@ -8,21 +8,24 @@ import java.util.ArrayList;
 3. Метод printCats должен выводить всех котов на экран. Нужно использовать переменную cats.
 */
 
-public class Cat {
-    public static ArrayList<Cat> cats = new ArrayList<Cat>();
+class Cat {
 
-    public Cat() {
-        cats.add(this);
-    }
+  private static final ArrayList<Cat> cats = new ArrayList<>();
 
-    public static void main(String[] args) {
-        for(int i = 0; i < 10; i++)
-            new Cat();
-        printCats();
-    }
+  private Cat() {
+    cats.add(this);
+  }
 
-    public static void printCats() {
-        for(Cat cat : cats)
-            System.out.println(cat);
+  public static void main(String[] args) {
+    for (int i = 0; i < 10; i++) {
+      new Cat();
     }
+    printCats();
+  }
+
+  private static void printCats() {
+    for (Cat cat : cats) {
+      System.out.println(cat);
+    }
+  }
 }

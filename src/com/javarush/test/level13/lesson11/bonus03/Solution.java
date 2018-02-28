@@ -16,27 +16,26 @@ package com.javarush.test.level13.lesson11.bonus03;
 7. http://ragecollection.com/img/ragefaces/fuck-yeah.png
 */
 
-public class Solution
-{
-    public static void main(String[] args)
-    {
-        Robot amigo = new Robot("Амиго");
-        Robot enemy = new Robot("Сгибальщик-02");
+class Solution {
 
-        doMove(amigo, enemy);
-        doMove(amigo, enemy);
-        doMove(enemy, amigo);
-        doMove(amigo, enemy);
-        doMove(enemy, amigo);
-        doMove(amigo, enemy);
-        doMove(enemy, amigo);
-        doMove(amigo, enemy);
-    }
+  public static void main(String[] args) {
+    Robot amigo = new Robot("Амиго");
+    Robot enemy = new Robot("Сгибальщик-02");
 
-    public static void doMove(Robot robotFirst, Robot robotScond) {
-        BodyPart attacked = robotFirst.attack();
-        BodyPart defenced = robotFirst.defense();
-        System.out.println(String.format("%s атаковал робота %s, атакована %s, защищена %s",
-                robotFirst.getName(), robotScond.getName(), attacked, defenced));
-    }
+    doMove(amigo, enemy);
+    doMove(amigo, enemy);
+    doMove(enemy, amigo);
+    doMove(amigo, enemy);
+    doMove(enemy, amigo);
+    doMove(amigo, enemy);
+    doMove(enemy, amigo);
+    doMove(amigo, enemy);
+  }
+
+  private static void doMove(Robot robotFirst, Robot robotScond) {
+    BodyPart attacked = robotFirst.attack();
+    BodyPart defenced = robotFirst.defense();
+    System.out.println(String.format("%s атаковал робота %s, атакована %s, защищена %s",
+        robotFirst.getName(), robotScond.getName(), attacked, defenced));
+  }
 }
