@@ -4,5 +4,5 @@
 
 <h7>For the moment I made my last commit maximum level was 26 and I had reached that limit.</h7>
 
-<h10>*You can learn more about this course at http://javarush.ru/ (Russian).*</h10>
+<h10>*You can learn more about this course at https://javarush.com/en/ .*</h10>
 
